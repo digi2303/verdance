@@ -175,6 +175,12 @@ public class VerdanceBlocks {
     public static final Block VIOLET = register("violet", new FlowerBlock(MobEffects.REGENERATION, 8.0f, Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(OffsetType.XZ).pushReaction(PushReaction.DESTROY)));
     public static final Block POTTED_VIOLET = register("potted_violet", new FlowerPotBlock(VIOLET, Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY)));
 
+    public static final Block SHRUB = register("shrub", new ShrubBlock(Properties.of().mapColor(MapColor.PLANT).replaceable().noCollission().instabreak().sound(SoundType.AZALEA).ignitedByLava().pushReaction(PushReaction.BLOCK)));
+    public static final Block POTTED_SHRUB = register("potted_shrub", new FlowerPotBlock(SHRUB, Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY)));
+
+    public static final Block YELLOW_FLOWERING_SHRUB = register("yellow_flowering_shrub", new ShrubBlock(Properties.ofFullCopy(SHRUB)));
+    public static final Block POTTED_YELLOW_FLOWERING_SHRUB = register("potted_yellow_flowering_shrub", new FlowerPotBlock(YELLOW_FLOWERING_SHRUB, Properties.ofFullCopy(POTTED_SHRUB)));
+
     private static Block register(String name, Block block) {
         var registry = Registry.register(BuiltInRegistries.BLOCK, Verdance.id(name), block);
         Registry.register(BuiltInRegistries.ITEM, Verdance.id(name), new BlockItem(registry, new Item.Properties()));

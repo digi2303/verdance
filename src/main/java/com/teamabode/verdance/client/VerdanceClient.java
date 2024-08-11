@@ -56,6 +56,10 @@ public class VerdanceClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(VerdanceBlocks.SILK_COCOON, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(VerdanceBlocks.VIOLET, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(VerdanceBlocks.POTTED_VIOLET, RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(VerdanceBlocks.SHRUB, RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(VerdanceBlocks.POTTED_SHRUB, RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(VerdanceBlocks.YELLOW_FLOWERING_SHRUB, RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(VerdanceBlocks.POTTED_YELLOW_FLOWERING_SHRUB, RenderType.cutout());
     }
 
     private static void addColorProviders() {

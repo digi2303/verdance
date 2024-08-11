@@ -6,7 +6,6 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.concurrent.CompletableFuture;
@@ -38,9 +37,10 @@ public class VerdanceBlockTagProvider extends FabricTagProvider.BlockTagProvider
         mineableHoe();
         mineableAxe();
 
-        ghostTownReplaceable();
         silkMothsSpawnableOn();
         replaceableBySugarCane();
+        shrubs();
+        shrubMayPlaceOn();
         smallFlowers();
     }
 
@@ -302,11 +302,6 @@ public class VerdanceBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .setReplace(false);
     }
 
-    private void ghostTownReplaceable() {
-        this.getOrCreateTagBuilder(VerdanceBlockTags.GHOST_TOWN_DEGRADABLE).setReplace(false)
-                .add(Blocks.SAND);
-    }
-
     private void silkMothsSpawnableOn() {
         this.getOrCreateTagBuilder(VerdanceBlockTags.SILK_MOTHS_SPAWNABLE_ON).setReplace(false)
                 .add(VerdanceBlocks.MULBERRY_LEAVES)
@@ -318,6 +313,19 @@ public class VerdanceBlockTagProvider extends FabricTagProvider.BlockTagProvider
         this.getOrCreateTagBuilder(VerdanceBlockTags.REPLACEABLE_BY_SUGAR_CANE).setReplace(false)
                 .forceAddTag(BlockTags.REPLACEABLE)
                 .add(Blocks.SUGAR_CANE);
+    }
+
+    private void shrubs() {
+        this.getOrCreateTagBuilder(VerdanceBlockTags.SHRUBS).setReplace(false)
+                .add(VerdanceBlocks.SHRUB)
+                .add(VerdanceBlocks.YELLOW_FLOWERING_SHRUB);
+    }
+
+    private void shrubMayPlaceOn() {
+        this.getOrCreateTagBuilder(VerdanceBlockTags.SHRUB_MAY_PLACE_ON).setReplace(false)
+                .forceAddTag(BlockTags.DIRT)
+                .forceAddTag(BlockTags.SAND)
+                .forceAddTag(BlockTags.TERRACOTTA);
     }
 
     private void smallFlowers() {
