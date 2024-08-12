@@ -178,8 +178,11 @@ public class VerdanceBlocks {
     public static final Block SHRUB = register("shrub", new ShrubBlock(Properties.of().mapColor(MapColor.PLANT).replaceable().noCollission().instabreak().sound(SoundType.AZALEA).ignitedByLava().pushReaction(PushReaction.BLOCK)));
     public static final Block POTTED_SHRUB = register("potted_shrub", new FlowerPotBlock(SHRUB, Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY)));
 
-    public static final Block YELLOW_FLOWERING_SHRUB = register("yellow_flowering_shrub", new ShrubBlock(Properties.ofFullCopy(SHRUB)));
+    public static final Block YELLOW_FLOWERING_SHRUB = register("yellow_flowering_shrub", new FloweringShrubBlock(VerdanceConfiguredFeatures.PATCH_YELLOW_FLOWERING_SHRUB_BONEMEAL, Properties.ofFullCopy(SHRUB)));
     public static final Block POTTED_YELLOW_FLOWERING_SHRUB = register("potted_yellow_flowering_shrub", new FlowerPotBlock(YELLOW_FLOWERING_SHRUB, Properties.ofFullCopy(POTTED_SHRUB)));
+
+    public static final Block ORANGE_FLOWERING_SHRUB = register("orange_flowering_shrub", new FloweringShrubBlock(VerdanceConfiguredFeatures.PATCH_ORANGE_FLOWERING_SHRUB_BONEMEAL, Properties.ofFullCopy(SHRUB)));
+    public static final Block POTTED_ORANGE_FLOWERING_SHRUB = register("potted_orange_flowering_shrub", new FlowerPotBlock(ORANGE_FLOWERING_SHRUB, Properties.ofFullCopy(POTTED_SHRUB)));
 
     private static Block register(String name, Block block) {
         var registry = Registry.register(BuiltInRegistries.BLOCK, Verdance.id(name), block);

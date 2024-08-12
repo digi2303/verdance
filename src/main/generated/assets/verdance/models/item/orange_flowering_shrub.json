@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "verdance:block/orange_flowering_shrub"
+  }
+}

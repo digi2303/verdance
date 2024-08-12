@@ -40,7 +40,9 @@ public class VerdanceBlockTagProvider extends FabricTagProvider.BlockTagProvider
         silkMothsSpawnableOn();
         replaceableBySugarCane();
         shrubs();
+        floweringShrubs();
         shrubMayPlaceOn();
+        flowers();
         smallFlowers();
     }
 
@@ -318,7 +320,14 @@ public class VerdanceBlockTagProvider extends FabricTagProvider.BlockTagProvider
     private void shrubs() {
         this.getOrCreateTagBuilder(VerdanceBlockTags.SHRUBS).setReplace(false)
                 .add(VerdanceBlocks.SHRUB)
-                .add(VerdanceBlocks.YELLOW_FLOWERING_SHRUB);
+                .add(VerdanceBlocks.YELLOW_FLOWERING_SHRUB)
+                .add(VerdanceBlocks.ORANGE_FLOWERING_SHRUB);
+    }
+
+    private void floweringShrubs() {
+        this.getOrCreateTagBuilder(VerdanceBlockTags.FLOWERING_SHRUBS).setReplace(false)
+                .add(VerdanceBlocks.YELLOW_FLOWERING_SHRUB)
+                .add(VerdanceBlocks.ORANGE_FLOWERING_SHRUB);
     }
 
     private void shrubMayPlaceOn() {
@@ -326,6 +335,10 @@ public class VerdanceBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .forceAddTag(BlockTags.DIRT)
                 .forceAddTag(BlockTags.SAND)
                 .forceAddTag(BlockTags.TERRACOTTA);
+    }
+
+    private void flowers() {
+        this.getOrCreateTagBuilder(BlockTags.FLOWERS).forceAddTag(VerdanceBlockTags.FLOWERING_SHRUBS);
     }
 
     private void smallFlowers() {
