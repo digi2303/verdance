@@ -38,6 +38,7 @@ public class VerdanceBlockLootTableProvider extends FabricBlockLootTableProvider
         stucco();
         cantaloupe();
         cushions();
+        shrubs();
         add(VerdanceBlocks.SILKWORM_EGGS, this::createSilkTouchOnlyTable);
     }
 
@@ -83,6 +84,21 @@ public class VerdanceBlockLootTableProvider extends FabricBlockLootTableProvider
         dropSelf(VerdanceBlocks.PURPLE_CUSHION);
         dropSelf(VerdanceBlocks.MAGENTA_CUSHION);
         dropSelf(VerdanceBlocks.PINK_CUSHION);
+    }
+
+    private void shrubs() {
+        this.add(VerdanceBlocks.SHRUB, block -> createShearsDispatchTable(
+                block, this.applyExplosionDecay(block, LootItem.lootTableItem(Items.STICK).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f))))
+        ));
+        this.add(VerdanceBlocks.YELLOW_FLOWERING_SHRUB, block -> createShearsDispatchTable(
+                block, this.applyExplosionDecay(block, LootItem.lootTableItem(Items.STICK).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f))))
+        ));
+        this.add(VerdanceBlocks.ORANGE_FLOWERING_SHRUB, block -> createShearsDispatchTable(
+                block, this.applyExplosionDecay(block, LootItem.lootTableItem(Items.STICK).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f))))
+        ));
+        this.dropPottedContents(VerdanceBlocks.POTTED_SHRUB);
+        this.dropPottedContents(VerdanceBlocks.POTTED_YELLOW_FLOWERING_SHRUB);
+        this.dropPottedContents(VerdanceBlocks.POTTED_ORANGE_FLOWERING_SHRUB);
     }
 
     private LootTable.Builder createMulberryLeaves(Block leafBlock) {
