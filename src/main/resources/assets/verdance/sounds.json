@@ -153,5 +153,13 @@
             "verdance:entity/silkworm/death2"
         ],
         "subtitle": "subtitles.verdance.entity.silkworm.death"
+    },
+    "music_disc.range": {
+        "sounds": [
+            {
+                "name": "verdance:record/range",
+                "stream": true
+            }
+        ]
     }
 }

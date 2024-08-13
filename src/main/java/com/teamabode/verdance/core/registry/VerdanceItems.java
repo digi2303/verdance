@@ -25,6 +25,9 @@ public class VerdanceItems {
     public static final Item MULBERRY_BOAT = register("mulberry_boat", new SketchBoatItem(new Item.Properties().stacksTo(1), VerdanceBoatTypes.MULBERRY, false));
     public static final Item MULBERRY_CHEST_BOAT = register("mulberry_chest_boat", new SketchBoatItem(new Item.Properties().stacksTo(1), VerdanceBoatTypes.MULBERRY, true));
 
+    public static final Item MUSIC_DISC_RANGE = register("music_disc_range", new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(VerdanceJukeboxSongs.RANGE)));
+    public static final Item DISC_FRAGMENT_RANGE = register("disc_fragment_range", new DiscFragmentItem(new Item.Properties()));
+
     public static final Item SILK_MOTH_SPAWN_EGG = register("silk_moth_spawn_egg", new SpawnEggItem(VerdanceEntityTypes.SILK_MOTH, 13542773, 16383172, new Item.Properties()));
     public static final Item SILKWORM_SPAWN_EGG = register("silkworm_spawn_egg", new SpawnEggItem(VerdanceEntityTypes.SILKWORM, 0xEBEDE6, 0x75665D, new Item.Properties()));
 

@@ -29,6 +29,8 @@ public class VerdanceSoundEvents {
     public static final SoundEvent BLOCK_SILK_COCOON_STEP = register("block.silk_cocoon.step");
     public static final SoundEvent BLOCK_SILK_COCOON_WOBBLE = register("block.silk_cocoon.wobble");
 
+    public static final Holder<SoundEvent> MUSIC_DISC_RANGE = registerHolder("music_disc.range");
+
     public static void register() {
 
     }

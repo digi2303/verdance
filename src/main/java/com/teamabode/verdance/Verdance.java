@@ -85,6 +85,7 @@ public class Verdance implements ModInitializer {
                     VerdanceItems.MULBERRY_BOAT,
                     VerdanceItems.MULBERRY_CHEST_BOAT
             );
+            entries.addBefore(Items.MUSIC_DISC_5, VerdanceItems.MUSIC_DISC_RANGE);
         });
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(entries -> {
             entries.addAfter(
@@ -215,6 +216,9 @@ public class Verdance implements ModInitializer {
                     VerdanceBlocks.PINK_CUSHION
             );
         });
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS).register(entries -> entries.addBefore(
+                Items.DISC_FRAGMENT_5, VerdanceItems.DISC_FRAGMENT_RANGE)
+        );
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.SPAWN_EGGS).register(entries -> {
             entries.addAfter(
                     Items.SILVERFISH_SPAWN_EGG,

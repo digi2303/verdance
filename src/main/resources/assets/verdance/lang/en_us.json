@@ -127,12 +127,17 @@
     "item.verdance.cantaloupe_juice": "Cantaloupe Juice",
     "item.verdance.cantaloupe_seeds": "Cantaloupe Seeds",
     "item.verdance.cantaloupe_slice": "Cantaloupe Slice",
+    "item.verdance.disc_fragment_range": "Disc Fragment",
+    "item.verdance.disc_fragment_range.desc": "Music Disc - Range",
     "item.verdance.grilled_cantaloupe_slice": "Grilled Cantaloupe Slice",
     "item.verdance.mulberry": "Mulberry",
     "item.verdance.mulberry_boat": "Mulberry Boat",
     "item.verdance.mulberry_chest_boat": "Mulberry Chest Boat",
+    "item.verdance.music_disc_range": "Music Disc",
     "item.verdance.silk_moth_spawn_egg": "Silk Moth Spawn Egg",
     "item.verdance.silkworm_spawn_egg": "Silkworm Spawn Egg",
+
+    "jukebox_song.verdance.range": "Firch - Range",
 
     "subtitles.verdance.entity.silk_moth.death": "Silk Moth dies",
     "subtitles.verdance.entity.silk_moth.eat": "Silk Moth eats",
