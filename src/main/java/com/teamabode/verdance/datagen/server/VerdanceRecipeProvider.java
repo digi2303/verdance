@@ -15,7 +15,6 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -79,6 +78,10 @@ public class VerdanceRecipeProvider extends FabricRecipeProvider {
                 .unlockedBy("has_sugar", has(Items.SUGAR))
                 .unlockedBy("has_glass_bottle", has(Items.GLASS_BOTTLE))
                 .save(exporter, Verdance.id("cantaloupe_juice"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, VerdanceItems.MUSIC_DISC_RANGE)
+                .requires(VerdanceItems.DISC_FRAGMENT_RANGE, 9)
+                .unlockedBy("has_disc_fragment_range", has(VerdanceItems.DISC_FRAGMENT_RANGE))
+                .save(exporter, Verdance.id("music_disc_range"));
     }
 
     public static void stonecutterResultFromBase(RecipeOutput exporter, RecipeCategory category, ItemLike result, ItemLike material) {
