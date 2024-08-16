@@ -18,7 +18,5 @@ public class VerdanceEntityTypeTagProvider extends FabricTagProvider.EntityTypeT
     protected void addTags(HolderLookup.Provider wrapperLookup) {
         this.getOrCreateTagBuilder(EntityTypeTags.ARTHROPOD)
                 .add(VerdanceEntityTypes.SILK_MOTH);
-        this.getOrCreateTagBuilder(EntityTypeTags.SENSITIVE_TO_BANE_OF_ARTHROPODS)
-                .add(VerdanceEntityTypes.SILK_MOTH);
     }
 }
