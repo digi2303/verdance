@@ -44,6 +44,7 @@ public class VerdanceBlockTagProvider extends FabricTagProvider.BlockTagProvider
         shrubMayPlaceOn();
         flowers();
         smallFlowers();
+        crops();
     }
 
     private void mineablePickaxe() {
@@ -343,5 +344,9 @@ public class VerdanceBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
     private void smallFlowers() {
         this.getOrCreateTagBuilder(BlockTags.SMALL_FLOWERS).add(VerdanceBlocks.VIOLET);
+    }
+
+    private void crops() {
+        this.getOrCreateTagBuilder(BlockTags.CROPS).add(VerdanceBlocks.CANTALOUPE_STEM);
     }
 }

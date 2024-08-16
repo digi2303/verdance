@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-12T19:58:48.5217162	Verdance/Tags for minecraft:block
+// 1.21.1	2024-08-15T20:24:15.9175762	Verdance/Tags for minecraft:block
 9b20fbd98b5e9333686763db62249b3a3c25be65 data\minecraft\tags\block\slabs.json
 236626952d19df32e45caaaf4419eeea0cc18e70 data\minecraft\tags\block\wooden_fences.json
 1279a25bdf9d46398795bea7711d6f41e49a2c1d data\minecraft\tags\block\small_flowers.json
@@ -11,6 +11,7 @@ bc42ddcd9382f4ddd4b8d705a936832c08908e13 data\verdance\tags\block\shrubs.json
 1f488710f7952be1bc4e13ef5f84446f27b992b8 data\minecraft\tags\block\overworld_natural_logs.json
 ac6161c143be39ee6c1887e559a7019210aebe80 data\verdance\tags\block\flowering_shrubs.json
 740fa2d483b1840073090e5b698d69c70c68856f data\minecraft\tags\block\leaves.json
+f05948cdba402133ca05258bad12390990170c25 data\minecraft\tags\block\crops.json
 740fa2d483b1840073090e5b698d69c70c68856f data\minecraft\tags\block\mineable\hoe.json
 14ba0871bc57681075fc0e0ca5f906db94aa1253 data\minecraft\tags\block\mineable\axe.json
 5b0e925bd9766291f3a1197c2a1ac2907d442131 data\minecraft\tags\block\standing_signs.json
