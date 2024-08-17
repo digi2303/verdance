@@ -36,7 +36,7 @@ public class VerdanceModelProvider extends FabricModelProvider {
         generator.createPlant(VerdanceBlocks.VIOLET, VerdanceBlocks.POTTED_VIOLET, BlockModelGenerators.TintState.NOT_TINTED);
         generator.createPlant(VerdanceBlocks.SHRUB, VerdanceBlocks.POTTED_SHRUB, BlockModelGenerators.TintState.NOT_TINTED);
         generator.createPlant(VerdanceBlocks.YELLOW_FLOWERING_SHRUB, VerdanceBlocks.POTTED_YELLOW_FLOWERING_SHRUB, BlockModelGenerators.TintState.NOT_TINTED);
-        generator.createPlant(VerdanceBlocks.ORANGE_FLOWERING_SHRUB, VerdanceBlocks.POTTED_ORANGE_FLOWERING_SHRUB, BlockModelGenerators.TintState.NOT_TINTED);
+        generator.createPlant(VerdanceBlocks.PINK_FLOWERING_SHRUB, VerdanceBlocks.POTTED_PINK_FLOWERING_SHRUB, BlockModelGenerators.TintState.NOT_TINTED);
 
         this.createPottedMulberry(generator, VerdanceBlocks.MULBERRY_SAPLING, VerdanceBlocks.POTTED_MULBERRY_SAPLING, BlockModelGenerators.TintState.NOT_TINTED);
         generator.createHangingSign(VerdanceBlocks.STRIPPED_MULBERRY_LOG, VerdanceBlocks.MULBERRY_HANGING_SIGN, VerdanceBlocks.MULBERRY_WALL_HANGING_SIGN);

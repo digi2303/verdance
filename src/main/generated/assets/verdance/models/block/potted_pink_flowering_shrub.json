@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/flower_pot_cross",
   "textures": {
-    "plant": "verdance:block/orange_flowering_shrub"
+    "plant": "verdance:block/pink_flowering_shrub"
   }
 }

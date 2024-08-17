@@ -322,13 +322,13 @@ public class VerdanceBlockTagProvider extends FabricTagProvider.BlockTagProvider
         this.getOrCreateTagBuilder(VerdanceBlockTags.SHRUBS).setReplace(false)
                 .add(VerdanceBlocks.SHRUB)
                 .add(VerdanceBlocks.YELLOW_FLOWERING_SHRUB)
-                .add(VerdanceBlocks.ORANGE_FLOWERING_SHRUB);
+                .add(VerdanceBlocks.PINK_FLOWERING_SHRUB);
     }
 
     private void floweringShrubs() {
         this.getOrCreateTagBuilder(VerdanceBlockTags.FLOWERING_SHRUBS).setReplace(false)
                 .add(VerdanceBlocks.YELLOW_FLOWERING_SHRUB)
-                .add(VerdanceBlocks.ORANGE_FLOWERING_SHRUB);
+                .add(VerdanceBlocks.PINK_FLOWERING_SHRUB);
     }
 
     private void shrubMayPlaceOn() {

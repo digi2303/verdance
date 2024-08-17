@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.BlockFamily;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -93,12 +92,12 @@ public class VerdanceBlockLootTableProvider extends FabricBlockLootTableProvider
         this.add(VerdanceBlocks.YELLOW_FLOWERING_SHRUB, block -> createShearsDispatchTable(
                 block, this.applyExplosionDecay(block, LootItem.lootTableItem(Items.STICK).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f))))
         ));
-        this.add(VerdanceBlocks.ORANGE_FLOWERING_SHRUB, block -> createShearsDispatchTable(
+        this.add(VerdanceBlocks.PINK_FLOWERING_SHRUB, block -> createShearsDispatchTable(
                 block, this.applyExplosionDecay(block, LootItem.lootTableItem(Items.STICK).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f))))
         ));
         this.dropPottedContents(VerdanceBlocks.POTTED_SHRUB);
         this.dropPottedContents(VerdanceBlocks.POTTED_YELLOW_FLOWERING_SHRUB);
-        this.dropPottedContents(VerdanceBlocks.POTTED_ORANGE_FLOWERING_SHRUB);
+        this.dropPottedContents(VerdanceBlocks.POTTED_PINK_FLOWERING_SHRUB);
     }
 
     private LootTable.Builder createMulberryLeaves(Block leafBlock) {

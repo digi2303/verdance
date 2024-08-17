@@ -42,7 +42,7 @@ public class VerdanceConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_YELLOW_FLOWERING_SHRUB = createKey("patch_yellow_flowering_shrub");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_YELLOW_FLOWERING_SHRUB_BONEMEAL = createKey("patch_yellow_flowering_shrub_bonemeal");
-    public static final ResourceKey<ConfiguredFeature<? ,?>> PATCH_ORANGE_FLOWERING_SHRUB_BONEMEAL = createKey("patch_orange_flowering_shrub_bonemeal");
+    public static final ResourceKey<ConfiguredFeature<? ,?>> PATCH_PINK_FLOWERING_SHRUB_BONEMEAL = createKey("patch_pink_flowering_shrub_bonemeal");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FLOWER_VIOLET = createKey("flower_violet");
 
     public static void register(BootstrapContext<ConfiguredFeature<?, ?>> context) {
@@ -96,11 +96,11 @@ public class VerdanceConfiguredFeatures {
                 2,
                 floweringShrubPlacement(VerdanceBlocks.YELLOW_FLOWERING_SHRUB)
         ));
-        FeatureUtils.register(context, PATCH_ORANGE_FLOWERING_SHRUB_BONEMEAL, Feature.RANDOM_PATCH, new RandomPatchConfiguration(
+        FeatureUtils.register(context, PATCH_PINK_FLOWERING_SHRUB_BONEMEAL, Feature.RANDOM_PATCH, new RandomPatchConfiguration(
                 32,
                 4,
                 2,
-                floweringShrubPlacement(VerdanceBlocks.ORANGE_FLOWERING_SHRUB)
+                floweringShrubPlacement(VerdanceBlocks.PINK_FLOWERING_SHRUB)
         ));
         FeatureUtils.register(context, FLOWER_VIOLET, Feature.FLOWER, new RandomPatchConfiguration(
                 64,

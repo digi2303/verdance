@@ -131,7 +131,7 @@ public class Verdance implements ModInitializer {
             entries.addAfter(Items.FROGSPAWN, VerdanceBlocks.SILKWORM_EGGS);
             entries.addAfter(Items.CORNFLOWER, VerdanceBlocks.VIOLET);
 
-            entries.addBefore(Items.DEAD_BUSH, VerdanceBlocks.SHRUB, VerdanceBlocks.YELLOW_FLOWERING_SHRUB, VerdanceBlocks.ORANGE_FLOWERING_SHRUB);
+            entries.addBefore(Items.DEAD_BUSH, VerdanceBlocks.SHRUB, VerdanceBlocks.YELLOW_FLOWERING_SHRUB, VerdanceBlocks.PINK_FLOWERING_SHRUB);
         });
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COLORED_BLOCKS).register(entries -> {
             entries.addAfter(
