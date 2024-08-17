@@ -1,6 +1,7 @@
 package com.teamabode.verdance.core.registry;
 
 import com.teamabode.verdance.Verdance;
+import com.teamabode.verdance.common.worldgen.DecayPatchConfiguration;
 import com.teamabode.verdance.common.worldgen.MulberryTrunkPlacer;
 import com.teamabode.verdance.core.tag.VerdanceBlockTags;
 import net.minecraft.core.Direction;
@@ -30,16 +31,18 @@ import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.List;
+import java.util.Map;
 
 public class VerdanceConfiguredFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> FLOWER_MULBERRY_FOREST = createKey("flower_mulberry_forest");
     public static final ResourceKey<ConfiguredFeature<?, ?>> MULBERRY = createKey("mulberry");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_CANTALOUPE = createKey("patch_cantaloupe");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_SHRUB = createKey("patch_shrub");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_YELLOW_FLOWERING_SHRUB = createKey("patch_yellow_flowering_shrub");
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_YELLOW_FLOWERING_SHRUB_BONEMEAL = createKey("patch_yellow_flowering_shrub_bonemeal");
     public static final ResourceKey<ConfiguredFeature<? ,?>> PATCH_ORANGE_FLOWERING_SHRUB_BONEMEAL = createKey("patch_orange_flowering_shrub_bonemeal");
-
     public static final ResourceKey<ConfiguredFeature<?, ?>> FLOWER_VIOLET = createKey("flower_violet");
 
     public static void register(BootstrapContext<ConfiguredFeature<?, ?>> context) {
@@ -70,11 +73,22 @@ public class VerdanceConfiguredFeatures {
                 new SimpleBlockConfiguration(BlockStateProvider.simple(VerdanceBlocks.CANTALOUPE)),
                 List.of(Blocks.GRASS_BLOCK)
         ));
-        FeatureUtils.register(context, PATCH_SHRUB, Feature.RANDOM_PATCH, new RandomPatchConfiguration(
-                64,
-                8,
-                2,
-                shrubPlacement(VerdanceBlocks.SHRUB)
+        FeatureUtils.register(context, PATCH_YELLOW_FLOWERING_SHRUB, VerdanceFeatures.DECAY_PATCH, new DecayPatchConfiguration(
+                new DecayPatchConfiguration.Patch(96, 8, 1),
+                List.of(
+                        new DecayPatchConfiguration.Distance(6, createWeightedFeature(Map.of(
+                                VerdanceBlocks.SHRUB, 4,
+                                Blocks.DEAD_BUSH, 1
+                        ))),
+                        new DecayPatchConfiguration.Distance(4, createWeightedFeature(Map.of(
+                                VerdanceBlocks.SHRUB, 1,
+                                VerdanceBlocks.YELLOW_FLOWERING_SHRUB, 1
+                        ))),
+                        new DecayPatchConfiguration.Distance(0, createWeightedFeature(Map.of(
+                                VerdanceBlocks.YELLOW_FLOWERING_SHRUB, 4,
+                                VerdanceBlocks.SHRUB, 1
+                        )))
+                )
         ));
         FeatureUtils.register(context, PATCH_YELLOW_FLOWERING_SHRUB_BONEMEAL, Feature.RANDOM_PATCH, new RandomPatchConfiguration(
                 32,
@@ -99,10 +113,12 @@ public class VerdanceConfiguredFeatures {
         ));
     }
 
-    public static Holder<PlacedFeature> shrubPlacement(Block shrubBlock) {
+    public static Holder<PlacedFeature> floweringShrubPlacement(Block shrubBlock) {
         return PlacementUtils.inlinePlaced(
                 Feature.SIMPLE_BLOCK,
-                new SimpleBlockConfiguration(BlockStateProvider.simple(shrubBlock)),
+                new SimpleBlockConfiguration(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(shrubBlock.defaultBlockState(), 3).add(VerdanceBlocks.SHRUB.defaultBlockState(), 4)
+                )),
                 BlockPredicateFilter.forPredicate(BlockPredicate.allOf(
                         BlockPredicate.ONLY_IN_AIR_PREDICATE,
                         BlockPredicate.matchesTag(Direction.DOWN.getNormal(), VerdanceBlockTags.SHRUB_MAY_PLACE_ON)
@@ -110,12 +126,13 @@ public class VerdanceConfiguredFeatures {
         );
     }
 
-    public static Holder<PlacedFeature> floweringShrubPlacement(Block shrubBlock) {
+    public static Holder<PlacedFeature> createWeightedFeature(Map<Block, Integer> weights) {
+        var builder = SimpleWeightedRandomList.<BlockState>builder();
+        weights.forEach((block, weight) -> builder.add(block.defaultBlockState(), weight));
+
         return PlacementUtils.inlinePlaced(
                 Feature.SIMPLE_BLOCK,
-                new SimpleBlockConfiguration(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                        .add(shrubBlock.defaultBlockState(), 3).add(VerdanceBlocks.SHRUB.defaultBlockState(), 4)
-                )),
+                new SimpleBlockConfiguration(new WeightedStateProvider(builder.build())),
                 BlockPredicateFilter.forPredicate(BlockPredicate.allOf(
                         BlockPredicate.ONLY_IN_AIR_PREDICATE,
                         BlockPredicate.matchesTag(Direction.DOWN.getNormal(), VerdanceBlockTags.SHRUB_MAY_PLACE_ON)

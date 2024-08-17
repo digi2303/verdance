@@ -5,6 +5,7 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.Musics;
@@ -18,12 +19,14 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class VerdanceBiomes {
     public static final ResourceKey<Biome> MULBERRY_FOREST = create("mulberry_forest");
+    public static final ResourceKey<Biome> SHRUBLANDS = create("shrublands");
 
     public static void register(BootstrapContext<Biome> context) {
         HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
         HolderGetter<ConfiguredWorldCarver<?>> configuredCarvers = context.lookup(Registries.CONFIGURED_CARVER);
 
         context.register(MULBERRY_FOREST, mulberryForest(placedFeatures, configuredCarvers));
+        context.register(SHRUBLANDS, shrublands(placedFeatures, configuredCarvers));
     }
 
     private static Biome mulberryForest(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> configuredCarvers) {
@@ -37,17 +40,23 @@ public class VerdanceBiomes {
         spawnSettings.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(VerdanceEntityTypes.SILK_MOTH, 10, 1, 3));
         BiomeDefaultFeatures.commonSpawns(spawnSettings);
 
+        // Global Overworld generation
         BiomeDefaultFeatures.addDefaultCarversAndLakes(generationSettings);
         BiomeDefaultFeatures.addDefaultCrystalFormations(generationSettings);
         BiomeDefaultFeatures.addDefaultMonsterRoom(generationSettings);
         BiomeDefaultFeatures.addDefaultUndergroundVariety(generationSettings);
         BiomeDefaultFeatures.addDefaultSprings(generationSettings);
         BiomeDefaultFeatures.addSurfaceFreezing(generationSettings);
+
+        // Other common Overworld features
         BiomeDefaultFeatures.addPlainGrass(generationSettings);
         BiomeDefaultFeatures.addDefaultOres(generationSettings);
         BiomeDefaultFeatures.addDefaultSoftDisks(generationSettings);
+
+        // Mountain Biome Features
         BiomeDefaultFeatures.addExtraEmeralds(generationSettings);
         BiomeDefaultFeatures.addInfestedStone(generationSettings);
+
         generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_PLAIN);
         generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VerdancePlacedFeatures.FLOWER_MULBERRY_FOREST);
         generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VerdancePlacedFeatures.MULBERRY_CHECKED);
@@ -68,6 +77,47 @@ public class VerdanceBiomes {
                 .downfall(0.8f)
                 .temperature(0.6f)
                 .hasPrecipitation(true)
+                .temperatureAdjustment(Biome.TemperatureModifier.NONE)
+                .build();
+    }
+
+    private static Biome shrublands(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> configuredCarvers) {
+        BiomeGenerationSettings.Builder generationSettings = new BiomeGenerationSettings.Builder(placedFeatures, configuredCarvers);
+        MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
+        BiomeSpecialEffects.Builder specialEffects = new BiomeSpecialEffects.Builder();
+
+        BiomeDefaultFeatures.desertSpawns(spawnSettings);
+
+        // Global Overworld generation
+        BiomeDefaultFeatures.addDefaultCarversAndLakes(generationSettings);
+        BiomeDefaultFeatures.addDefaultCrystalFormations(generationSettings);
+        BiomeDefaultFeatures.addDefaultMonsterRoom(generationSettings);
+        BiomeDefaultFeatures.addDefaultUndergroundVariety(generationSettings);
+        BiomeDefaultFeatures.addDefaultSprings(generationSettings);
+        BiomeDefaultFeatures.addSurfaceFreezing(generationSettings);
+
+        // Other common Overworld features
+        BiomeDefaultFeatures.addDefaultOres(generationSettings);
+        BiomeDefaultFeatures.addDefaultSoftDisks(generationSettings);
+
+        // Shrublands features
+        generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_CACTUS_DESERT);
+        generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VerdancePlacedFeatures.SHRUBLANDS_VEGETATION);
+
+        specialEffects.skyColor(7254527);
+        specialEffects.fogColor(12638463);
+        specialEffects.waterColor(3832426);
+        specialEffects.waterFogColor(5077600);
+        specialEffects.ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS);
+        specialEffects.backgroundMusic(Musics.createGameMusic(SoundEvents.MUSIC_BIOME_DESERT));
+
+        return new Biome.BiomeBuilder()
+                .generationSettings(generationSettings.build())
+                .mobSpawnSettings(spawnSettings.build())
+                .specialEffects(specialEffects.build())
+                .downfall(0.0f)
+                .temperature(2.0f)
+                .hasPrecipitation(false)
                 .temperatureAdjustment(Biome.TemperatureModifier.NONE)
                 .build();
     }

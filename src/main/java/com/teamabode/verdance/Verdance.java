@@ -2,9 +2,11 @@ package com.teamabode.verdance;
 
 import com.teamabode.verdance.core.integration.farmersdelight.VerdanceFD;
 import com.teamabode.verdance.core.misc.VerdanceBiomeModifications;
+import com.teamabode.verdance.core.misc.VerdanceSurfaceRules;
 import com.teamabode.verdance.core.registry.VerdanceBiomes;
 import com.teamabode.verdance.core.registry.*;
 import com.terraformersmc.biolith.api.biome.BiomePlacement;
+import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
@@ -16,6 +18,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.levelgen.SurfaceRules;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,6 +33,7 @@ public class Verdance implements ModInitializer {
         VerdanceBlockEntityTypes.register();
         VerdanceItems.register();
         VerdanceSoundEvents.register();
+        VerdanceFeatures.register();
         VerdanceTrunkPlacerTypes.register();
         VerdanceActivities.register();
         VerdanceSensorTypes.register();
@@ -44,6 +48,7 @@ public class Verdance implements ModInitializer {
         registerTrades();
         registerItemGroupEvents();
         registerBiomePlacements();
+        registerSurfaceRules();
     }
 
     public static void registerBlockEntitySupportedBlock() {
@@ -230,6 +235,12 @@ public class Verdance implements ModInitializer {
 
     public static void registerBiomePlacements() {
         BiomePlacement.replaceOverworld(Biomes.CHERRY_GROVE, VerdanceBiomes.MULBERRY_FOREST, VerdanceConfig.INSTANCE.mulberryForestProportion.get());
+    }
+
+    public static void registerSurfaceRules() {
+        SurfaceGeneration.addOverworldSurfaceRules(ResourceLocation.withDefaultNamespace("rules/overworld"), SurfaceRules.sequence(
+                VerdanceSurfaceRules.shrublands()
+        ));
     }
 
     public static ResourceLocation id(String name) {
