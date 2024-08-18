@@ -23,6 +23,8 @@ public class CantaloupeJuiceItem extends Item {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
+        super.finishUsingItem(stack, level, user);
+
         if (user instanceof ServerPlayer serverPlayer) {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
             if (serverPlayer.isOnFire()) {

@@ -4,20 +4,20 @@ import com.teamabode.sketch.common.item.SketchBoatItem;
 import com.teamabode.verdance.Verdance;
 import com.teamabode.verdance.common.item.CantaloupeJuiceItem;
 import com.teamabode.verdance.common.item.CantaloupeSliceItem;
-import com.teamabode.verdance.core.misc.VerdanceFoodProperties;
+import com.teamabode.verdance.core.misc.VerdanceFoods;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.*;
 
 public class VerdanceItems {
-    public static final Item CANTALOUPE_SLICE = register("cantaloupe_slice", new CantaloupeSliceItem((new Item.Properties()).food(VerdanceFoodProperties.CANTALOUPE_SLICE)));
-    public static final Item GRILLED_CANTALOUPE_SLICE = register("grilled_cantaloupe_slice", new Item(new Item.Properties().food(VerdanceFoodProperties.GRILLED_CANTALOUPE_SLICE)));
-    public static final Item CANTALOUPE_JUICE = register("cantaloupe_juice", new CantaloupeJuiceItem(new Item.Properties().stacksTo(16)));
+    public static final Item CANTALOUPE_SLICE = register("cantaloupe_slice", new CantaloupeSliceItem((new Item.Properties()).food(VerdanceFoods.CANTALOUPE_SLICE)));
+    public static final Item GRILLED_CANTALOUPE_SLICE = register("grilled_cantaloupe_slice", new Item(new Item.Properties().food(VerdanceFoods.GRILLED_CANTALOUPE_SLICE)));
+    public static final Item CANTALOUPE_JUICE = register("cantaloupe_juice", new CantaloupeJuiceItem(new Item.Properties().food(VerdanceFoods.CANTALOUPE_JUICE).stacksTo(16)));
 
     public static final Item CANTALOUPE_SEEDS = register("cantaloupe_seeds", new ItemNameBlockItem(VerdanceBlocks.CANTALOUPE_STEM, new Item.Properties()));
 
-    public static final Item MULBERRY = register("mulberry", new ItemNameBlockItem(VerdanceBlocks.MULBERRY_SAPLING, new Item.Properties().food(VerdanceFoodProperties.MULBERRY)));
+    public static final Item MULBERRY = register("mulberry", new ItemNameBlockItem(VerdanceBlocks.MULBERRY_SAPLING, new Item.Properties().food(VerdanceFoods.MULBERRY)));
 
     public static final Item MULBERRY_SIGN = register("mulberry_sign", new SignItem(new Item.Properties().stacksTo(16), VerdanceBlocks.MULBERRY_SIGN, VerdanceBlocks.MULBERRY_WALL_SIGN));
     public static final Item MULBERRY_HANGING_SIGN = register("mulberry_hanging_sign", new HangingSignItem(VerdanceBlocks.MULBERRY_HANGING_SIGN, VerdanceBlocks.MULBERRY_WALL_HANGING_SIGN, new Item.Properties().stacksTo(16)));

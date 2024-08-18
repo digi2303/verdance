@@ -3,7 +3,7 @@ package com.teamabode.verdance.core.misc;
 import net.minecraft.world.food.FoodConstants;
 import net.minecraft.world.food.FoodProperties;
 
-public class VerdanceFoodProperties {
+public class VerdanceFoods {
     public static final FoodProperties CANTALOUPE_SLICE = new FoodProperties.Builder()
             .nutrition(2)
             .saturationModifier(FoodConstants.FOOD_SATURATION_POOR)
@@ -11,8 +11,13 @@ public class VerdanceFoodProperties {
             .build();
 
     public static final FoodProperties GRILLED_CANTALOUPE_SLICE = new FoodProperties.Builder()
-            .nutrition(5)
+            .nutrition(6)
             .saturationModifier(FoodConstants.FOOD_SATURATION_LOW)
+            .build();
+
+    public static final FoodProperties CANTALOUPE_JUICE = new FoodProperties.Builder()
+            .nutrition(4)
+            .saturationModifier(FoodConstants.FOOD_SATURATION_POOR)
             .build();
 
     public static final FoodProperties MULBERRY = new FoodProperties.Builder()
