@@ -36,6 +36,7 @@ public class VerdanceItemTagProvider extends FabricTagProvider.ItemTagProvider {
         logs();
         boats();
         foods();
+        decoratedPotSherds();
         saplings();
         leaves();
         smallFlowers();
@@ -116,6 +117,14 @@ public class VerdanceItemTagProvider extends FabricTagProvider.ItemTagProvider {
         this.getOrCreateTagBuilder(ConventionalItemTags.BERRY_FOODS).add(VerdanceItems.MULBERRY).setReplace(false);
         this.getOrCreateTagBuilder(ItemTags.CHICKEN_FOOD).add(VerdanceItems.CANTALOUPE_SEEDS).setReplace(false);
         this.getOrCreateTagBuilder(ItemTags.PARROT_FOOD).add(VerdanceItems.CANTALOUPE_SEEDS).setReplace(false);
+    }
+
+    private void decoratedPotSherds() {
+        this.getOrCreateTagBuilder(ItemTags.DECORATED_POT_SHERDS)
+                .add(VerdanceItems.PITCH_POTTERY_SHERD)
+                .add(VerdanceItems.SPIRIT_POTTERY_SHERD)
+                .add(VerdanceItems.TRAP_POTTERY_SHERD)
+                .setReplace(false);
     }
 
     private void saplings() {

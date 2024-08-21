@@ -4,6 +4,7 @@
     "package": "com.teamabode.verdance.core.mixin",
     "compatibilityLevel": "JAVA_21",
     "mixins": [
+        "general.DecoratedPotPatternsMixin",
         "general.LightningBoltMixin",
         "general.SporeBlossomBlockMixin",
         "general.SugarCaneBlockMixin"
