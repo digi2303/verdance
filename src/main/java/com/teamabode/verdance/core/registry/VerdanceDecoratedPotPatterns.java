@@ -11,17 +11,20 @@ import net.minecraft.world.level.block.entity.DecoratedPotPattern;
 import java.util.Map;
 
 public class VerdanceDecoratedPotPatterns {
+    public static final ResourceKey<DecoratedPotPattern> ABODE = createKey("abode");
     public static final ResourceKey<DecoratedPotPattern> PITCH = createKey("pitch");
     public static final ResourceKey<DecoratedPotPattern> SPIRIT = createKey("spirit");
     public static final ResourceKey<DecoratedPotPattern> TRAP = createKey("trap");
 
     public static final Map<Item, ResourceKey<DecoratedPotPattern>> SHERD_TO_PATTERN = Map.of(
+            VerdanceItems.ABODE_POTTERY_SHERD, ABODE,
             VerdanceItems.PITCH_POTTERY_SHERD, PITCH,
             VerdanceItems.SPIRIT_POTTERY_SHERD, SPIRIT,
             VerdanceItems.TRAP_POTTERY_SHERD, TRAP
     );
 
     public static void register() {
+        register(ABODE, "abode_pottery_pattern");
         register(PITCH, "pitch_pottery_pattern");
         register(SPIRIT, "spirit_pottery_pattern");
         register(TRAP, "trap_pottery_pattern");

@@ -69,6 +69,7 @@ public class VerdanceItems {
                     .jukeboxPlayable(VerdanceJukeboxSongs.RANGE)
     );
     public static final Item DISC_FRAGMENT_RANGE = register("disc_fragment_range");
+    public static final Item ABODE_POTTERY_SHERD = register("abode_pottery_sherd");
     public static final Item PITCH_POTTERY_SHERD = register("pitch_pottery_sherd");
     public static final Item SPIRIT_POTTERY_SHERD = register("spirit_pottery_sherd");
     public static final Item TRAP_POTTERY_SHERD = register("trap_pottery_sherd");

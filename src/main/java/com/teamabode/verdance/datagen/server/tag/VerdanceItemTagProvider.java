@@ -121,6 +121,7 @@ public class VerdanceItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
     private void decoratedPotSherds() {
         this.getOrCreateTagBuilder(ItemTags.DECORATED_POT_SHERDS)
+                .add(VerdanceItems.ABODE_POTTERY_SHERD)
                 .add(VerdanceItems.PITCH_POTTERY_SHERD)
                 .add(VerdanceItems.SPIRIT_POTTERY_SHERD)
                 .add(VerdanceItems.TRAP_POTTERY_SHERD)
