@@ -13,15 +13,15 @@
                 "entries": [
                   {
                     "data": {
-                      "Name": "minecraft:dead_bush"
-                    },
-                    "weight": 1
-                  },
-                  {
-                    "data": {
                       "Name": "verdance:shrub"
                     },
                     "weight": 4
+                  },
+                  {
+                    "data": {
+                      "Name": "minecraft:dead_bush"
+                    },
+                    "weight": 1
                   }
                 ]
               }
@@ -63,13 +63,13 @@
                 "entries": [
                   {
                     "data": {
-                      "Name": "verdance:yellow_flowering_shrub"
+                      "Name": "verdance:shrub"
                     },
                     "weight": 1
                   },
                   {
                     "data": {
-                      "Name": "verdance:shrub"
+                      "Name": "verdance:yellow_flowering_shrub"
                     },
                     "weight": 1
                   }

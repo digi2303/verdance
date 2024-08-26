@@ -19,6 +19,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
@@ -102,6 +103,14 @@ public class VerdanceRecipeProvider extends FabricRecipeProvider {
                 .save(exporter, Verdance.id(getItemName(cushion)));
     }
 
+    private static void dyeFromFlower(RecipeOutput exporter, Item dye, Block flower, int count) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, dye, count)
+                .requires(flower)
+                .unlockedBy(getHasName(flower), has(flower))
+                .group(getItemName(dye))
+                .save(exporter, Verdance.id(getConversionRecipeName(dye, flower)));
+    }
+
     private static void farmersDelightCompat(VerdanceRecipeProvider provider, RecipeOutput exporter) {
         RecipeOutput compatExporter = provider.withConditions(exporter, ResourceConditions.allModsLoaded("farmersdelight"));
 
@@ -173,11 +182,10 @@ public class VerdanceRecipeProvider extends FabricRecipeProvider {
                 VerdanceBlocks.PURPLE_CUSHION.asItem(), VerdanceBlocks.RED_CUSHION.asItem(), VerdanceBlocks.YELLOW_CUSHION.asItem(), VerdanceBlocks.WHITE_CUSHION.asItem()
         );
         colorBlockWithDye(exporter, dyes, cushions, "cushion");
-
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.PURPLE_DYE, 1).requires(VerdanceBlocks.VIOLET).group(getItemName(Items.PURPLE_DYE)).unlockedBy(getHasName(VerdanceBlocks.VIOLET), has(VerdanceBlocks.VIOLET)).save(exporter, Verdance.id(getConversionRecipeName(Items.PURPLE_DYE, VerdanceBlocks.VIOLET)));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.MAGENTA_DYE, 2).requires(Blocks.SPORE_BLOSSOM).group(getItemName(Items.MAGENTA_DYE)).unlockedBy(getHasName(Blocks.SPORE_BLOSSOM), has(Blocks.SPORE_BLOSSOM)).save(exporter, Verdance.id(getConversionRecipeName(Items.MAGENTA_DYE, Blocks.SPORE_BLOSSOM)));
-
+        dyeFromFlower(exporter, Items.PURPLE_DYE, VerdanceBlocks.VIOLET, 1);
+        dyeFromFlower(exporter, Items.MAGENTA_DYE, Blocks.SPORE_BLOSSOM, 2);
+        dyeFromFlower(exporter, Items.YELLOW_DYE, VerdanceBlocks.YELLOW_FLOWERING_SHRUB, 1);
+        dyeFromFlower(exporter, Items.PINK_DYE, VerdanceBlocks.PINK_FLOWERING_SHRUB, 1);
         farmersDelightCompat(this, exporter);
     }
 }
