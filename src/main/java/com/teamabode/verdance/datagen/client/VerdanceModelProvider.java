@@ -74,6 +74,7 @@ public class VerdanceModelProvider extends FabricModelProvider {
 
         generator.generateFlatItem(VerdanceItems.ABODE_POTTERY_SHERD, ModelTemplates.FLAT_ITEM);
         generator.generateFlatItem(VerdanceItems.PITCH_POTTERY_SHERD, ModelTemplates.FLAT_ITEM);
+        generator.generateFlatItem(VerdanceItems.PRICKLE_POTTERY_SHERD, ModelTemplates.FLAT_ITEM);
         generator.generateFlatItem(VerdanceItems.SPIRIT_POTTERY_SHERD, ModelTemplates.FLAT_ITEM);
         generator.generateFlatItem(VerdanceItems.TRAP_POTTERY_SHERD, ModelTemplates.FLAT_ITEM);
 

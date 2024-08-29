@@ -113,15 +113,15 @@
                 "entries": [
                   {
                     "data": {
-                      "Name": "verdance:yellow_flowering_shrub"
-                    },
-                    "weight": 4
-                  },
-                  {
-                    "data": {
                       "Name": "verdance:shrub"
                     },
                     "weight": 1
+                  },
+                  {
+                    "data": {
+                      "Name": "verdance:yellow_flowering_shrub"
+                    },
+                    "weight": 4
                   }
                 ]
               }
