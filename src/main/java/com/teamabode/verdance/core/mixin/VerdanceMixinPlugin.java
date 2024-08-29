@@ -12,17 +12,15 @@ import java.util.Set;
 public class VerdanceMixinPlugin implements IMixinConfigPlugin {
     public void onLoad(String mixinPackage) {
         // Instead of the main class, we need register at this point.
-        ConfigManager.INSTANCE.register(VerdanceConfig.INSTANCE);
+        ConfigManager.INSTANCE.register(new VerdanceConfig());
     }
 
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-
-
         if (mixinClassName.contains("SugarCaneBlock")) {
-            return VerdanceConfig.INSTANCE.canBonemealSugarCane.get();
+            return VerdanceConfig.CAN_BONEMEAL_SUGAR_CANE.get();
         }
         if (mixinClassName.contains("SporeBlossomBlock")) {
-            return VerdanceConfig.INSTANCE.canBonemealSporeBlossom.get();
+            return VerdanceConfig.CAN_BONEMEAL_SPORE_BLOSSOM.get();
         }
         return true;
     }

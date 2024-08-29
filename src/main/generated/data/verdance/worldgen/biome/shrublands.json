@@ -78,8 +78,8 @@
     ],
     [
       "minecraft:glow_lichen",
-      "minecraft:patch_cactus_desert",
-      "verdance:shrublands_vegetation"
+      "verdance:shrublands_bush",
+      "verdance:shrublands_patch"
     ],
     [
       "minecraft:freeze_top_layer"

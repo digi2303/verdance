@@ -5,7 +5,6 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.Musics;
@@ -101,8 +100,8 @@ public class VerdanceBiomes {
         BiomeDefaultFeatures.addDefaultSoftDisks(generationSettings);
 
         // Shrublands features
-        generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_CACTUS_DESERT);
-        generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VerdancePlacedFeatures.SHRUBLANDS_VEGETATION);
+        generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VerdancePlacedFeatures.SHRUBLANDS_BUSH);
+        generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VerdancePlacedFeatures.SHRUBLANDS_PATCH);
 
         specialEffects.skyColor(7254527);
         specialEffects.fogColor(12638463);

@@ -1,48 +1,51 @@
 package com.teamabode.verdance.core.misc;
 
 import com.teamabode.verdance.core.registry.VerdanceBiomes;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Noises;
 import net.minecraft.world.level.levelgen.SurfaceRules;
+import net.minecraft.world.level.levelgen.SurfaceRules.RuleSource;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
 
 public class VerdanceSurfaceRules {
 
-    public static SurfaceRules.RuleSource shrublands() {
-        var sand = SurfaceRules.state(Blocks.SAND.defaultBlockState());
+    public static RuleSource shrublands() {
+        RuleSource coarseDirt = state(Blocks.COARSE_DIRT);
+        RuleSource stoneDepth = SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(4, false, 0, CaveSurface.FLOOR), coarseDirt);
 
-        return SurfaceRules.ifTrue(
-                SurfaceRules.isBiome(VerdanceBiomes.SHRUBLANDS), SurfaceRules.ifTrue(
-                        SurfaceRules.abovePreliminarySurface(), SurfaceRules.sequence(
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.stoneDepthCheck(0, false, CaveSurface.FLOOR),
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.waterBlockCheck(-1, 0),
-                                                SurfaceRules.sequence(
-                                                        sandstone(CaveSurface.CEILING, false, 0),
-                                                        sand
-                                                )
-                                        )
-                                ),
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.waterStartCheck(-6, -1),
-                                        SurfaceRules.sequence(
-                                                SurfaceRules.ifTrue(
-                                                        SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR),
-                                                        SurfaceRules.sequence(
-                                                                sandstone(CaveSurface.CEILING, false, 0),
-                                                                sand
-                                                        )
-                                                ),
-                                                sandstone(CaveSurface.FLOOR, true, 30)
-                                        )
-                                )
-                        )
-                )
-        );
+        RuleSource aboveSurface = SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(), SurfaceRules.sequence(
+                SurfaceRules.ifTrue(SurfaceRules.steep(), stoneDepth),
+                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SURFACE, -0.9f, -0.5f), stoneDepth),
+                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SURFACE, -0.2f, 0.2f), stoneDepth),
+                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SURFACE, 0.5f, 0.9f), stoneDepth),
+                applyDesertRules()
+        ));
+
+        return SurfaceRules.ifTrue(SurfaceRules.isBiome(VerdanceBiomes.SHRUBLANDS), aboveSurface);
     }
 
-    private static SurfaceRules.RuleSource sandstone(CaveSurface surfaceType, boolean addSurfaceDepth, int secondaryDepthRange) {
-        return SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, addSurfaceDepth, secondaryDepthRange, surfaceType), SurfaceRules.state(Blocks.SANDSTONE.defaultBlockState()));
+    private static RuleSource applyDesertRules() {
+        RuleSource sand = state(Blocks.SAND);
+        RuleSource floorSandstone = sandstone(CaveSurface.CEILING, false, 0);
+        RuleSource deepSandstone = sandstone(CaveSurface.FLOOR, true, 30);
+        RuleSource desertSurface = SurfaceRules.sequence(floorSandstone, sand);
 
+        RuleSource floorDepthCheck = SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR), desertSurface);
+        RuleSource floorSand = SurfaceRules.ifTrue(SurfaceRules.waterStartCheck(-6, -1), SurfaceRules.sequence(floorDepthCheck, deepSandstone));
+
+        RuleSource ceilingWaterCheck = SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(-1,0), desertSurface);
+        RuleSource ceilingSand = SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, false, CaveSurface.FLOOR), ceilingWaterCheck);
+
+        return SurfaceRules.sequence(ceilingSand, floorSand);
+    }
+
+
+    private static RuleSource state(Block block) {
+        return SurfaceRules.state(block.defaultBlockState());
+    }
+
+    private static RuleSource sandstone(CaveSurface surfaceType, boolean addSurfaceDepth, int secondaryDepthRange) {
+        return SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, addSurfaceDepth, secondaryDepthRange, surfaceType), state(Blocks.SANDSTONE));
     }
 }

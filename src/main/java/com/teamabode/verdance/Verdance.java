@@ -6,7 +6,9 @@ import com.teamabode.verdance.core.misc.VerdanceSurfaceRules;
 import com.teamabode.verdance.core.registry.VerdanceBiomes;
 import com.teamabode.verdance.core.registry.*;
 import com.terraformersmc.biolith.api.biome.BiomePlacement;
+import com.terraformersmc.biolith.api.biome.sub.CriterionBuilder;
 import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
+import com.terraformersmc.biolith.impl.biome.sub.AllOfCriterion;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
@@ -243,7 +245,8 @@ public class Verdance implements ModInitializer {
     }
 
     public static void registerBiomePlacements() {
-        BiomePlacement.replaceOverworld(Biomes.CHERRY_GROVE, VerdanceBiomes.MULBERRY_FOREST, VerdanceConfig.INSTANCE.mulberryForestProportion.get());
+        BiomePlacement.replaceOverworld(Biomes.CHERRY_GROVE, VerdanceBiomes.MULBERRY_FOREST, VerdanceConfig.MULBERRY_FOREST_PROPORTION.get());
+        BiomePlacement.replaceOverworld(Biomes.BADLANDS, VerdanceBiomes.SHRUBLANDS, VerdanceConfig.SHRUBLANDS_PROPORTION.get());
     }
 
     public static void registerSurfaceRules() {
