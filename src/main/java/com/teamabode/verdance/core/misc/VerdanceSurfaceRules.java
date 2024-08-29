@@ -11,14 +11,12 @@ import net.minecraft.world.level.levelgen.placement.CaveSurface;
 public class VerdanceSurfaceRules {
 
     public static RuleSource shrublands() {
-        RuleSource coarseDirt = state(Blocks.COARSE_DIRT);
-        RuleSource stoneDepth = SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(4, false, 0, CaveSurface.FLOOR), coarseDirt);
+        RuleSource coarseDirt = SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(4, false, 0, CaveSurface.FLOOR), state(Blocks.COARSE_DIRT));
 
         RuleSource aboveSurface = SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(), SurfaceRules.sequence(
-                SurfaceRules.ifTrue(SurfaceRules.steep(), stoneDepth),
-                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SURFACE, -0.9f, -0.5f), stoneDepth),
-                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SURFACE, -0.2f, 0.2f), stoneDepth),
-                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SURFACE, 0.5f, 0.9f), stoneDepth),
+                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SURFACE, -0.9f, -0.5f), coarseDirt),
+                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SURFACE, -0.2f, 0.2f), coarseDirt),
+                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SURFACE, 0.5f, 0.9f), coarseDirt),
                 applyDesertRules()
         ));
 

@@ -19,9 +19,7 @@ public class VerdancePlacedFeatures {
     public static final ResourceKey<PlacedFeature> MULBERRY = createKey("mulberry");
     public static final ResourceKey<PlacedFeature> MULBERRY_CHECKED = createKey("mulberry_checked");
     public static final ResourceKey<PlacedFeature> PATCH_CANTALOUPE = createKey("patch_cantaloupe");
-    public static final ResourceKey<PlacedFeature> PATCH_YELLOW_FLOWERING_SHRUB = createKey("patch_yellow_flowering_shrub");
-    public static final ResourceKey<PlacedFeature> PATCH_PINK_FLOWERING_SHRUB = createKey("patch_pink_flowering_shrub");
-    public static final ResourceKey<PlacedFeature> SHRUBLANDS_PATCH = createKey("shrublands_patch");
+    public static final ResourceKey<PlacedFeature> PATCH_SHRUB = createKey("patch_shrub");
     public static final ResourceKey<PlacedFeature> SHRUBLANDS_BUSH = createKey("shrublands_bush");
     public static final ResourceKey<PlacedFeature> FLOWER_VIOLET = createKey("flower_violet");
 
@@ -57,23 +55,10 @@ public class VerdancePlacedFeatures {
                 HeightmapPlacement.onHeightmap(Heightmap.Types.MOTION_BLOCKING),
                 BiomeFilter.biome()
         ));
-        PlacementUtils.register(context, PATCH_YELLOW_FLOWERING_SHRUB, configuredFeatures.getOrThrow(VerdanceConfiguredFeatures.PATCH_YELLOW_FLOWERING_SHRUB), List.of(
-                CountPlacement.of(4),
-                RarityFilter.onAverageOnceEvery(2),
-                InSquarePlacement.spread(),
-                PlacementUtils.HEIGHTMAP,
-                BiomeFilter.biome()
-        ));
-        PlacementUtils.register(context, PATCH_PINK_FLOWERING_SHRUB, configuredFeatures.getOrThrow(VerdanceConfiguredFeatures.PATCH_PINK_FLOWERING_SHRUB), List.of(
-                RarityFilter.onAverageOnceEvery(2),
-                InSquarePlacement.spread(),
-                PlacementUtils.HEIGHTMAP,
-                BiomeFilter.biome()
-        ));
 
         // Shrublands
-        PlacementUtils.register(context, SHRUBLANDS_PATCH, configuredFeatures.getOrThrow(VerdanceConfiguredFeatures.SHRUBLANDS_PATCH), List.of(
-                CountPlacement.of(3),
+        PlacementUtils.register(context, PATCH_SHRUB, configuredFeatures.getOrThrow(VerdanceConfiguredFeatures.PATCH_SHRUB), List.of(
+                NoiseBasedCountPlacement.of(12, 1.0d, 0.5d),
                 InSquarePlacement.spread(),
                 HeightmapPlacement.onHeightmap(Heightmap.Types.MOTION_BLOCKING),
                 BiomeFilter.biome()

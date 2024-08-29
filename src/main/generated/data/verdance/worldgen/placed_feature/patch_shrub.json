@@ -1,9 +1,11 @@
 {
-  "feature": "verdance:shrublands_patch",
+  "feature": "verdance:patch_shrub",
   "placement": [
     {
-      "type": "minecraft:count",
-      "count": 3
+      "type": "minecraft:noise_based_count",
+      "noise_factor": 1.0,
+      "noise_offset": 0.5,
+      "noise_to_count_ratio": 12
     },
     {
       "type": "minecraft:in_square"

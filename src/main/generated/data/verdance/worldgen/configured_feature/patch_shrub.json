@@ -11,19 +11,13 @@
               "amplitudes": [
                 1.0
               ],
-              "firstOctave": -4
+              "firstOctave": -2
             },
-            "scale": 0.025,
+            "scale": 0.075,
             "seed": 2345,
             "states": [
               {
                 "Name": "verdance:pink_flowering_shrub"
-              },
-              {
-                "Name": "verdance:shrub"
-              },
-              {
-                "Name": "verdance:shrub"
               },
               {
                 "Name": "verdance:shrub"

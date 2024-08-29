@@ -85,7 +85,8 @@ public class VerdanceBiomes {
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         BiomeSpecialEffects.Builder specialEffects = new BiomeSpecialEffects.Builder();
 
-        BiomeDefaultFeatures.desertSpawns(spawnSettings);
+        spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.ARMADILLO, 6, 1, 2));
+        BiomeDefaultFeatures.commonSpawns(spawnSettings);
 
         // Global Overworld generation
         BiomeDefaultFeatures.addDefaultCarversAndLakes(generationSettings);
@@ -100,13 +101,16 @@ public class VerdanceBiomes {
         BiomeDefaultFeatures.addDefaultSoftDisks(generationSettings);
 
         // Shrublands features
+        BiomeDefaultFeatures.addDesertVegetation(generationSettings);
         generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VerdancePlacedFeatures.SHRUBLANDS_BUSH);
-        generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VerdancePlacedFeatures.SHRUBLANDS_PATCH);
+        generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VerdancePlacedFeatures.PATCH_SHRUB);
 
+        specialEffects.foliageColorOverride(12640602);
+        specialEffects.grassColorOverride(12640602);
         specialEffects.skyColor(7254527);
         specialEffects.fogColor(12638463);
-        specialEffects.waterColor(3832426);
-        specialEffects.waterFogColor(5077600);
+        specialEffects.waterColor(4159204);
+        specialEffects.waterFogColor(329011);
         specialEffects.ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS);
         specialEffects.backgroundMusic(Musics.createGameMusic(SoundEvents.MUSIC_BIOME_DESERT));
 

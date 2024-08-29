@@ -14,7 +14,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.IntProvider;
-import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.util.valueproviders.WeightedListInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -46,15 +45,12 @@ public class VerdanceConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> MULBERRY = createKey("mulberry");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_CANTALOUPE = createKey("patch_cantaloupe");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_YELLOW_FLOWERING_SHRUB = createKey("patch_yellow_flowering_shrub");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_PINK_FLOWERING_SHRUB = createKey("patch_pink_flowering_shrub");
-
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SHRUBLANDS_PATCH = createKey("shrublands_patch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_SHRUB = createKey("patch_shrub");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SHRUBLANDS_BUSH = createKey("shrublands_bush");
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FLOWER_VIOLET = createKey("flower_violet");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_YELLOW_FLOWERING_SHRUB_BONEMEAL = createKey("patch_yellow_flowering_shrub_bonemeal");
     public static final ResourceKey<ConfiguredFeature<? ,?>> PATCH_PINK_FLOWERING_SHRUB_BONEMEAL = createKey("patch_pink_flowering_shrub_bonemeal");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> FLOWER_VIOLET = createKey("flower_violet");
 
     public static void register(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         FeatureUtils.register(context, FLOWER_MULBERRY_FOREST, Feature.FLOWER, new RandomPatchConfiguration(
@@ -85,16 +81,13 @@ public class VerdanceConfiguredFeatures {
                 List.of(Blocks.GRASS_BLOCK)
         ));
 
-        FeatureUtils.register(context, SHRUBLANDS_PATCH, Feature.RANDOM_PATCH, new RandomPatchConfiguration(
+        FeatureUtils.register(context, PATCH_SHRUB, Feature.RANDOM_PATCH, new RandomPatchConfiguration(
                 64, 5, 2,
                 PlacementUtils.inlinePlaced(
                         Feature.SIMPLE_BLOCK,
                         new SimpleBlockConfiguration(
-                                // TODO: Adjust noise values
-                                new NoiseProvider(2345L, new NormalNoise.NoiseParameters(-1, List.of(1.0d)), 0.025f, List.of(
+                                new NoiseProvider(2345L, new NormalNoise.NoiseParameters(-2, List.of(1.0d)), 0.075f, List.of(
                                         VerdanceBlocks.PINK_FLOWERING_SHRUB.defaultBlockState(),
-                                        VerdanceBlocks.SHRUB.defaultBlockState(),
-                                        VerdanceBlocks.SHRUB.defaultBlockState(),
                                         VerdanceBlocks.SHRUB.defaultBlockState(),
                                         VerdanceBlocks.YELLOW_FLOWERING_SHRUB.defaultBlockState()
                                 ))
@@ -116,40 +109,6 @@ public class VerdanceConfiguredFeatures {
                 new TwoLayersFeatureSize(1, 1, 2)
         ).build());
 
-        FeatureUtils.register(context, PATCH_YELLOW_FLOWERING_SHRUB, VerdanceFeatures.DECAY_PATCH, new DecayPatchConfiguration(
-                new DecayPatchConfiguration.Patch(96, 6, 3),
-                List.of(
-                        new DecayPatchConfiguration.Distance(6, createWeightedFeature(Map.of(
-                                VerdanceBlocks.SHRUB, 4,
-                                Blocks.DEAD_BUSH, 1
-                        ))),
-                        new DecayPatchConfiguration.Distance(4, createWeightedFeature(Map.of(
-                                VerdanceBlocks.SHRUB, 1,
-                                VerdanceBlocks.YELLOW_FLOWERING_SHRUB, 1
-                        ))),
-                        new DecayPatchConfiguration.Distance(0, createWeightedFeature(Map.of(
-                                VerdanceBlocks.YELLOW_FLOWERING_SHRUB, 4,
-                                VerdanceBlocks.SHRUB, 1
-                        )))
-                )
-        ));
-        FeatureUtils.register(context, PATCH_PINK_FLOWERING_SHRUB, VerdanceFeatures.DECAY_PATCH, new DecayPatchConfiguration(
-                new DecayPatchConfiguration.Patch(96, 6, 3),
-                List.of(
-                        new DecayPatchConfiguration.Distance(6, createWeightedFeature(Map.of(
-                                VerdanceBlocks.SHRUB, 4,
-                                Blocks.DEAD_BUSH, 1
-                        ))),
-                        new DecayPatchConfiguration.Distance(4, createWeightedFeature(Map.of(
-                                VerdanceBlocks.SHRUB, 1,
-                                VerdanceBlocks.PINK_FLOWERING_SHRUB, 1
-                        ))),
-                        new DecayPatchConfiguration.Distance(0, createWeightedFeature(Map.of(
-                                VerdanceBlocks.PINK_FLOWERING_SHRUB, 4,
-                                VerdanceBlocks.SHRUB, 1
-                        )))
-                )
-        ));
         FeatureUtils.register(context, PATCH_YELLOW_FLOWERING_SHRUB_BONEMEAL, Feature.RANDOM_PATCH, new RandomPatchConfiguration(
                 32,
                 4,
