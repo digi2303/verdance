@@ -573,6 +573,7 @@ public class VerdanceBlocks {
                     .instabreak()
                     .sound(SoundType.AZALEA)
                     .ignitedByLava()
+                    .offsetType(OffsetType.XZ)
                     .pushReaction(PushReaction.BLOCK))
     );
     public static final Block POTTED_SHRUB = register(
