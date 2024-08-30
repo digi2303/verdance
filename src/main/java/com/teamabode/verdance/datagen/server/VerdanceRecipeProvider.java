@@ -12,12 +12,15 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.BlockFamily.Variant;
 import net.minecraft.data.recipes.*;
+import net.minecraft.data.recipes.packs.VanillaRecipeProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.SmithingTransformRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -83,6 +86,13 @@ public class VerdanceRecipeProvider extends FabricRecipeProvider {
                 .requires(VerdanceItems.DISC_FRAGMENT_RANGE, 9)
                 .unlockedBy("has_disc_fragment_range", has(VerdanceItems.DISC_FRAGMENT_RANGE))
                 .save(exporter, Verdance.id("music_disc_range"));
+
+        copySmithingTemplate(exporter, VerdanceItems.COMMUNITY_ARMOR_TRIM_SMITHING_TEMPLATE, VerdanceBlocks.WHITE_STUCCO);
+        trimSmithing(
+                exporter,
+                VerdanceItems.COMMUNITY_ARMOR_TRIM_SMITHING_TEMPLATE,
+                Verdance.id(getItemName(VerdanceItems.COMMUNITY_ARMOR_TRIM_SMITHING_TEMPLATE) + "_smithing_trim")
+        );
     }
 
     public static void stonecutterResultFromBase(RecipeOutput exporter, RecipeCategory category, ItemLike result, ItemLike material) {

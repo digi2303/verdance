@@ -1,7 +1,8 @@
-// 1.21.1	2024-08-29T21:00:52.7772006	Verdance/Tags for minecraft:item
+// 1.21.1	2024-08-30T14:36:31.2353095	Verdance/Tags for minecraft:item
 67f7394923e52e601b30297dcbb1812215a4ffed data\minecraft\tags\item\chicken_food.json
 740fa2d483b1840073090e5b698d69c70c68856f data\minecraft\tags\item\leaves.json
 bca2d89b2ad2ab2d8ba4b7777579a6f54a16a93f data\minecraft\tags\item\stairs.json
+4052d37c31e2478a23acdbd26373ed491e0a9bf6 data\minecraft\tags\item\trim_templates.json
 dbfe80f89672136d0b0078613beb38d76f6ed9f0 data\c\tags\item\foods\fruit.json
 1279a25bdf9d46398795bea7711d6f41e49a2c1d data\minecraft\tags\item\small_flowers.json
 67f7394923e52e601b30297dcbb1812215a4ffed data\minecraft\tags\item\parrot_food.json

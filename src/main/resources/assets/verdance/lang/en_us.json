@@ -129,6 +129,7 @@
     "item.verdance.cantaloupe_juice": "Cantaloupe Juice",
     "item.verdance.cantaloupe_seeds": "Cantaloupe Seeds",
     "item.verdance.cantaloupe_slice": "Cantaloupe Slice",
+    "item.verdance.community_armor_trim_smithing_template": "Smithing Template",
     "item.verdance.disc_fragment_range": "Disc Fragment",
     "item.verdance.disc_fragment_range.desc": "Music Disc - Range",
     "item.verdance.grilled_cantaloupe_slice": "Grilled Cantaloupe Slice",
@@ -151,5 +152,7 @@
     "subtitles.verdance.entity.silk_moth.hurt": "Silk Moth hurts",
     "subtitles.verdance.entity.silk_moth.idle": "Silk Moth chirps",
     "subtitles.verdance.entity.silkworm.death": "Silkworm dies",
-    "subtitles.verdance.entity.silkworm.hurt": "Silkworm hurts"
+    "subtitles.verdance.entity.silkworm.hurt": "Silkworm hurts",
+
+    "trim_pattern.verdance.community": "Community Armor Trim"
 }

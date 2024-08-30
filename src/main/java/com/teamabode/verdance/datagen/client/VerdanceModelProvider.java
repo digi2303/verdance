@@ -77,6 +77,7 @@ public class VerdanceModelProvider extends FabricModelProvider {
         generator.generateFlatItem(VerdanceItems.PRICKLE_POTTERY_SHERD, ModelTemplates.FLAT_ITEM);
         generator.generateFlatItem(VerdanceItems.SPIRIT_POTTERY_SHERD, ModelTemplates.FLAT_ITEM);
         generator.generateFlatItem(VerdanceItems.TRAP_POTTERY_SHERD, ModelTemplates.FLAT_ITEM);
+        generator.generateFlatItem(VerdanceItems.COMMUNITY_ARMOR_TRIM_SMITHING_TEMPLATE, ModelTemplates.FLAT_ITEM);
 
         generator.generateFlatItem(VerdanceItems.MUSIC_DISC_RANGE, ModelTemplates.FLAT_ITEM);
         generator.generateFlatItem(VerdanceItems.DISC_FRAGMENT_RANGE, ModelTemplates.FLAT_ITEM);

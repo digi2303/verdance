@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-29T21:00:52.7781747	Verdance/Dynamic Registries
+// 1.21.1	2024-08-30T14:36:31.2373093	Verdance/Dynamic Registries
 5a6dfb5556f3f835831da620dadc18f9b96870ec data\verdance\worldgen\configured_feature\flower_mulberry_forest.json
 8b6aa220e44735a1ce3028700c465bd9c3aa1c50 data\verdance\worldgen\placed_feature\patch_shrub.json
 626b3ef3e14986f466efdcfe3d68ffe68b380018 data\verdance\jukebox_song\range.json
@@ -10,6 +10,7 @@ a9e34d3166297f54cb77493ed174d935f4f3b946 data\verdance\worldgen\configured_featu
 1abc274fde0ed323e3af5b53fec36b8cdcaf4eba data\verdance\worldgen\placed_feature\mulberry.json
 d9c95af169025cae038d6fdcda8c75b6222f2a56 data\verdance\worldgen\configured_feature\patch_pink_flowering_shrub_bonemeal.json
 a3bf16f55605fb93d462bfd4f2f8690be8aed37f data\verdance\worldgen\configured_feature\patch_yellow_flowering_shrub_bonemeal.json
+0de87f57c3ddbf588223005664260fd9059f37e5 data\verdance\trim_pattern\community.json
 ff59139dfd99821e556aec1f9fa19798b63858bc data\verdance\worldgen\placed_feature\patch_cantaloupe.json
 99d7879a25d4c4cab04e7c6a2a8b3175cf963887 data\verdance\wolf_variant\golden.json
 06ee2d183b22b646e37597acdc087fd09ebeb7c3 data\verdance\worldgen\placed_feature\flower_mulberry_forest.json

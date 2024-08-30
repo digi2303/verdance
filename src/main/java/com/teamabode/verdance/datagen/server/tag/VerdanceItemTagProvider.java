@@ -18,8 +18,6 @@ public class VerdanceItemTagProvider extends FabricTagProvider.ItemTagProvider {
     }
 
     protected void addTags(HolderLookup.Provider arg) {
-        // TODO add conventional item tags for dyed stucco (blocks & items)
-
         silkMothFood();
         silkwormFood();
         planks();
@@ -37,6 +35,7 @@ public class VerdanceItemTagProvider extends FabricTagProvider.ItemTagProvider {
         boats();
         foods();
         decoratedPotSherds();
+        trimTemplates();
         saplings();
         leaves();
         smallFlowers();
@@ -50,8 +49,7 @@ public class VerdanceItemTagProvider extends FabricTagProvider.ItemTagProvider {
     private void silkwormFood() {
         this.getOrCreateTagBuilder(VerdanceItemTags.SILKWORM_FOOD)
                 .add(VerdanceItems.MULBERRY)
-                .forceAddTag(ItemTags.LEAVES)
-                .setReplace(false);
+                .forceAddTag(ItemTags.LEAVES);
     }
 
     private void planks() {
@@ -128,6 +126,10 @@ public class VerdanceItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .setReplace(false);
     }
 
+    private void trimTemplates() {
+        this.getOrCreateTagBuilder(ItemTags.TRIM_TEMPLATES).add(VerdanceItems.COMMUNITY_ARMOR_TRIM_SMITHING_TEMPLATE).setReplace(false);
+    }
+
     private void saplings() {
         this.getOrCreateTagBuilder(ItemTags.SAPLINGS).add(VerdanceItems.MULBERRY).setReplace(false);
     }
@@ -137,6 +139,6 @@ public class VerdanceItemTagProvider extends FabricTagProvider.ItemTagProvider {
     }
 
     private void smallFlowers() {
-        this.getOrCreateTagBuilder(ItemTags.SMALL_FLOWERS).add(VerdanceBlocks.VIOLET.asItem());
+        this.getOrCreateTagBuilder(ItemTags.SMALL_FLOWERS).add(VerdanceBlocks.VIOLET.asItem()).setReplace(false);;
     }
 }

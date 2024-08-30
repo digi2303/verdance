@@ -69,11 +69,17 @@ public class VerdanceItems {
                     .jukeboxPlayable(VerdanceJukeboxSongs.RANGE)
     );
     public static final Item DISC_FRAGMENT_RANGE = register("disc_fragment_range");
+
     public static final Item ABODE_POTTERY_SHERD = register("abode_pottery_sherd");
     public static final Item PITCH_POTTERY_SHERD = register("pitch_pottery_sherd");
     public static final Item PRICKLE_POTTERY_SHERD = register("prickle_pottery_sherd");
     public static final Item SPIRIT_POTTERY_SHERD = register("spirit_pottery_sherd");
     public static final Item TRAP_POTTERY_SHERD = register("trap_pottery_sherd");
+
+    public static final Item COMMUNITY_ARMOR_TRIM_SMITHING_TEMPLATE = register(
+            "community_armor_trim_smithing_template",
+            SmithingTemplateItem.createArmorTrimTemplate(VerdanceTrimPatterns.COMMUNITY)
+    );
 
     public static final Item SILK_MOTH_SPAWN_EGG = register(
             "silk_moth_spawn_egg",

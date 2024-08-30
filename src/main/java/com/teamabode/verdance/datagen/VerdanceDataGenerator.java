@@ -40,6 +40,7 @@ public class VerdanceDataGenerator implements DataGeneratorEntrypoint {
     public void buildRegistry(RegistrySetBuilder registryBuilder) {
         registryBuilder.add(Registries.WOLF_VARIANT, VerdanceWolfVariants::register);
         registryBuilder.add(Registries.JUKEBOX_SONG, VerdanceJukeboxSongs::register);
+        registryBuilder.add(Registries.TRIM_PATTERN, VerdanceTrimPatterns::register);
         registryBuilder.add(SketchRegistries.BOAT_TYPE, VerdanceBoatTypes::register);
         registryBuilder.add(Registries.CONFIGURED_FEATURE, VerdanceConfiguredFeatures::register);
         registryBuilder.add(Registries.PLACED_FEATURE, VerdancePlacedFeatures::register);

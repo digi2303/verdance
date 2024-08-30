@@ -8,10 +8,14 @@ import com.teamabode.verdance.core.registry.*;
 import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.commands.RaidCommand;
+import net.minecraft.server.commands.SpawnArmorTrimsCommand;
+import net.minecraft.server.commands.WardenSpawnTrackerCommand;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
@@ -44,6 +48,10 @@ public class Verdance implements ModInitializer {
             VerdanceFD.register();
         }
         VerdanceBiomeModifications.register();
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            SpawnArmorTrimsCommand.register(dispatcher);
+        });
 
         registerBlockEntitySupportedBlock();
         registerTrades();

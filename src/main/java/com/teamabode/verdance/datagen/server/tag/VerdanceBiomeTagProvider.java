@@ -35,31 +35,33 @@ public class VerdanceBiomeTagProvider extends FabricTagProvider<Biome> {
     }
 
     private void isForest() {
-        this.getOrCreateTagBuilder(BiomeTags.IS_FOREST).add(VerdanceBiomes.MULBERRY_FOREST);
+        this.getOrCreateTagBuilder(BiomeTags.IS_FOREST).add(VerdanceBiomes.MULBERRY_FOREST).setReplace(false);;
     }
 
     private void isMountain() {
-        this.getOrCreateTagBuilder(BiomeTags.IS_MOUNTAIN).add(VerdanceBiomes.MULBERRY_FOREST);
+        this.getOrCreateTagBuilder(BiomeTags.IS_MOUNTAIN).add(VerdanceBiomes.MULBERRY_FOREST).setReplace(false);;
     }
 
     private void isOverworld() {
         this.getOrCreateTagBuilder(BiomeTags.IS_OVERWORLD)
                 .add(VerdanceBiomes.MULBERRY_FOREST)
-                .add(VerdanceBiomes.SHRUBLANDS);
+                .add(VerdanceBiomes.SHRUBLANDS)
+                .setReplace(false);
     }
 
     private void snowGolemMelts() {
-        this.getOrCreateTagBuilder(BiomeTags.SNOW_GOLEM_MELTS).add(VerdanceBiomes.SHRUBLANDS);
+        this.getOrCreateTagBuilder(BiomeTags.SNOW_GOLEM_MELTS).add(VerdanceBiomes.SHRUBLANDS).setReplace(false);;
     }
 
     private void spawnsWarmVariantFrogs() {
-        this.getOrCreateTagBuilder(BiomeTags.SPAWNS_WARM_VARIANT_FROGS).add(VerdanceBiomes.SHRUBLANDS);
+        this.getOrCreateTagBuilder(BiomeTags.SPAWNS_WARM_VARIANT_FROGS).add(VerdanceBiomes.SHRUBLANDS).setReplace(false);;
     }
 
     private void strongholdBiasedTo() {
         this.getOrCreateTagBuilder(BiomeTags.STRONGHOLD_BIASED_TO)
                 .add(VerdanceBiomes.MULBERRY_FOREST)
-                .add(VerdanceBiomes.SHRUBLANDS);
+                .add(VerdanceBiomes.SHRUBLANDS)
+                .setReplace(false);;
     }
 
     private void hasCantaloupe() {
@@ -84,13 +86,14 @@ public class VerdanceBiomeTagProvider extends FabricTagProvider<Biome> {
     private void hasStructure() {
         this.getOrCreateTagBuilder(BiomeTags.HAS_TRIAL_CHAMBERS)
                 .add(VerdanceBiomes.MULBERRY_FOREST)
-                .add(VerdanceBiomes.SHRUBLANDS);
-        this.getOrCreateTagBuilder(BiomeTags.HAS_MINESHAFT).add(VerdanceBiomes.SHRUBLANDS);
-        this.getOrCreateTagBuilder(BiomeTags.HAS_RUINED_PORTAL_STANDARD).add(VerdanceBiomes.SHRUBLANDS);
+                .add(VerdanceBiomes.SHRUBLANDS)
+                .setReplace(false);;
+        this.getOrCreateTagBuilder(BiomeTags.HAS_MINESHAFT).add(VerdanceBiomes.SHRUBLANDS).setReplace(false);;
+        this.getOrCreateTagBuilder(BiomeTags.HAS_RUINED_PORTAL_STANDARD).add(VerdanceBiomes.SHRUBLANDS).setReplace(false);;
     }
 
     private void conventionalTags() {
-        this.getOrCreateTagBuilder(ConventionalBiomeTags.IS_HOT_OVERWORLD).add(VerdanceBiomes.SHRUBLANDS);
-        this.getOrCreateTagBuilder(ConventionalBiomeTags.IS_VEGETATION_DENSE).add(VerdanceBiomes.SHRUBLANDS);
+        this.getOrCreateTagBuilder(ConventionalBiomeTags.IS_HOT_OVERWORLD).add(VerdanceBiomes.SHRUBLANDS).setReplace(false);;
+        this.getOrCreateTagBuilder(ConventionalBiomeTags.IS_VEGETATION_DENSE).add(VerdanceBiomes.SHRUBLANDS).setReplace(false);;
     }
 }
