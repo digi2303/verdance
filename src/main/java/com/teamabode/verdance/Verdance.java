@@ -48,11 +48,6 @@ public class Verdance implements ModInitializer {
             VerdanceFD.register();
         }
         VerdanceBiomeModifications.register();
-
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            SpawnArmorTrimsCommand.register(dispatcher);
-        });
-
         registerBlockEntitySupportedBlock();
         registerTrades();
         registerItemGroupEvents();
