@@ -1,7 +1,6 @@
 package com.teamabode.verdance.core.registry;
 
 import com.teamabode.verdance.Verdance;
-import com.teamabode.verdance.common.worldgen.DecayPatchConfiguration;
 import com.teamabode.verdance.common.worldgen.MulberryTrunkPlacer;
 import com.teamabode.verdance.core.tag.VerdanceBlockTags;
 import net.minecraft.core.Direction;
@@ -21,9 +20,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.CherryFoliagePlacer;
@@ -37,7 +35,6 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
 import java.util.List;
-import java.util.Map;
 
 public class VerdanceConfiguredFeatures {
 
@@ -80,21 +77,7 @@ public class VerdanceConfiguredFeatures {
                 new SimpleBlockConfiguration(BlockStateProvider.simple(VerdanceBlocks.CANTALOUPE)),
                 List.of(Blocks.GRASS_BLOCK)
         ));
-
-        FeatureUtils.register(context, PATCH_SHRUB, Feature.RANDOM_PATCH, new RandomPatchConfiguration(
-                64, 5, 2,
-                PlacementUtils.inlinePlaced(
-                        Feature.SIMPLE_BLOCK,
-                        new SimpleBlockConfiguration(
-                                new NoiseProvider(2345L, new NormalNoise.NoiseParameters(-2, List.of(1.0d)), 0.075f, List.of(
-                                        VerdanceBlocks.PINK_FLOWERING_SHRUB.defaultBlockState(),
-                                        VerdanceBlocks.SHRUB.defaultBlockState(),
-                                        VerdanceBlocks.YELLOW_FLOWERING_SHRUB.defaultBlockState()
-                                ))
-                        ),
-                        BlockPredicateFilter.forPredicate(BlockPredicate.matchesBlocks(Blocks.AIR))
-                )
-        ));
+        patchShrub(context);
         FeatureUtils.register(context, SHRUBLANDS_BUSH, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(Blocks.OAK_LOG),
                 new StraightTrunkPlacer(1, 0, 0),
@@ -145,18 +128,23 @@ public class VerdanceConfiguredFeatures {
         );
     }
 
-    public static Holder<PlacedFeature> createWeightedFeature(Map<Block, Integer> weights) {
-        var builder = SimpleWeightedRandomList.<BlockState>builder();
-        weights.forEach((block, weight) -> builder.add(block.defaultBlockState(), weight));
-
-        return PlacementUtils.inlinePlaced(
-                Feature.SIMPLE_BLOCK,
-                new SimpleBlockConfiguration(new WeightedStateProvider(builder.build())),
-                BlockPredicateFilter.forPredicate(BlockPredicate.allOf(
-                        BlockPredicate.ONLY_IN_AIR_PREDICATE,
-                        BlockPredicate.matchesTag(Direction.DOWN.getNormal(), VerdanceBlockTags.SHRUB_MAY_PLACE_ON)
+    private static void patchShrub(BootstrapContext<ConfiguredFeature<?, ?>> context) {
+        Holder<PlacedFeature> shrub = PlacementUtils.inlinePlaced(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
+                SimpleStateProvider.simple(VerdanceBlocks.SHRUB)
+        ));
+        Holder<PlacedFeature> noiseBasedShrub = PlacementUtils.inlinePlaced(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
+                new NoiseProvider(2345L, new NormalNoise.NoiseParameters(-2, List.of(1.0d)), 0.1f, List.of(
+                        VerdanceBlocks.PINK_FLOWERING_SHRUB.defaultBlockState(),
+                        VerdanceBlocks.SHRUB.defaultBlockState(),
+                        VerdanceBlocks.YELLOW_FLOWERING_SHRUB.defaultBlockState()
                 ))
-        );
+        ));
+        RandomPatchConfiguration patch = new RandomPatchConfiguration(64, 5, 2, PlacementUtils.inlinePlaced(
+                Feature.RANDOM_BOOLEAN_SELECTOR,
+                new RandomBooleanFeatureConfiguration(shrub, noiseBasedShrub),
+                BlockPredicateFilter.forPredicate(BlockPredicate.matchesBlocks(Blocks.AIR))
+        ));
+        FeatureUtils.register(context, PATCH_SHRUB, Feature.RANDOM_PATCH, patch);
     }
 
     private static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {

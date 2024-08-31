@@ -248,7 +248,7 @@ public class Verdance implements ModInitializer {
 
     public static void registerBiomePlacements() {
         BiomePlacement.replaceOverworld(Biomes.CHERRY_GROVE, VerdanceBiomes.MULBERRY_FOREST, VerdanceConfig.MULBERRY_FOREST_PROPORTION.get());
-        BiomePlacement.replaceOverworld(Biomes.DESERT, VerdanceBiomes.SHRUBLANDS, VerdanceConfig.SHRUBLANDS_PROPORTION.get());
+        BiomePlacement.replaceOverworld(Biomes.SPARSE_JUNGLE, VerdanceBiomes.SHRUBLANDS, VerdanceConfig.SHRUBLANDS_PROPORTION.get());
     }
 
     public static void registerSurfaceRules() {
