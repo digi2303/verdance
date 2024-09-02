@@ -5,6 +5,7 @@
 * Added the Town Ruins structure.
 * Added the Shrub, Yellow Flowering Shrub, and Pink Flowering Shrub.
 * Added the Range Music Disc, composed by Firch. Crafted from 9 Disc Fragments.
+* Added the Community Armor Trim Smithing Template.
 * Added the Abode, Pitch, Prickle, Spirit, and Trap Pottery Sherds.
 
 ## Tweaks:
@@ -14,6 +15,7 @@
 * Tweaked the color contrast of the Violet slightly.
 * Added Turkish localizations. (digi2303)
 * Added Japanese localizations. (ilyymira)
+* Added Mexican Spanish localizations.
 
 ## Fixes:
 * Fixed `verdance:cantaloupe_stem` lacking the `minecraft:crops` block tag.
