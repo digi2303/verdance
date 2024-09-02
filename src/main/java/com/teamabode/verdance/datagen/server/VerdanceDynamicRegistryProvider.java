@@ -25,6 +25,10 @@ public class VerdanceDynamicRegistryProvider extends FabricDynamicRegistryProvid
         this.addAll(Registries.CONFIGURED_FEATURE, registries, entries);
         this.addAll(Registries.PLACED_FEATURE, registries, entries);
         this.addAll(Registries.BIOME, registries, entries);
+        this.addAll(Registries.PROCESSOR_LIST, registries, entries);
+        this.addAll(Registries.TEMPLATE_POOL, registries, entries);
+        this.addAll(Registries.STRUCTURE, registries, entries);
+        this.addAll(Registries.STRUCTURE_SET, registries, entries);
     }
 
     private <T> void addAll(ResourceKey<Registry<T>> registry, HolderLookup.Provider registries, Entries entries) {

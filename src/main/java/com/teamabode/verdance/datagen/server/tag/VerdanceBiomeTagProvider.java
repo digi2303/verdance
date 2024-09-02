@@ -87,9 +87,12 @@ public class VerdanceBiomeTagProvider extends FabricTagProvider<Biome> {
         this.getOrCreateTagBuilder(BiomeTags.HAS_TRIAL_CHAMBERS)
                 .add(VerdanceBiomes.MULBERRY_FOREST)
                 .add(VerdanceBiomes.SHRUBLANDS)
-                .setReplace(false);;
+                .setReplace(false);
         this.getOrCreateTagBuilder(BiomeTags.HAS_MINESHAFT).add(VerdanceBiomes.SHRUBLANDS).setReplace(false);;
-        this.getOrCreateTagBuilder(BiomeTags.HAS_RUINED_PORTAL_STANDARD).add(VerdanceBiomes.SHRUBLANDS).setReplace(false);;
+        this.getOrCreateTagBuilder(BiomeTags.HAS_RUINED_PORTAL_STANDARD).add(VerdanceBiomes.SHRUBLANDS).setReplace(false);
+        this.getOrCreateTagBuilder(VerdanceBiomeTags.HAS_TOWN_RUINS)
+                .add(VerdanceBiomes.SHRUBLANDS)
+                .forceAddTag(ConventionalBiomeTags.IS_DESERT);
     }
 
     private void conventionalTags() {

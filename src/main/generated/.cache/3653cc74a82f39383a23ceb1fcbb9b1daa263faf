@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-30T21:21:49.9894711	Verdance/Tags for minecraft:worldgen/biome
+// 1.21.1	2024-09-01T21:15:52.4515968	Verdance/Tags for minecraft:worldgen/biome
 06f85a3e8f40069d34add09d228a88fdebca92b3 data\c\tags\worldgen\biome\is_hot\overworld.json
 06f85a3e8f40069d34add09d228a88fdebca92b3 data\minecraft\tags\worldgen\biome\has_structure\mineshaft.json
 fe1aa0f78fbe68a874946c267c082b4f07a307bd data\verdance\tags\worldgen\biome\has_cantaloupe.json
@@ -9,6 +9,7 @@ fe1aa0f78fbe68a874946c267c082b4f07a307bd data\verdance\tags\worldgen\biome\has_c
 905e53fa547b08c354432f517292ae61a2520f9c data\minecraft\tags\worldgen\biome\stronghold_biased_to.json
 06f85a3e8f40069d34add09d228a88fdebca92b3 data\minecraft\tags\worldgen\biome\spawns_warm_variant_frogs.json
 06f85a3e8f40069d34add09d228a88fdebca92b3 data\minecraft\tags\worldgen\biome\has_structure\ruined_portal_standard.json
+130f7149c9ad321fd160119a1673a7ccb68f51f6 data\verdance\tags\worldgen\biome\has_structure\town_ruins.json
 905e53fa547b08c354432f517292ae61a2520f9c data\minecraft\tags\worldgen\biome\has_structure\trial_chambers.json
 905e53fa547b08c354432f517292ae61a2520f9c data\minecraft\tags\worldgen\biome\is_overworld.json
 2937c607dbc9498879d733af88aa95a2177e7d60 data\minecraft\tags\worldgen\biome\is_mountain.json

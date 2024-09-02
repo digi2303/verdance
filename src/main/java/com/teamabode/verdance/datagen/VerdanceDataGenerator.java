@@ -3,14 +3,11 @@ package com.teamabode.verdance.datagen;
 import com.teamabode.sketch.core.registry.SketchRegistries;
 import com.teamabode.verdance.core.registry.*;
 import com.teamabode.verdance.datagen.client.VerdanceModelProvider;
-import com.teamabode.verdance.datagen.server.VerdanceAdvancementProvider;
-import com.teamabode.verdance.datagen.server.VerdanceBlockLootTableProvider;
-import com.teamabode.verdance.datagen.server.VerdanceDynamicRegistryProvider;
+import com.teamabode.verdance.datagen.server.*;
 import com.teamabode.verdance.datagen.server.tag.VerdanceBiomeTagProvider;
 import com.teamabode.verdance.datagen.server.tag.VerdanceBlockTagProvider;
 import com.teamabode.verdance.datagen.server.tag.VerdanceEntityTypeTagProvider;
 import com.teamabode.verdance.datagen.server.tag.VerdanceItemTagProvider;
-import com.teamabode.verdance.datagen.server.VerdanceRecipeProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.core.RegistrySetBuilder;
@@ -28,6 +25,7 @@ public class VerdanceDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(VerdanceItemTagProvider::new);
         pack.addProvider(VerdanceEntityTypeTagProvider::new);
         pack.addProvider(VerdanceBiomeTagProvider::new);
+        pack.addProvider(VerdanceArchaeologyLootTableProvider::new);
         pack.addProvider(VerdanceBlockLootTableProvider::new);
         pack.addProvider(VerdanceDynamicRegistryProvider::new);
         pack.addProvider(VerdanceAdvancementProvider::new);
@@ -45,5 +43,9 @@ public class VerdanceDataGenerator implements DataGeneratorEntrypoint {
         registryBuilder.add(Registries.CONFIGURED_FEATURE, VerdanceConfiguredFeatures::register);
         registryBuilder.add(Registries.PLACED_FEATURE, VerdancePlacedFeatures::register);
         registryBuilder.add(Registries.BIOME, VerdanceBiomes::register);
+        registryBuilder.add(Registries.PROCESSOR_LIST, VerdanceProcessorLists::register);
+        registryBuilder.add(Registries.TEMPLATE_POOL, VerdanceTemplatePools::register);
+        registryBuilder.add(Registries.STRUCTURE, VerdanceStructures::register);
+        registryBuilder.add(Registries.STRUCTURE_SET, VerdanceStructureSets::register);
     }
 }
