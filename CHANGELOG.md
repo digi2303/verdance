@@ -6,7 +6,7 @@
 * Added the Shrub, Yellow Flowering Shrub, and Pink Flowering Shrub.
 * Added the Range Music Disc, composed by Firch. Crafted from 9 Disc Fragments.
 * Added the Community Armor Trim Smithing Template.
-* Added the Abode, Pitch, Prickle, Spirit, and Trap Pottery Sherds.
+* Added the Abode, Frills, Pitch, Prickle, Spirit, and Trap Pottery Sherds.
 
 ## Tweaks:
 * Grilled Cantaloupe now gives 6 food points, instead of 5.
