@@ -22,4 +22,4 @@
 * Fixed `verdance:mulberry_forest` lacking the `minecraft:has_structure/trial_chambers` biome tag.
 * Fixed `verdance:mulberry_forest` lacking the `minecraft:stronghold_biased_to` biome tag.
 * Fixed redundant tagging of `verdance:silk_moth` in the `minecraft:sensitive_to_bane_of_arthropods` entity type tag.
-* Fixed an issue with trying to sit on a cushion with a block in hand.
+* Fixed an issue when trying to sit on a cushion with a block in hand.
