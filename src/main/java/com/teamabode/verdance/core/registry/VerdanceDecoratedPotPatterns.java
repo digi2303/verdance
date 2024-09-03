@@ -12,6 +12,7 @@ import java.util.Map;
 
 public class VerdanceDecoratedPotPatterns {
     public static final ResourceKey<DecoratedPotPattern> ABODE = createKey("abode");
+    public static final ResourceKey<DecoratedPotPattern> FRILLS = createKey("frills");
     public static final ResourceKey<DecoratedPotPattern> PITCH = createKey("pitch");
     public static final ResourceKey<DecoratedPotPattern> PRICKLE = createKey("prickle");
     public static final ResourceKey<DecoratedPotPattern> SPIRIT = createKey("spirit");
@@ -19,6 +20,7 @@ public class VerdanceDecoratedPotPatterns {
 
     public static final Map<Item, ResourceKey<DecoratedPotPattern>> SHERD_TO_PATTERN = Map.of(
             VerdanceItems.ABODE_POTTERY_SHERD, ABODE,
+            VerdanceItems.FRILLS_POTTERY_SHERD, FRILLS,
             VerdanceItems.PITCH_POTTERY_SHERD, PITCH,
             VerdanceItems.PRICKLE_POTTERY_SHERD, PRICKLE,
             VerdanceItems.SPIRIT_POTTERY_SHERD, SPIRIT,
@@ -27,6 +29,7 @@ public class VerdanceDecoratedPotPatterns {
 
     public static void register() {
         register(ABODE, "abode_pottery_pattern");
+        register(FRILLS, "frills_pottery_pattern");
         register(PITCH, "pitch_pottery_pattern");
         register(PRICKLE, "prickle_pottery_pattern");
         register(SPIRIT, "spirit_pottery_pattern");

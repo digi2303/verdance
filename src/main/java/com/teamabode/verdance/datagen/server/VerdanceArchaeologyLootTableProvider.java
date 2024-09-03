@@ -63,6 +63,7 @@ public class VerdanceArchaeologyLootTableProvider extends SimpleFabricLootTableP
                 .add(Items.GOLD_INGOT, 2)
                 .add(VerdanceItems.COMMUNITY_ARMOR_TRIM_SMITHING_TEMPLATE)
                 .add(VerdanceItems.ABODE_POTTERY_SHERD)
+                .add(VerdanceItems.FRILLS_POTTERY_SHERD)
                 .add(VerdanceItems.PITCH_POTTERY_SHERD)
                 .add(VerdanceItems.PRICKLE_POTTERY_SHERD)
                 .add(VerdanceItems.SPIRIT_POTTERY_SHERD)

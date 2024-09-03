@@ -1,4 +1,4 @@
-// 1.21.1	2024-09-02T21:17:29.4936925	Verdance/Tags for minecraft:item
+// 1.21.1	2024-09-03T17:20:12.5526114	Verdance/Tags for minecraft:item
 67f7394923e52e601b30297dcbb1812215a4ffed data\minecraft\tags\item\chicken_food.json
 740fa2d483b1840073090e5b698d69c70c68856f data\minecraft\tags\item\leaves.json
 bca2d89b2ad2ab2d8ba4b7777579a6f54a16a93f data\minecraft\tags\item\stairs.json
@@ -28,4 +28,4 @@ c1040a9f2cc5d5d93cec266adab2819f7392a3a6 data\minecraft\tags\item\planks.json
 676d5d6104998f1c013e2418880dd19dd765009c data\minecraft\tags\item\fence_gates.json
 39586e3604b4ba6f09096955bd526177b01f7c62 data\minecraft\tags\item\wooden_trapdoors.json
 ccfd05cf96fbc21cb30a1aa6fe117d18d77734b9 data\minecraft\tags\item\boats.json
-587dc453254de96cef66631de44e87521bce38f1 data\minecraft\tags\item\decorated_pot_sherds.json
+36ce81f30424989c11de427571b25f5e15e2c3fd data\minecraft\tags\item\decorated_pot_sherds.json

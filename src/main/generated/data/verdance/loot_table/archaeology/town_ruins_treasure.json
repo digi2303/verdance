@@ -34,6 +34,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "verdance:frills_pottery_sherd"
+        },
+        {
+          "type": "minecraft:item",
           "name": "verdance:pitch_pottery_sherd"
         },
         {
