@@ -3,53 +3,8 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "verdance:town_ruins/buildings/house_1",
-        "processors": "verdance:town_ruins_large_building_archaeology",
-        "projection": "rigid"
-      },
-      "weight": 2
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "verdance:town_ruins/buildings/house_2",
-        "processors": "verdance:town_ruins_building_archaeology",
-        "projection": "rigid"
-      },
-      "weight": 2
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "verdance:town_ruins/buildings/house_3",
-        "processors": "verdance:town_ruins_building_archaeology",
-        "projection": "rigid"
-      },
-      "weight": 2
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "verdance:town_ruins/buildings/house_4",
-        "processors": "verdance:town_ruins_building_archaeology",
-        "projection": "rigid"
-      },
-      "weight": 2
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "verdance:town_ruins/buildings/house_5",
-        "processors": "verdance:town_ruins_large_building_archaeology",
-        "projection": "rigid"
-      },
-      "weight": 2
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "verdance:town_ruins/buildings/garden",
-        "processors": "verdance:town_ruins_building_archaeology",
+        "location": "verdance:town_ruins/buildings/building_1",
+        "processors": "verdance:town_ruins_archaeology",
         "projection": "rigid"
       },
       "weight": 1
@@ -57,8 +12,8 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "verdance:town_ruins/buildings/statue_1",
-        "processors": "verdance:town_ruins_building_archaeology",
+        "location": "verdance:town_ruins/buildings/building_2",
+        "processors": "verdance:town_ruins_archaeology",
         "projection": "rigid"
       },
       "weight": 1
@@ -66,8 +21,8 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "verdance:town_ruins/buildings/statue_2",
-        "processors": "verdance:town_ruins_large_building_archaeology",
+        "location": "verdance:town_ruins/buildings/building_3",
+        "processors": "verdance:town_ruins_archaeology",
         "projection": "rigid"
       },
       "weight": 1
@@ -75,8 +30,62 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "verdance:town_ruins/buildings/statue_3",
-        "processors": "verdance:town_ruins_building_archaeology",
+        "location": "verdance:town_ruins/buildings/building_4",
+        "processors": "verdance:town_ruins_archaeology",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "verdance:town_ruins/buildings/building_5",
+        "processors": "verdance:town_ruins_archaeology",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "verdance:town_ruins/buildings/building_6",
+        "processors": "verdance:town_ruins_archaeology",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "verdance:town_ruins/buildings/building_7",
+        "processors": "verdance:town_ruins_archaeology",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "verdance:town_ruins/buildings/building_8",
+        "processors": "verdance:town_ruins_archaeology",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "verdance:town_ruins/buildings/building_9",
+        "processors": "verdance:town_ruins_archaeology",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "verdance:town_ruins/buildings/building_10",
+        "processors": "verdance:town_ruins_archaeology",
         "projection": "rigid"
       },
       "weight": 1

@@ -43,7 +43,7 @@
           }
         ]
       },
-      "limit": 6,
+      "limit": 3,
       "processor_type": "minecraft:capped"
     },
     {
@@ -53,7 +53,7 @@
           {
             "block_entity_modifier": {
               "type": "minecraft:append_loot",
-              "loot_table": "verdance:archaeology/town_ruins_rare"
+              "loot_table": "verdance:archaeology/town_ruins_treasure"
             },
             "input_predicate": {
               "block": "minecraft:sand",
@@ -71,7 +71,7 @@
           }
         ]
       },
-      "limit": 3,
+      "limit": 1,
       "processor_type": "minecraft:capped"
     }
   ]

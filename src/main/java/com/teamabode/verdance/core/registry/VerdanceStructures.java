@@ -22,7 +22,7 @@ public class VerdanceStructures {
         var templatePools = context.lookup(Registries.TEMPLATE_POOL);
 
         var hasTownRuins = biomes.getOrThrow(VerdanceBiomeTags.HAS_TOWN_RUINS);
-        var centersPool = templatePools.getOrThrow(VerdanceTemplatePools.TOWN_RUINS_CENTERS);
+        var centersPool = templatePools.getOrThrow(VerdanceTemplatePools.TOWN_RUINS_TOWN_CENTERS);
 
         context.register(TOWN_RUINS, new JigsawStructure(
                 new StructureSettings.Builder(hasTownRuins)

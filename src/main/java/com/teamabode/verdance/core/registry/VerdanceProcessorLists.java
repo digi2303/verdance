@@ -12,14 +12,12 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.rule.blockent
 import java.util.List;
 
 public class VerdanceProcessorLists {
-    public static final ResourceKey<StructureProcessorList> TOWN_RUINS_BUILDING_ARCHAEOLOGY = createKey("town_ruins_building_archaeology");
-    public static final ResourceKey<StructureProcessorList> TOWN_RUINS_LARGE_BUILDING_ARCHAEOLOGY = createKey("town_ruins_large_building_archaeology");
-    public static final ResourceKey<StructureProcessorList> TOWN_RUINS_ROAD_ARCHAEOLOGY = createKey("town_ruins_road_archaeology");
+    public static final ResourceKey<StructureProcessorList> TOWN_RUINS_ARCHAEOLOGY = createKey("town_ruins_archaeology");
+    public static final ResourceKey<StructureProcessorList> TOWN_RUINS_SMALL_ARCHAEOLOGY = createKey("town_ruins_small_archaeology");
 
     public static void register(BootstrapContext<StructureProcessorList> context) {
-        registerArchaeology(context, TOWN_RUINS_BUILDING_ARCHAEOLOGY, 6, 3);
-        registerArchaeology(context, TOWN_RUINS_LARGE_BUILDING_ARCHAEOLOGY, 8, 4);
-        registerArchaeology(context, TOWN_RUINS_ROAD_ARCHAEOLOGY, 4, 2);
+        registerArchaeology(context, TOWN_RUINS_ARCHAEOLOGY, 6, 2);
+        registerArchaeology(context, TOWN_RUINS_SMALL_ARCHAEOLOGY, 3, 1);
     }
 
     private static void registerArchaeology(BootstrapContext<StructureProcessorList> context, ResourceKey<StructureProcessorList> key, int commonAmount, int rareAmount) {
@@ -45,7 +43,7 @@ public class VerdanceProcessorLists {
                         AlwaysTrueTest.INSTANCE,
                         PosAlwaysTrueTest.INSTANCE,
                         Blocks.SUSPICIOUS_SAND.defaultBlockState(),
-                        new AppendLoot(VerdanceLootTables.ARCHAEOLOGY_TOWN_RUINS_RARE)
+                        new AppendLoot(VerdanceLootTables.ARCHAEOLOGY_TOWN_RUINS_TREASURE)
                 ))),
                 ConstantInt.of(rareAmount)
         );

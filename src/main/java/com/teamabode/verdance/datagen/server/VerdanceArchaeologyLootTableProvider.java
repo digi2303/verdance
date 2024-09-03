@@ -1,5 +1,6 @@
 package com.teamabode.verdance.datagen.server;
 
+import com.teamabode.verdance.core.registry.VerdanceBlocks;
 import com.teamabode.verdance.core.registry.VerdanceItems;
 import com.teamabode.verdance.core.registry.VerdanceLootTables;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -26,18 +27,25 @@ public class VerdanceArchaeologyLootTableProvider extends SimpleFabricLootTableP
     public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> exporter) {
         ArchaeologyLootBuilder.create(VerdanceLootTables.ARCHAEOLOGY_TOWN_RUINS_COMMON)
                 .add(Items.CLAY, 2)
-                .add(Items.PACKED_MUD, 2)
                 .add(Items.WHITE_DYE, 2)
                 .add(Items.GREEN_DYE, 2)
                 .add(Items.CYAN_DYE, 2)
                 .add(Items.ORANGE_DYE, 2)
+                .add(Items.YELLOW_DYE, 2)
                 .add(Items.DEAD_BUSH, 2)
+                .add(Items.STICK)
                 .add(Items.WOODEN_HOE)
                 .add(Items.CANDLE)
                 .add(Items.BLACK_CANDLE)
                 .add(Items.PURPLE_CANDLE)
                 .add(Items.GREEN_CANDLE)
                 .add(Items.YELLOW_CANDLE)
+                .add(Items.BLUE_CANDLE)
+                .add(VerdanceBlocks.WHITE_STUCCO_WALL)
+                .add(VerdanceBlocks.YELLOW_STUCCO_WALL)
+                .add(VerdanceBlocks.CYAN_STUCCO_WALL)
+                .add(VerdanceBlocks.GREEN_STUCCO_WALL)
+                .add(VerdanceBlocks.BROWN_STUCCO_WALL)
                 .add(Items.OAK_HANGING_SIGN)
                 .add(Items.GLASS_BOTTLE)
                 .add(Items.WHEAT_SEEDS)
@@ -46,19 +54,20 @@ public class VerdanceArchaeologyLootTableProvider extends SimpleFabricLootTableP
                 .add(Items.ARMADILLO_SCUTE)
                 .add(Items.BUCKET)
                 .add(Items.LEAD)
-                .add(Items.EMERALD)
-                .add(Items.GOLD_INGOT)
-                .build(exporter);
+                .export(exporter);
 
-        ArchaeologyLootBuilder.create(VerdanceLootTables.ARCHAEOLOGY_TOWN_RUINS_RARE)
+        ArchaeologyLootBuilder.create(VerdanceLootTables.ARCHAEOLOGY_TOWN_RUINS_TREASURE)
+                .add(VerdanceItems.DISC_FRAGMENT_RANGE, 3)
+                .add(Items.EMERALD, 2)
+                .add(Items.COAL, 2)
+                .add(Items.GOLD_INGOT, 2)
                 .add(VerdanceItems.COMMUNITY_ARMOR_TRIM_SMITHING_TEMPLATE)
-                .add(VerdanceItems.DISC_FRAGMENT_RANGE, 2)
                 .add(VerdanceItems.ABODE_POTTERY_SHERD)
                 .add(VerdanceItems.PITCH_POTTERY_SHERD)
                 .add(VerdanceItems.PRICKLE_POTTERY_SHERD)
                 .add(VerdanceItems.SPIRIT_POTTERY_SHERD)
                 .add(VerdanceItems.TRAP_POTTERY_SHERD)
-                .build(exporter);
+                .export(exporter);
     }
 
     public static class ArchaeologyLootBuilder {
@@ -85,7 +94,7 @@ public class VerdanceArchaeologyLootTableProvider extends SimpleFabricLootTableP
             return this;
         }
 
-        public void build(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> exporter) {
+        public void export(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> exporter) {
             LootTable.Builder lootTable = LootTable.lootTable();
             lootTable.withPool(pool);
             lootTable.setParamSet(LootContextParamSets.ARCHAEOLOGY);

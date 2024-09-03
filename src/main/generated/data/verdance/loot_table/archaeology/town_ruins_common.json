@@ -11,11 +11,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:packed_mud",
-          "weight": 2
-        },
-        {
-          "type": "minecraft:item",
           "name": "minecraft:white_dye",
           "weight": 2
         },
@@ -36,8 +31,17 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:yellow_dye",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:dead_bush",
           "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stick"
         },
         {
           "type": "minecraft:item",
@@ -62,6 +66,30 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:yellow_candle"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blue_candle"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "verdance:white_stucco_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "verdance:yellow_stucco_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "verdance:cyan_stucco_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "verdance:green_stucco_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "verdance:brown_stucco_wall"
         },
         {
           "type": "minecraft:item",
@@ -94,14 +122,6 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:lead"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:emerald"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:gold_ingot"
         }
       ],
       "rolls": 1.0

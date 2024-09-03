@@ -8,7 +8,7 @@
   "start_height": {
     "absolute": -15
   },
-  "start_pool": "verdance:town_ruins/centers",
+  "start_pool": "verdance:town_ruins/town_centers",
   "step": "underground_structures",
   "terrain_adaptation": "bury",
   "use_expansion_hack": false

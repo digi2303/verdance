@@ -6,12 +6,27 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "verdance:community_armor_trim_smithing_template"
+          "name": "verdance:disc_fragment_range",
+          "weight": 3
         },
         {
           "type": "minecraft:item",
-          "name": "verdance:disc_fragment_range",
+          "name": "minecraft:emerald",
           "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:coal",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gold_ingot",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "verdance:community_armor_trim_smithing_template"
         },
         {
           "type": "minecraft:item",
@@ -37,5 +52,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "verdance:archaeology/town_ruins_rare"
+  "random_sequence": "verdance:archaeology/town_ruins_treasure"
 }
