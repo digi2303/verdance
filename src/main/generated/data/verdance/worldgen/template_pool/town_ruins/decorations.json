@@ -4,7 +4,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "verdance:town_ruins/decorations/decoration_1",
-        "processors": "verdance:town_ruins_archaeology",
+        "processors": "verdance:town_ruins_small_archaeology",
         "projection": "rigid"
       },
       "weight": 1
@@ -13,7 +13,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "verdance:town_ruins/decorations/decoration_2",
-        "processors": "verdance:town_ruins_archaeology",
+        "processors": "verdance:town_ruins_small_archaeology",
         "projection": "rigid"
       },
       "weight": 1
@@ -22,7 +22,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "verdance:town_ruins/decorations/decoration_3",
-        "processors": "verdance:town_ruins_archaeology",
+        "processors": "verdance:town_ruins_small_archaeology",
         "projection": "rigid"
       },
       "weight": 1
@@ -31,7 +31,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "verdance:town_ruins/decorations/decoration_4",
-        "processors": "verdance:town_ruins_archaeology",
+        "processors": "verdance:town_ruins_small_archaeology",
         "projection": "rigid"
       },
       "weight": 1
@@ -40,7 +40,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "verdance:town_ruins/decorations/decoration_5",
-        "processors": "verdance:town_ruins_archaeology",
+        "processors": "verdance:town_ruins_small_archaeology",
         "projection": "rigid"
       },
       "weight": 1
@@ -49,7 +49,16 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "verdance:town_ruins/decorations/decoration_6",
-        "processors": "verdance:town_ruins_archaeology",
+        "processors": "verdance:town_ruins_small_archaeology",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "verdance:town_ruins/decorations/decoration_7",
+        "processors": "verdance:town_ruins_small_archaeology",
         "projection": "rigid"
       },
       "weight": 1

@@ -57,7 +57,7 @@ public class VerdanceArchaeologyLootTableProvider extends SimpleFabricLootTableP
                 .export(exporter);
 
         ArchaeologyLootBuilder.create(VerdanceLootTables.ARCHAEOLOGY_TOWN_RUINS_TREASURE)
-                .add(VerdanceItems.DISC_FRAGMENT_RANGE, 3)
+                .add(VerdanceItems.DISC_FRAGMENT_RANGE, 2)
                 .add(Items.EMERALD, 2)
                 .add(Items.COAL, 2)
                 .add(Items.GOLD_INGOT, 2)

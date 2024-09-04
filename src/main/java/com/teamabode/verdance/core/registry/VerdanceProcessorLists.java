@@ -21,12 +21,6 @@ public class VerdanceProcessorLists {
     }
 
     private static void registerArchaeology(BootstrapContext<StructureProcessorList> context, ResourceKey<StructureProcessorList> key, int commonAmount, int rareAmount) {
-        RuleProcessor cobblestone = new RuleProcessor(List.of(
-                new ProcessorRule(
-                        new RandomBlockMatchTest(Blocks.GRANITE, 0.3f),
-                        AlwaysTrueTest.INSTANCE,
-                        Blocks.COBBLESTONE.defaultBlockState()
-        )));
         CappedProcessor common = new CappedProcessor(
                 new RuleProcessor(List.of(new ProcessorRule(
                         new BlockMatchTest(Blocks.SAND),
@@ -47,7 +41,7 @@ public class VerdanceProcessorLists {
                 ))),
                 ConstantInt.of(rareAmount)
         );
-        register(context, key, cobblestone, common, rare);
+        register(context, key, common, rare);
     }
 
     private static void register(BootstrapContext<StructureProcessorList> context, ResourceKey<StructureProcessorList> key, StructureProcessor... processors) {

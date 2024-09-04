@@ -30,7 +30,7 @@ public class VerdanceStructures {
                         .terrainAdapation(TerrainAdjustment.BURY)
                         .build(),
                 centersPool,
-                3,
+                4,
                 ConstantHeight.of(VerticalAnchor.absolute(-15)),
                 false,
                 Heightmap.Types.WORLD_SURFACE_WG
