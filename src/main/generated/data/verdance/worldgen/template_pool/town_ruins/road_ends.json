@@ -4,7 +4,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "verdance:town_ruins/roads/road_end_1",
-        "processors": "verdance:town_ruins_small_archaeology",
+        "processors": "verdance:town_ruins_road_archaeology",
         "projection": "rigid"
       },
       "weight": 1
@@ -13,7 +13,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "verdance:town_ruins/roads/road_end_2",
-        "processors": "verdance:town_ruins_small_archaeology",
+        "processors": "verdance:town_ruins_road_archaeology",
         "projection": "rigid"
       },
       "weight": 1
@@ -22,7 +22,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "verdance:town_ruins/roads/road_end_3",
-        "processors": "verdance:town_ruins_small_archaeology",
+        "processors": "verdance:town_ruins_road_archaeology",
         "projection": "rigid"
       },
       "weight": 1

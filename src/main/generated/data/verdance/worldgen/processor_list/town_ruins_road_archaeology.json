@@ -25,34 +25,6 @@
           }
         ]
       },
-      "limit": 6,
-      "processor_type": "minecraft:capped"
-    },
-    {
-      "delegate": {
-        "processor_type": "minecraft:rule",
-        "rules": [
-          {
-            "block_entity_modifier": {
-              "type": "minecraft:append_loot",
-              "loot_table": "verdance:archaeology/town_ruins_treasure"
-            },
-            "input_predicate": {
-              "block": "minecraft:sand",
-              "predicate_type": "minecraft:block_match"
-            },
-            "location_predicate": {
-              "predicate_type": "minecraft:always_true"
-            },
-            "output_state": {
-              "Name": "minecraft:suspicious_sand",
-              "Properties": {
-                "dusted": "0"
-              }
-            }
-          }
-        ]
-      },
       "limit": 3,
       "processor_type": "minecraft:capped"
     }

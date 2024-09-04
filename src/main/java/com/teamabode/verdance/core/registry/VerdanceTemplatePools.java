@@ -29,6 +29,7 @@ public class VerdanceTemplatePools {
 
         var processor = processorLists.getOrThrow(VerdanceProcessorLists.TOWN_RUINS_ARCHAEOLOGY);
         var smallProcessor = processorLists.getOrThrow(VerdanceProcessorLists.TOWN_RUINS_SMALL_ARCHAEOLOGY);
+        var roadProcessor = processorLists.getOrThrow(VerdanceProcessorLists.TOWN_RUINS_ROAD_ARCHAEOLOGY);
 
         context.register(TOWN_RUINS_BUILDINGS, new StructureTemplatePool(emptyPool, List.of(
                 Pair.of(StructurePoolElement.single("verdance:town_ruins/buildings/building_1", processor), 1),
@@ -63,16 +64,16 @@ public class VerdanceTemplatePools {
                 Pair.of(StructurePoolElement.single("verdance:town_ruins/decorations/decoration_7", smallProcessor), 1)
         ), Projection.RIGID));
         context.register(TOWN_RUINS_ROADS, new StructureTemplatePool(roadEndsPool, List.of(
-                Pair.of(StructurePoolElement.single("verdance:town_ruins/roads/road_1", smallProcessor), 1),
-                Pair.of(StructurePoolElement.single("verdance:town_ruins/roads/road_2", smallProcessor), 1),
-                Pair.of(StructurePoolElement.single("verdance:town_ruins/roads/road_3", smallProcessor), 1),
-                Pair.of(StructurePoolElement.single("verdance:town_ruins/roads/road_4", smallProcessor), 1),
-                Pair.of(StructurePoolElement.single("verdance:town_ruins/roads/road_start", smallProcessor), 1)
+                Pair.of(StructurePoolElement.single("verdance:town_ruins/roads/road_1", roadProcessor), 1),
+                Pair.of(StructurePoolElement.single("verdance:town_ruins/roads/road_2", roadProcessor), 1),
+                Pair.of(StructurePoolElement.single("verdance:town_ruins/roads/road_3", roadProcessor), 1),
+                Pair.of(StructurePoolElement.single("verdance:town_ruins/roads/road_4", roadProcessor), 1),
+                Pair.of(StructurePoolElement.single("verdance:town_ruins/roads/road_start", roadProcessor), 1)
         ), Projection.RIGID));
         context.register(TOWN_RUINS_ROAD_ENDS, new StructureTemplatePool(emptyPool, List.of(
-                Pair.of(StructurePoolElement.single("verdance:town_ruins/roads/road_end_1", smallProcessor), 1),
-                Pair.of(StructurePoolElement.single("verdance:town_ruins/roads/road_end_2", smallProcessor), 1),
-                Pair.of(StructurePoolElement.single("verdance:town_ruins/roads/road_end_3", smallProcessor), 1)
+                Pair.of(StructurePoolElement.single("verdance:town_ruins/roads/road_end_1", roadProcessor), 1),
+                Pair.of(StructurePoolElement.single("verdance:town_ruins/roads/road_end_2", roadProcessor), 1),
+                Pair.of(StructurePoolElement.single("verdance:town_ruins/roads/road_end_3", roadProcessor), 1)
         ), Projection.RIGID));
     }
 
