@@ -73,7 +73,7 @@ public class Verdance implements ModInitializer {
             itemListings.add(new VillagerTrades.ItemsForEmeralds(VerdanceBlocks.YELLOW_FLOWERING_SHRUB, 1, 1, 12, 1));
             itemListings.add(new VillagerTrades.ItemsForEmeralds(VerdanceBlocks.PINK_FLOWERING_SHRUB, 1, 1, 12, 1));
         });
-        TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 3, itemListings -> {
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 2, itemListings -> {
             itemListings.add(new VillagerTrades.EmeraldForItems(VerdanceBlocks.CANTALOUPE, 6, 12, 10));
         });
     }
