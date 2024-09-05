@@ -125,17 +125,21 @@
     "entity.verdance.silk_moth": "Тутовий шовкопряд",
     "entity.verdance.silkworm": "Гусінь тутового шовкопряда",
 
+    "item.verdance.abode_pottery_sherd": "Гончарний черепок «Житло»",
     "item.verdance.cantaloupe_juice": "Сік канталупи",
     "item.verdance.cantaloupe_seeds": "Насіння канталупи",
     "item.verdance.cantaloupe_slice": "Скибка канталупи",
+    "item.verdance.community_armor_trim_smithing_template": "Ковальський шаблон",
     "item.verdance.disc_fragment_range": "Фрагмент платівки",
     "item.verdance.disc_fragment_range.desc": "Платівка - Range",
+    "item.verdance.frills_pottery_sherd": "Гончарний черепок «Зябра»",
     "item.verdance.grilled_cantaloupe_slice": "Запечена скибка канталупи",
     "item.verdance.mulberry": "Тутове дерево",
     "item.verdance.mulberry_boat": "Тутовий човен",
     "item.verdance.mulberry_chest_boat": "Тутовий човен зі скринею",
     "item.verdance.music_disc_range": "Платівка",
     "item.verdance.pitch_pottery_sherd": "Гончарний черепок «Октава»",
+    "item.verdance.prickle_pottery_sherd": "Гончарний черепок «Колючка»",
     "item.verdance.silk_moth_spawn_egg": "Яйце виклику тутового шовкопряда",
     "item.verdance.silkworm_spawn_egg": "Яйце виклику гусені тутового шовкопряда",
     "item.verdance.spirit_pottery_sherd": "Гончарний черепок «Дух»",
@@ -149,5 +153,7 @@
     "subtitles.verdance.entity.silk_moth.hurt": "Тутовий шовкопряда поранено",
     "subtitles.verdance.entity.silk_moth.idle": "Тутовий шовкопряд цвірінькає",
     "subtitles.verdance.entity.silkworm.death": "Гусінь тутового шовкопряда гине",
-    "subtitles.verdance.entity.silkworm.hurt": "Гусінь тутового шовкопряда поранено"
+    "subtitles.verdance.entity.silkworm.hurt": "Гусінь тутового шовкопряда поранено",
+
+    "trim_pattern.verdance.community": "Орнамент обладунків «Спільнота»"
 }
