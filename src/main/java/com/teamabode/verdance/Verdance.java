@@ -16,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.commands.RaidCommand;
 import net.minecraft.server.commands.SpawnArmorTrimsCommand;
 import net.minecraft.server.commands.WardenSpawnTrackerCommand;
+import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
@@ -71,6 +72,9 @@ public class Verdance implements ModInitializer {
             itemListings.add(new VillagerTrades.ItemsForEmeralds(VerdanceBlocks.SHRUB, 1, 1, 12, 1));
             itemListings.add(new VillagerTrades.ItemsForEmeralds(VerdanceBlocks.YELLOW_FLOWERING_SHRUB, 1, 1, 12, 1));
             itemListings.add(new VillagerTrades.ItemsForEmeralds(VerdanceBlocks.PINK_FLOWERING_SHRUB, 1, 1, 12, 1));
+        });
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 3, itemListings -> {
+            itemListings.add(new VillagerTrades.EmeraldForItems(VerdanceBlocks.CANTALOUPE, 6, 12, 10));
         });
     }
 
