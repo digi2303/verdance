@@ -44,15 +44,16 @@ public class Verdance implements ModInitializer {
         VerdanceSensorTypes.register();
         VerdanceMemoryModuleTypes.register();
         VerdanceTriggerTypes.init();
-        if (FabricLoader.getInstance().isModLoaded("farmersdelight")) {
-            VerdanceFD.register();
-        }
         VerdanceBiomeModifications.register();
         registerBlockEntitySupportedBlock();
         registerTrades();
         registerItemGroupEvents();
         registerBiomePlacements();
         registerSurfaceRules();
+
+        if (FabricLoader.getInstance().isModLoaded("farmersdelight")) {
+            VerdanceFD.register();
+        }
     }
 
     public static void registerBlockEntitySupportedBlock() {
