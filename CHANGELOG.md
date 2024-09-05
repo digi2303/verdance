@@ -15,6 +15,7 @@
 * Tweaked the color contrast of the Violet slightly.
 * Wandering Traders can now sell violets.
 * Farmers can now demand cantaloupes.
+* Added Ukrainian localizations. (masik16u)
 * Added Turkish localizations. (digi2303)
 * Added Japanese localizations. (ilyymira)
 * Added Mexican Spanish localizations.
