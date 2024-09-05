@@ -13,6 +13,7 @@
 * Cantaloupe Juice now gives 4 food points and poor saturation.
 * Cantaloupe can now spawn in the Shrublands.
 * Tweaked the color contrast of the Violet slightly.
+* Violets can now be sold by the Wandering Trader.
 * Added Turkish localizations. (digi2303)
 * Added Japanese localizations. (ilyymira)
 * Added Mexican Spanish localizations.
