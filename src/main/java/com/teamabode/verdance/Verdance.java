@@ -67,6 +67,7 @@ public class Verdance implements ModInitializer {
         TradeOfferHelper.registerWanderingTraderOffers(1, itemListings -> {
             itemListings.add(new VillagerTrades.ItemsForEmeralds(VerdanceItems.CANTALOUPE_SEEDS, 1, 1, 12, 1));
             itemListings.add(new VillagerTrades.ItemsForEmeralds(VerdanceItems.MULBERRY, 5, 1, 8, 1));
+            itemListings.add(new VillagerTrades.ItemsForEmeralds(VerdanceBlocks.VIOLET, 1, 1, 12, 1));
             itemListings.add(new VillagerTrades.ItemsForEmeralds(VerdanceBlocks.SHRUB, 1, 1, 12, 1));
             itemListings.add(new VillagerTrades.ItemsForEmeralds(VerdanceBlocks.YELLOW_FLOWERING_SHRUB, 1, 1, 12, 1));
             itemListings.add(new VillagerTrades.ItemsForEmeralds(VerdanceBlocks.PINK_FLOWERING_SHRUB, 1, 1, 12, 1));
