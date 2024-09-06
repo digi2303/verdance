@@ -32,6 +32,7 @@ public class VerdanceBlockTagProvider extends FabricTagProvider.BlockTagProvider
         saplings();
         leaves();
         flowerPots();
+        maintainsFarmland();
 
         mineablePickaxe();
         mineableHoe();
@@ -302,6 +303,17 @@ public class VerdanceBlockTagProvider extends FabricTagProvider.BlockTagProvider
     private void flowerPots() {
         this.getOrCreateTagBuilder(BlockTags.FLOWER_POTS)
                 .add(VerdanceBlocks.POTTED_MULBERRY_SAPLING)
+                .add(VerdanceBlocks.POTTED_VIOLET)
+                .add(VerdanceBlocks.POTTED_SHRUB)
+                .add(VerdanceBlocks.POTTED_YELLOW_FLOWERING_SHRUB)
+                .add(VerdanceBlocks.POTTED_PINK_FLOWERING_SHRUB)
+                .setReplace(false);
+    }
+
+    private void maintainsFarmland() {
+        this.getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND)
+                .add(VerdanceBlocks.CANTALOUPE_STEM)
+                .add(VerdanceBlocks.ATTACHED_CANTALOUPE_STEM)
                 .setReplace(false);
     }
 

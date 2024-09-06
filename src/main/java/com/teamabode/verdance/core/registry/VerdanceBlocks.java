@@ -568,7 +568,6 @@ public class VerdanceBlocks {
             "shrub",
             new ShrubBlock(Properties.of()
                     .mapColor(MapColor.PLANT)
-                    .replaceable()
                     .noCollission()
                     .instabreak()
                     .sound(SoundType.AZALEA)

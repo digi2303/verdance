@@ -22,7 +22,10 @@
 
 ## Fixes:
 * Fixed `verdance:cantaloupe_stem` lacking the `minecraft:crops` block tag.
+* Fixed `verdance:cantaloupe_stem` and `verdance:attached_cantaloupe_stem` lacking the `minecraft:maintains_farmland` block tag.
+* Fixed `verdance:potted_violet` lacking the `minecraft:flower_pots` block tag.
 * Fixed `verdance:mulberry_forest` lacking the `minecraft:has_structure/trial_chambers` biome tag.
 * Fixed `verdance:mulberry_forest` lacking the `minecraft:stronghold_biased_to` biome tag.
+* Fixed `verdance:silkworm` lacking the `minecraft:arthropod` entity type tag.
 * Fixed redundant tagging of `verdance:silk_moth` in the `minecraft:sensitive_to_bane_of_arthropods` entity type tag.
 * Fixed an issue when trying to sit on a cushion with a block in hand.

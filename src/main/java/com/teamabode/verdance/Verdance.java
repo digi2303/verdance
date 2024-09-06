@@ -241,7 +241,6 @@ public class Verdance implements ModInitializer {
             entries.addBefore(Items.PLENTY_POTTERY_SHERD, VerdanceItems.PITCH_POTTERY_SHERD);
             entries.addBefore(Items.PRIZE_POTTERY_SHERD, VerdanceItems.PRICKLE_POTTERY_SHERD);
             entries.addAfter(Items.SNORT_POTTERY_SHERD, VerdanceItems.SPIRIT_POTTERY_SHERD, VerdanceItems.TRAP_POTTERY_SHERD);
-            entries.addAfter(Items.SNORT_POTTERY_SHERD, VerdanceItems.TRAP_POTTERY_SHERD);
             entries.addAfter(Items.HOST_ARMOR_TRIM_SMITHING_TEMPLATE, VerdanceItems.COMMUNITY_ARMOR_TRIM_SMITHING_TEMPLATE);
         });
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.SPAWN_EGGS).register(entries -> {
