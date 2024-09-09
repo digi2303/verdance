@@ -1,4 +1,4 @@
-// 1.21.1	2024-09-06T16:52:53.2373558	Verdance/Tags for minecraft:item
+// 1.21.1	2024-09-09T14:12:36.4343112	Verdance/Tags for minecraft:item
 67f7394923e52e601b30297dcbb1812215a4ffed data\minecraft\tags\item\chicken_food.json
 740fa2d483b1840073090e5b698d69c70c68856f data\minecraft\tags\item\leaves.json
 bca2d89b2ad2ab2d8ba4b7777579a6f54a16a93f data\minecraft\tags\item\stairs.json
@@ -22,6 +22,7 @@ c3c9577944851dd3f88c01672531fa859749cc87 data\verdance\tags\item\mulberry_logs.j
 a72c613d8786fc7756573ffec9c22f7ed2973d9e data\verdance\tags\item\silk_moth_food.json
 b0fdea2dfb77856d3ed792d544970a6cc4ac6c2d data\minecraft\tags\item\walls.json
 2dffbd05e950b8805a77a32038117d7184b00aea data\minecraft\tags\item\wooden_buttons.json
+708425d05ada5bf4a787addfd144dad64b361e0f data\minecraft\tags\item\flowers.json
 ee09a732336e0be35a6bdbe8543f8d02e82a550b data\minecraft\tags\item\wooden_slabs.json
 b3073e2c273d68774f25b513558fed9d9116c935 data\c\tags\item\foods\berry.json
 c1040a9f2cc5d5d93cec266adab2819f7392a3a6 data\minecraft\tags\item\planks.json

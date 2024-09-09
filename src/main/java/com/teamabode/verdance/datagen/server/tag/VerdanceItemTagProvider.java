@@ -38,6 +38,7 @@ public class VerdanceItemTagProvider extends FabricTagProvider.ItemTagProvider {
         trimTemplates();
         saplings();
         leaves();
+        flowers();
         smallFlowers();
     }
 
@@ -138,6 +139,13 @@ public class VerdanceItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
     private void leaves() {
         this.getOrCreateTagBuilder(ItemTags.LEAVES).add(VerdanceBlocks.MULBERRY_LEAVES.asItem()).add(VerdanceBlocks.FLOWERING_MULBERRY_LEAVES.asItem()).setReplace(false);
+    }
+
+    private void flowers() {
+        this.getOrCreateTagBuilder(ItemTags.FLOWERS)
+                .add(VerdanceBlocks.YELLOW_FLOWERING_SHRUB.asItem())
+                .add(VerdanceBlocks.PINK_FLOWERING_SHRUB.asItem())
+                .setReplace(false);
     }
 
     private void smallFlowers() {
