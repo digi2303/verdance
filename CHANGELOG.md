@@ -4,7 +4,7 @@
 * Added the Shrublands biome.
 * Added the Town Ruins structure.
 * Added the Shrub, Yellow Flowering Shrub, and Pink Flowering Shrub.
-* Added the Range Music Disc, composed by Firch. Crafted from 9 Disc Fragments.
+* Added the Range Music Disc, composed by [Firch](https://www.youtube.com/@Firchex). Crafted from 9 Disc Fragments.
 * Added the Community Armor Trim Smithing Template.
 * Added the Abode, Frills, Pitch, Prickle, Spirit, and Trap Pottery Sherds.
 
