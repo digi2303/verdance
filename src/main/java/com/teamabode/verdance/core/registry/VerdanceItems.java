@@ -102,6 +102,10 @@ public class VerdanceItems {
         CompostingChanceRegistry.INSTANCE.add(GRILLED_CANTALOUPE_SLICE, 0.65F);
         CompostingChanceRegistry.INSTANCE.add(MULBERRY, 0.30F);
         CompostingChanceRegistry.INSTANCE.add(VerdanceBlocks.MULBERRY_LEAVES, 0.30F);
+        CompostingChanceRegistry.INSTANCE.add(VerdanceBlocks.VIOLET, 0.65f);
+        CompostingChanceRegistry.INSTANCE.add(VerdanceBlocks.SHRUB, 0.30f);
+        CompostingChanceRegistry.INSTANCE.add(VerdanceBlocks.YELLOW_FLOWERING_SHRUB, 0.30f);
+        CompostingChanceRegistry.INSTANCE.add(VerdanceBlocks.PINK_FLOWERING_SHRUB, 0.30f);
     }
 
     // Utils
