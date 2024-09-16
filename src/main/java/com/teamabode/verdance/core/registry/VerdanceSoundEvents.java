@@ -31,9 +31,7 @@ public class VerdanceSoundEvents {
 
     public static final Holder<SoundEvent> MUSIC_DISC_RANGE = registerHolder("music_disc.range");
 
-    public static void register() {
-
-    }
+    public static void register() {}
 
     private static SoundEvent register(String name) {
         return Registry.register(BuiltInRegistries.SOUND_EVENT, Verdance.id(name), SoundEvent.createVariableRangeEvent(Verdance.id(name)));

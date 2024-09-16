@@ -8,7 +8,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public class VerdanceBlockEntityTypes {
-
     public static final BlockEntityType<SilkCocoonBlockEntity> SILK_COCOON = register("silk_cocoon", BlockEntityType.Builder.of(SilkCocoonBlockEntity::new, VerdanceBlocks.SILK_COCOON));
 
     private static <E extends BlockEntity> BlockEntityType<E> register(String name, BlockEntityType.Builder<E> blockEntity) {

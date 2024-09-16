@@ -7,20 +7,16 @@ import com.teamabode.verdance.core.registry.VerdanceBlocks;
 import com.teamabode.verdance.core.registry.VerdanceItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.BlockFamily.Variant;
 import net.minecraft.data.recipes.*;
-import net.minecraft.data.recipes.packs.VanillaRecipeProvider;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.SmithingTransformRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -121,22 +117,6 @@ public class VerdanceRecipeProvider extends FabricRecipeProvider {
                 .save(exporter, Verdance.id(getConversionRecipeName(dye, flower)));
     }
 
-    private static void farmersDelightCompat(VerdanceRecipeProvider provider, RecipeOutput exporter) {
-        RecipeOutput compatExporter = provider.withConditions(exporter, ResourceConditions.allModsLoaded("farmersdelight"));
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, VerdanceItems.MULBERRY, 9)
-                .requires(VerdanceBlocks.MULBERRY_CRATE)
-                .unlockedBy("has_mulberry_crate", has(VerdanceBlocks.MULBERRY_CRATE))
-                .save(compatExporter, Verdance.id("mulberry"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, VerdanceBlocks.MULBERRY_CRATE)
-                .define('#', VerdanceItems.MULBERRY)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .unlockedBy("has_mulberry", has(VerdanceItems.MULBERRY))
-                .save(compatExporter, Verdance.id("mulberry_crate"));
-    }
-
     public void buildRecipes(RecipeOutput exporter) {
         VerdanceBlockFamilies.getAllFamilies().filter(BlockFamily::shouldGenerateRecipe).forEach(family -> RecipeProvider.generateRecipes(exporter, family, FeatureFlagSet.of(FeatureFlags.VANILLA)));
         woodFromLogs(exporter, VerdanceBlocks.MULBERRY_WOOD, VerdanceBlocks.MULBERRY_LOG);
@@ -196,6 +176,5 @@ public class VerdanceRecipeProvider extends FabricRecipeProvider {
         dyeFromFlower(exporter, Items.MAGENTA_DYE, Blocks.SPORE_BLOSSOM, 2);
         dyeFromFlower(exporter, Items.YELLOW_DYE, VerdanceBlocks.YELLOW_FLOWERING_SHRUB, 1);
         dyeFromFlower(exporter, Items.PINK_DYE, VerdanceBlocks.PINK_FLOWERING_SHRUB, 1);
-        farmersDelightCompat(this, exporter);
     }
 }

@@ -2,8 +2,6 @@ package com.teamabode.verdance.core.registry;
 
 import com.teamabode.verdance.Verdance;
 import com.teamabode.verdance.common.block.*;
-import com.teamabode.verdance.core.integration.compat.CompatBlock;
-import com.teamabode.verdance.core.integration.compat.CompatBlockItem;
 import com.teamabode.verdance.core.misc.VerdanceBlockSetTypes;
 import com.teamabode.verdance.core.misc.VerdanceSoundTypes;
 import com.teamabode.verdance.core.misc.VerdanceTreeGrowers;
@@ -15,7 +13,6 @@ import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -159,11 +156,6 @@ public class VerdanceBlocks {
                     .strength(1.0F)
                     .dropsLike(MULBERRY_HANGING_SIGN)
                     .ignitedByLava())
-    );
-    public static final Block MULBERRY_CRATE = registerCompat(
-            "mulberry_crate",
-            "farmersdelight",
-            Properties.ofFullCopy(Blocks.OAK_PLANKS)
     );
     public static final Block MULBERRY_LEAVES = register(
             "mulberry_leaves", Blocks.leaves(SoundType.GRASS)
@@ -616,7 +608,7 @@ public class VerdanceBlocks {
     }
 
     // Utils
-    private static Block register(String name, Block block) {
+    public static Block register(String name, Block block) {
         var registry = Registry.register(BuiltInRegistries.BLOCK, Verdance.id(name), block);
         Registry.register(BuiltInRegistries.ITEM, Verdance.id(name), new BlockItem(registry, new Item.Properties()));
         return registry;
@@ -628,12 +620,6 @@ public class VerdanceBlocks {
 
     private static <T extends Block> T registerWithoutItem(String name, T block) {
         return Registry.register(BuiltInRegistries.BLOCK, Verdance.id(name), block);
-    }
-
-    private static Block registerCompat(String name, String mod, Properties properties) {
-        var registry = Registry.register(BuiltInRegistries.BLOCK, Verdance.id(name), new CompatBlock(mod, properties));
-        Registry.register(BuiltInRegistries.ITEM, Verdance.id(name), new CompatBlockItem(mod, registry, new Item.Properties()));
-        return registry;
     }
 
     private static Block stucco(DyeColor color) {

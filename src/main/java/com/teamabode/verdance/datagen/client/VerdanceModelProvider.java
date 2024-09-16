@@ -42,7 +42,6 @@ public class VerdanceModelProvider extends FabricModelProvider {
         generator.createHangingSign(VerdanceBlocks.STRIPPED_MULBERRY_LOG, VerdanceBlocks.MULBERRY_HANGING_SIGN, VerdanceBlocks.MULBERRY_WALL_HANGING_SIGN);
         generator.createTrivialBlock(VerdanceBlocks.CANTALOUPE, TexturedModel.COLUMN);
         generator.createStems(VerdanceBlocks.CANTALOUPE_STEM, VerdanceBlocks.ATTACHED_CANTALOUPE_STEM);
-        generator.createTrivialBlock(VerdanceBlocks.MULBERRY_CRATE, TexturedModel.CUBE_TOP_BOTTOM);
 
         this.createCushion(VerdanceBlocks.WHITE_CUSHION, generator);
         this.createCushion(VerdanceBlocks.LIGHT_GRAY_CUSHION, generator);
@@ -84,9 +83,9 @@ public class VerdanceModelProvider extends FabricModelProvider {
         generator.generateFlatItem(VerdanceItems.DISC_FRAGMENT_RANGE, ModelTemplates.FLAT_ITEM);
     }
 
-    public final void createCushion(Block block, BlockModelGenerators blockModelGenerators) {
+    public final void createCushion(Block block, BlockModelGenerators generator) {
         TextureMapping textureMapping = VerdanceTextureMapping.cushionTextureMappings(block);
-        ResourceLocation resourceLocation = VerdanceModelTemplates.CUSHION.create(block, textureMapping, blockModelGenerators.modelOutput);
-        blockModelGenerators.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block, resourceLocation));
+        ResourceLocation resourceLocation = VerdanceModelTemplates.CUSHION.create(block, textureMapping, generator.modelOutput);
+        generator.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block, resourceLocation));
     }
 }
