@@ -234,6 +234,7 @@ public class Verdance implements ModInitializer {
                     VerdanceBlocks.PINK_CUSHION
             );
         });
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.REDSTONE_BLOCKS).register(entries -> entries.addAfter(Blocks.CAULDRON, VerdanceBlocks.WHITE_CUSHION));
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS).register(entries -> {
             entries.addBefore(Items.DISC_FRAGMENT_5, VerdanceItems.DISC_FRAGMENT_RANGE);
             entries.addBefore(Items.ANGLER_POTTERY_SHERD, VerdanceItems.ABODE_POTTERY_SHERD);
