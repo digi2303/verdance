@@ -39,9 +39,9 @@ public class VerdanceFD {
 
     private static void registerBuiltinPack(String packType, ModContainer container) {
         ResourceManagerHelper.registerBuiltinResourcePack(
-                Verdance.id("farmersdelight" + packType),
+                Verdance.id("farmersdelight_" + packType),
                 container,
-                ResourcePackActivationType.DEFAULT_ENABLED
+                ResourcePackActivationType.ALWAYS_ENABLED
         );
     }
 }

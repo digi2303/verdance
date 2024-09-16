@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import vectorwing.farmersdelight.common.block.CabinetBlock;
+import vectorwing.farmersdelight.common.registry.ModBlockEntityTypes;
 
 public class FDCompatBlocks {
     public static final Block MULBERRY_CABINET = register(
@@ -20,7 +21,9 @@ public class FDCompatBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
     );
 
-    public static void register() {}
+    public static void register() {
+        ModBlockEntityTypes.CABINET.get().addSupportedBlock(MULBERRY_CABINET);
+    }
 
     // Registry Utils
     private static Block register(String name, BlockBehaviour.Properties properties) {
