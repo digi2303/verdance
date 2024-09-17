@@ -1,6 +1,8 @@
 package com.teamabode.verdance;
 
-import com.teamabode.verdance.core.integration.farmersdelight.VerdanceFD;
+import com.teamabode.verdance.core.integration.CompatUtils;
+import com.teamabode.verdance.core.integration.farmersdelight.FDIntegration;
+import com.teamabode.verdance.core.integration.guarding.GuardingIntegration;
 import com.teamabode.verdance.core.misc.VerdanceBiomeModifications;
 import com.teamabode.verdance.core.misc.VerdanceSurfaceRules;
 import com.teamabode.verdance.core.registry.VerdanceBiomes;
@@ -8,14 +10,11 @@ import com.teamabode.verdance.core.registry.*;
 import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.commands.RaidCommand;
-import net.minecraft.server.commands.SpawnArmorTrimsCommand;
-import net.minecraft.server.commands.WardenSpawnTrackerCommand;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -26,6 +25,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Optional;
 
 public class Verdance implements ModInitializer {
     public static final String MOD_ID = "verdance";
@@ -51,9 +52,18 @@ public class Verdance implements ModInitializer {
         registerItemGroupEvents();
         registerBiomePlacements();
         registerSurfaceRules();
+        registerIntegrations();
+    }
 
-        if (FabricLoader.getInstance().isModLoaded("farmersdelight")) {
-            VerdanceFD.register();
+    public static void registerIntegrations() {
+        Optional<ModContainer> container = FabricLoader.getInstance().getModContainer(MOD_ID);
+        if (container.isEmpty()) return;
+
+        if (CompatUtils.isModLoaded("farmersdelight")) {
+            FDIntegration.register(container.get());
+        }
+        if (CompatUtils.isModLoaded("guarding")) {
+            GuardingIntegration.register(container.get());
         }
     }
 

@@ -12,6 +12,7 @@ import vectorwing.farmersdelight.common.block.CabinetBlock;
 import vectorwing.farmersdelight.common.registry.ModBlockEntityTypes;
 
 public class FDCompatBlocks {
+    // TODO: To prevent issues when trying to update MC versions, we could recreate our own cabinet
     public static final Block MULBERRY_CABINET = register(
             "mulberry_cabinet",
             new CabinetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BARREL))
