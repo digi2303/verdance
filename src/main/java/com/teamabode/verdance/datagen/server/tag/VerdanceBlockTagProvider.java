@@ -37,6 +37,7 @@ public class VerdanceBlockTagProvider extends FabricTagProvider.BlockTagProvider
         mineablePickaxe();
         mineableHoe();
         mineableAxe();
+        swordEfficient();
 
         silkMothsSpawnableOn();
         replaceableBySugarCane();
@@ -144,6 +145,10 @@ public class VerdanceBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(VerdanceBlocks.MAGENTA_CUSHION)
                 .add(VerdanceBlocks.PINK_CUSHION)
                 .setReplace(false);
+    }
+
+    private void swordEfficient() {
+        this.getOrCreateTagBuilder(BlockTags.SWORD_EFFICIENT).add(VerdanceBlocks.CANTALOUPE);
     }
 
     private void walls() {
