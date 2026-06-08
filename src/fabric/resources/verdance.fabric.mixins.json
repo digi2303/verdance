@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.teamabode.verdance.mixin.fabric",
+  "compatibilityLevel": "JAVA_25",
+  "mixinextras": {
+    "minVersion": "0.5.0"
+  },
+  "mixins": [],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

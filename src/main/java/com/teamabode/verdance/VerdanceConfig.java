@@ -1,43 +1,50 @@
 package com.teamabode.verdance;
 
-import net.neoforged.neoforge.common.ModConfigSpec;
-import org.apache.commons.lang3.tuple.Pair;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.SerializedName;
+import dev.yumi.mc.core.api.YumiMods;
+import net.minecraft.util.Mth;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 
 public class VerdanceConfig {
-    private static final Pair<VerdanceConfig, ModConfigSpec> PAIR = new ModConfigSpec.Builder().configure(VerdanceConfig::new);
-    public static final VerdanceConfig INSTANCE = PAIR.getLeft();
-    public static final ModConfigSpec SPEC = PAIR.getRight();
+    private static final Path CONFIG_PATH = YumiMods.get().getConfigDirectory().resolve("verdance.json");
+    public static VerdanceConfig instance = new VerdanceConfig();
 
-    public final ModConfigSpec.BooleanValue canBonemealSugarCane;
-    public final ModConfigSpec.BooleanValue canBonemealSporeBlossom;
-    public final ModConfigSpec.DoubleValue mulberryForestProportion;
-    public final ModConfigSpec.DoubleValue shrublandsProportion;
+    @SerializedName("can_bonemeal_sugar_cane")
+    public boolean canBonemealSugarCane = true;
+    @SerializedName("can_bonemeal_spore_blossom")
+    public boolean canBonemealSporeBlossom = true;
+    @SerializedName("mulberry_forest_proportion")
+    public double mulberryForestProportion = 0.25d;
+    @SerializedName("shrublands_proportion")
+    public double shrublandsProportion = 0.35d;
 
-    private VerdanceConfig(ModConfigSpec.Builder builder) {
-        this.canBonemealSugarCane = builder.define(
-                "can_bonemeal_sugar_cane",
-                true
-        );
-        this.canBonemealSporeBlossom = builder.define(
-                "can_bonemeal_spore_blossom",
-                true
-        );
-        this.mulberryForestProportion = builder.defineInRange(
-                "mulberry_forest_proportion",
-                0.25d,
-                0.0d,
-                1.0d
-
-        );
-        this.shrublandsProportion = builder.defineInRange(
-                "shrublands_proportion",
-                0.35d,
-                0.0d,
-                1.0d
-        );
+    public static void load() {
+        try {
+            if (Files.exists(CONFIG_PATH)) {
+                var gson = new GsonBuilder().disableHtmlEscaping().create();
+                var config = gson.fromJson(Files.readString(CONFIG_PATH), VerdanceConfig.class);
+                if (config != null) {
+                    config.mulberryForestProportion = Mth.clamp(config.mulberryForestProportion, 0.0d, 1.0d);
+                    config.shrublandsProportion = Mth.clamp(config.shrublandsProportion, 0.0d, 1.0d);
+                    instance = config;
+                }
+            }
+            save();
+        } catch (Throwable e) {
+            Verdance.LOGGER.warn("Failed to load Verdance config!", e);
+        }
     }
 
-    static {
-        Pair<VerdanceConfig, ModConfigSpec> pair = new ModConfigSpec.Builder().configure(VerdanceConfig::new);
+    public static void save() {
+        try {
+            var gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
+            Files.writeString(CONFIG_PATH, gson.toJson(instance), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+        } catch (Throwable e) {
+            Verdance.LOGGER.warn("Failed to save Verdance config!", e);
+        }
     }
 }

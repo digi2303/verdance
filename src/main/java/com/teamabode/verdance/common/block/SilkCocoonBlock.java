@@ -3,30 +3,29 @@ package com.teamabode.verdance.common.block;
 import com.mojang.serialization.MapCodec;
 import com.teamabode.verdance.common.block.entity.SilkCocoonBlockEntity;
 import com.teamabode.verdance.core.registry.VerdanceBlockEntityTypes;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -35,10 +34,10 @@ public class SilkCocoonBlock extends BaseEntityBlock {
     public static final Map<Direction, VoxelShape> SHAPE_BY_DIR = Map.of(
             Direction.NORTH, Block.box(3.0d, 0.0d, 0.0d, 13.0d, 12.0d, 10.0d),
             Direction.EAST, Block.box(6.0d, 0.0d, 3.0d, 16.0d, 12.0d, 13.0d),
-            Direction.SOUTH, Block.box(3.0d,0.0d, 6.0d, 13.0d, 12.0d, 16.0d),
+            Direction.SOUTH, Block.box(3.0d, 0.0d, 6.0d, 13.0d, 12.0d, 16.0d),
             Direction.WEST, Block.box(0.0d, 0.0d, 3.0d, 10.0d, 12.0d, 13.0d)
     );
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public SilkCocoonBlock(Properties properties) {
         super(properties);
@@ -79,8 +78,8 @@ public class SilkCocoonBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
-        return direction == state.getValue(FACING) && !state.canSurvive(level, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+        return direction == state.getValue(FACING) && !state.canSurvive(level, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, level, ticks, pos, direction, neighborPos, neighborState, random);
     }
 
     @Override
@@ -89,11 +88,6 @@ public class SilkCocoonBlock extends BaseEntityBlock {
         BlockState relativeState = level.getBlockState(pos.relative(dir));
 
         return relativeState.isFaceSturdy(level, pos, dir.getOpposite());
-    }
-
-    @Override
-    protected RenderShape getRenderShape(BlockState blockState) {
-        return RenderShape.MODEL;
     }
 
     @Nullable
@@ -105,6 +99,6 @@ public class SilkCocoonBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, VerdanceBlockEntityTypes.SILK_COCOON.get(), SilkCocoonBlockEntity::tick);
+        return createTickerHelper(blockEntityType, VerdanceBlockEntityTypes.SILK_COCOON, SilkCocoonBlockEntity::tick);
     }
 }

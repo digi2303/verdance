@@ -1,6 +1,9 @@
 {
   "values": [
     "verdance:mulberry",
-    "#minecraft:leaves"
+    {
+      "id": "#minecraft:leaves",
+      "required": false
+    }
   ]
 }

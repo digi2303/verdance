@@ -26,14 +26,14 @@ public class SilkMothSpecificSensor extends Sensor<SilkMoth> {
         if (entity.isFlying()) {
             isFlying = Optional.of(Unit.INSTANCE);
         }
-        Optional<Long> landingTime = brain.getMemory(VerdanceMemoryModuleTypes.LANDING_TIME.get());
+        Optional<Long> landingTime = brain.getMemory(VerdanceMemoryModuleTypes.LANDING_TIME);
 
         if (this.canSearchForLightSource(level, entity.blockPosition())) {
             nearestLightSource = BlockPos.findClosestMatch(
                     entity.blockPosition(),
                     12,
                     10,
-                    pos -> level.getBlockState(pos).getLightEmission(level, pos) > 0
+                    pos -> level.getBlockState(pos).getLightEmission() > 0
             );
         }
 
@@ -41,24 +41,24 @@ public class SilkMothSpecificSensor extends Sensor<SilkMoth> {
             wantsToLand = Optional.of(Unit.INSTANCE);
         }
 
-        brain.setMemory(VerdanceMemoryModuleTypes.IS_FLYING.get(), isFlying);
-        brain.setMemory(VerdanceMemoryModuleTypes.WANTS_TO_LAND.get(), wantsToLand);
-        brain.setMemory(VerdanceMemoryModuleTypes.NEAREST_LIGHT_SOURCE.get(), nearestLightSource);
+        brain.setMemory(VerdanceMemoryModuleTypes.IS_FLYING, isFlying);
+        brain.setMemory(VerdanceMemoryModuleTypes.WANTS_TO_LAND, wantsToLand);
+        brain.setMemory(VerdanceMemoryModuleTypes.NEAREST_LIGHT_SOURCE, nearestLightSource);
     }
 
     private boolean canSearchForLightSource(ServerLevel level, BlockPos pos) {
         if (level.getBrightness(LightLayer.SKY, pos) == 0) {
             return true;
         }
-        return level.isNight() && level.getBrightness(LightLayer.BLOCK, pos) == 0;
+        return level.isDarkOutside() && level.getBrightness(LightLayer.BLOCK, pos) == 0;
     }
 
     public Set<MemoryModuleType<?>> requires() {
         return ImmutableSet.of(
-                VerdanceMemoryModuleTypes.IS_FLYING.get(),
-                VerdanceMemoryModuleTypes.WANTS_TO_LAND.get(),
-                VerdanceMemoryModuleTypes.LANDING_TIME.get(),
-                VerdanceMemoryModuleTypes.NEAREST_LIGHT_SOURCE.get()
+                VerdanceMemoryModuleTypes.IS_FLYING,
+                VerdanceMemoryModuleTypes.WANTS_TO_LAND,
+                VerdanceMemoryModuleTypes.LANDING_TIME,
+                VerdanceMemoryModuleTypes.NEAREST_LIGHT_SOURCE
         );
     }
 }

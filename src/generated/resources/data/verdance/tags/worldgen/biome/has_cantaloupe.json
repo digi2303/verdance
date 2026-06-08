@@ -1,6 +1,12 @@
 {
   "values": [
-    "#minecraft:is_savanna",
-    "verdance:shrublands"
+    {
+      "id": "#minecraft:is_savanna",
+      "required": false
+    },
+    {
+      "id": "verdance:shrublands",
+      "required": false
+    }
   ]
 }

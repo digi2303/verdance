@@ -4,6 +4,13 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/**/build/
 
+### Stonecutter ###
+versions/*/build/
+versions/*/.gradle/
+versions/*/run/
+build/stonecutter-cache/
+.stonecutter/
+
 ### IntelliJ IDEA ###
 .idea/
 *.iws

@@ -17,7 +17,7 @@ public class TurnIntoCocoonTask extends ImprovedOneShot<Silkworm> {
 
     @Override
     public void requires(Map<MemoryModuleType<?>, MemoryStatus> requirements) {
-        requirements.put(VerdanceMemoryModuleTypes.WANTS_TO_COCOON.get(), MemoryStatus.VALUE_PRESENT);
+        requirements.put(VerdanceMemoryModuleTypes.WANTS_TO_COCOON, MemoryStatus.VALUE_PRESENT);
     }
 
     @Override

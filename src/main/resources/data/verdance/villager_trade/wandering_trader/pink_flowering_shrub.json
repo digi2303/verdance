@@ -1,0 +1,11 @@
+{
+  "wants": {
+    "id": "minecraft:emerald"
+  },
+  "gives": {
+    "id": "verdance:pink_flowering_shrub"
+  },
+  "max_uses": 12.0,
+  "reputation_discount": 0.05,
+  "xp": 1.0
+}

@@ -32,12 +32,11 @@ public class VerdanceSurfaceRules {
         RuleSource floorDepthCheck = SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR), desertSurface);
         RuleSource floorSand = SurfaceRules.ifTrue(SurfaceRules.waterStartCheck(-6, -1), SurfaceRules.sequence(floorDepthCheck, deepSandstone));
 
-        RuleSource ceilingWaterCheck = SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(-1,0), desertSurface);
+        RuleSource ceilingWaterCheck = SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(-1, 0), desertSurface);
         RuleSource ceilingSand = SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, false, CaveSurface.FLOOR), ceilingWaterCheck);
 
         return SurfaceRules.sequence(ceilingSand, floorSand);
     }
-
 
     private static RuleSource state(Block block) {
         return SurfaceRules.state(block.defaultBlockState());

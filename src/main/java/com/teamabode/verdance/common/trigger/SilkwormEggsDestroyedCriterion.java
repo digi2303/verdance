@@ -5,10 +5,10 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.teamabode.verdance.core.registry.VerdanceTriggerTypes;
 import java.util.Optional;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.ContextAwarePredicate;
-import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
+import net.minecraft.advancements.criterion.ContextAwarePredicate;
+import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.advancements.criterion.SimpleCriterionTrigger;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 
@@ -34,7 +34,7 @@ public class SilkwormEggsDestroyedCriterion extends SimpleCriterionTrigger<Silkw
         }
 
         public static Criterion<TriggerInstance> createCriterion(ItemPredicate.Builder builder) {
-            return VerdanceTriggerTypes.SILKWORM_EGGS_DESTROYED.get().createCriterion(new TriggerInstance(Optional.empty(), Optional.of(builder.build())));
+            return VerdanceTriggerTypes.SILKWORM_EGGS_DESTROYED.createCriterion(new TriggerInstance(Optional.empty(), Optional.of(builder.build())));
         }
 
         @Override

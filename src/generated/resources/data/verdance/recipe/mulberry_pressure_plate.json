@@ -3,15 +3,12 @@
   "category": "redstone",
   "group": "wooden_pressure_plate",
   "key": {
-    "#": {
-      "item": "verdance:mulberry_planks"
-    }
+    "#": "verdance:mulberry_planks"
   },
   "pattern": [
     "##"
   ],
   "result": {
-    "count": 1,
     "id": "verdance:mulberry_pressure_plate"
   }
 }

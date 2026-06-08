@@ -20,11 +20,11 @@ public class SilkwormSpecificSensor extends Sensor<Silkworm> {
         if (entity.getAge() > 24000) {
             wantsToCocoon = Optional.of(Unit.INSTANCE);
         }
-        brain.setMemory(VerdanceMemoryModuleTypes.WANTS_TO_COCOON.get(), wantsToCocoon);
+        brain.setMemory(VerdanceMemoryModuleTypes.WANTS_TO_COCOON, wantsToCocoon);
     }
 
     @Override
     public Set<MemoryModuleType<?>> requires() {
-        return Set.of(VerdanceMemoryModuleTypes.WANTS_TO_COCOON.get());
+        return Set.of(VerdanceMemoryModuleTypes.WANTS_TO_COCOON);
     }
 }

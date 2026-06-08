@@ -16,23 +16,23 @@ public class DecoratedPotPatternsMixin {
 
     @Inject(method = "getPatternFromItem", at = @At("HEAD"), cancellable = true)
     private static void verdance$getPatternFromItem(Item item, CallbackInfoReturnable<ResourceKey<DecoratedPotPattern>> cir) {
-        if (item == VerdanceItems.ABODE_POTTERY_SHERD.get()) {
-            cir.setReturnValue(VerdanceDecoratedPotPatterns.ABODE.getKey());
+        if (item == VerdanceItems.ABODE_POTTERY_SHERD) {
+            cir.setReturnValue(VerdanceDecoratedPotPatterns.ABODE);
         }
-        if (item == VerdanceItems.FRILLS_POTTERY_SHERD.get()) {
-            cir.setReturnValue(VerdanceDecoratedPotPatterns.FRILLS.getKey());
+        if (item == VerdanceItems.FRILLS_POTTERY_SHERD) {
+            cir.setReturnValue(VerdanceDecoratedPotPatterns.FRILLS);
         }
-        if (item == VerdanceItems.PITCH_POTTERY_SHERD.get()) {
-            cir.setReturnValue(VerdanceDecoratedPotPatterns.PITCH.getKey());
+        if (item == VerdanceItems.PITCH_POTTERY_SHERD) {
+            cir.setReturnValue(VerdanceDecoratedPotPatterns.PITCH);
         }
-        if (item == VerdanceItems.PRICKLE_POTTERY_SHERD.get()) {
-            cir.setReturnValue(VerdanceDecoratedPotPatterns.PRICKLE.getKey());
+        if (item == VerdanceItems.PRICKLE_POTTERY_SHERD) {
+            cir.setReturnValue(VerdanceDecoratedPotPatterns.PRICKLE);
         }
-        if (item == VerdanceItems.SPIRIT_POTTERY_SHERD.get()) {
-            cir.setReturnValue(VerdanceDecoratedPotPatterns.SPIRIT.getKey());
+        if (item == VerdanceItems.SPIRIT_POTTERY_SHERD) {
+            cir.setReturnValue(VerdanceDecoratedPotPatterns.SPIRIT);
         }
-        if (item == VerdanceItems.TRAP_POTTERY_SHERD.get()) {
-            cir.setReturnValue(VerdanceDecoratedPotPatterns.TRAP.getKey());
+        if (item == VerdanceItems.TRAP_POTTERY_SHERD) {
+            cir.setReturnValue(VerdanceDecoratedPotPatterns.TRAP);
         }
     }
 }

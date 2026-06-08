@@ -15,7 +15,6 @@ import net.minecraft.world.entity.ai.util.LandRandomPos;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
-// Utils for the Silk Moth and Silkworm
 public class SilkUtils {
 
     public static Optional<BlockPos> calculateLandingTarget(SilkMoth entity) {
@@ -37,10 +36,9 @@ public class SilkUtils {
     }
 
     public static void transformIntoCocoon(ServerLevel level, Silkworm entity, BlockPos pos, Direction direction) {
-        BlockState state = VerdanceBlocks.SILK_COCOON.get().defaultBlockState().setValue(SilkCocoonBlock.FACING, direction);
+        BlockState state = VerdanceBlocks.SILK_COCOON.defaultBlockState().setValue(SilkCocoonBlock.FACING, direction);
         level.setBlockAndUpdate(pos, state);
         entity.discard();
-        // TODO: Play a unique sound
     }
 
     public static Optional<BlockPos> getTargetPos(ServerLevel level, BlockPos origin) {

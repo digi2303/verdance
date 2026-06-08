@@ -13,7 +13,7 @@ public class TakeOff extends ImprovedOneShot<SilkMoth> {
     @Override
     public void requires(Map<MemoryModuleType<?>, MemoryStatus> requirements) {
         requirements.put(MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryStatus.VALUE_PRESENT);
-        requirements.put(VerdanceMemoryModuleTypes.IS_FLYING.get(), MemoryStatus.VALUE_ABSENT);
+        requirements.put(VerdanceMemoryModuleTypes.IS_FLYING, MemoryStatus.VALUE_ABSENT);
     }
 
     @Override

@@ -2,27 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "verdance:cantaloupe_slice"
-    },
-    {
-      "item": "verdance:cantaloupe_slice"
-    },
-    {
-      "item": "verdance:cantaloupe_slice"
-    },
-    {
-      "item": "verdance:cantaloupe_slice"
-    },
-    {
-      "item": "minecraft:sugar"
-    },
-    {
-      "item": "minecraft:glass_bottle"
-    }
+    "verdance:cantaloupe_slice",
+    "verdance:cantaloupe_slice",
+    "verdance:cantaloupe_slice",
+    "verdance:cantaloupe_slice",
+    "minecraft:sugar",
+    "minecraft:glass_bottle"
   ],
   "result": {
-    "count": 1,
     "id": "verdance:cantaloupe_juice"
   }
 }

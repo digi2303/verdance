@@ -9,12 +9,14 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -54,8 +56,8 @@ public class SilkWormEggsBlock extends Block {
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
-        return !this.canSurvive(state, level, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+    public BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+        return !this.canSurvive(state, level, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, level, ticks, pos, direction, neighborPos, neighborState, random);
     }
 
     @Override
@@ -68,7 +70,7 @@ public class SilkWormEggsBlock extends Block {
         super.playerDestroy(level, player, pos, state, blockEntity, stack);
 
         if (!level.isClientSide()) {
-            VerdanceTriggerTypes.SILKWORM_EGGS_DESTROYED.get().trigger((ServerPlayer) player, stack);
+            VerdanceTriggerTypes.SILKWORM_EGGS_DESTROYED.trigger((ServerPlayer) player, stack);
         }
     }
 
@@ -85,7 +87,7 @@ public class SilkWormEggsBlock extends Block {
         int count = random.nextInt(2) + 2;
 
         for (int i = 0; i < count; i++) {
-            Silkworm silkworm = VerdanceEntityTypes.SILKWORM.get().create(level);
+            Silkworm silkworm = VerdanceEntityTypes.SILKWORM.create(level, EntitySpawnReason.BREEDING);
             if (silkworm == null) continue;
 
             silkworm.setPos(pos.getCenter().offsetRandom(random, 0.25f));

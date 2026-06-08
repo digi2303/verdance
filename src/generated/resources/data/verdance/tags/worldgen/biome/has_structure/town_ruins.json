@@ -1,6 +1,12 @@
 {
   "values": [
-    "verdance:shrublands",
-    "#c:is_desert"
+    {
+      "id": "verdance:shrublands",
+      "required": false
+    },
+    {
+      "id": "#c:is_desert",
+      "required": false
+    }
   ]
 }

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "verdance:pink_flowering_shrub"
+          },
+          "weight": 3
+        },
+        {
+          "data": {
+            "Name": "verdance:shrub"
+          },
+          "weight": 4
+        }
+      ]
+    }
+  }
+}

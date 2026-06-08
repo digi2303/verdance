@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "verdance:wandering_trader/cantaloupe_seeds",
+    "verdance:wandering_trader/mulberry",
+    "verdance:wandering_trader/violet",
+    "verdance:wandering_trader/shrub",
+    "verdance:wandering_trader/yellow_flowering_shrub",
+    "verdance:wandering_trader/pink_flowering_shrub"
+  ]
+}

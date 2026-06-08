@@ -1,6 +1,9 @@
 {
   "values": [
-    "#minecraft:replaceable",
+    {
+      "id": "#minecraft:replaceable",
+      "required": false
+    },
     "minecraft:sugar_cane"
   ]
 }

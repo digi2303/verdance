@@ -7,6 +7,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -45,7 +47,7 @@ public class CushionBlock extends Block {
     }
 
     @Override
-    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos, Direction direction) {
         return state.getValue(OCCUPIED) ? 15 : 0;
     }
 
@@ -59,7 +61,7 @@ public class CushionBlock extends Block {
                 return InteractionResult.FAIL;
             }
             level.setBlockAndUpdate(blockPos, blockState.setValue(OCCUPIED, true));
-            CushionEntity cushion = new CushionEntity(VerdanceEntityTypes.CUSHION.get(), level);
+            CushionEntity cushion = new CushionEntity(VerdanceEntityTypes.CUSHION, level);
             cushion.setPos(blockPos.getX() + 0.5D, blockPos.getY() + 0.4D, blockPos.getZ() + 0.5D);
 
             if (level.addFreshEntity(cushion)) {
@@ -71,22 +73,23 @@ public class CushionBlock extends Block {
     }
 
     @Override
-    protected void onRemove(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState2, boolean bl) {
-        List<CushionEntity> entities = level.getEntitiesOfClass(CushionEntity.class, new AABB(blockPos));
+    protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel level, BlockPos pos, boolean movedByPiston) {
+        List<CushionEntity> entities = level.getEntitiesOfClass(CushionEntity.class, new AABB(pos));
         for (CushionEntity cushionEntity : entities) {
             cushionEntity.remove(Entity.RemovalReason.DISCARDED);
         }
-        super.onRemove(blockState, level, blockPos, blockState2, bl);
-    }
-
-    public void fallOn(Level level, BlockState blockState, BlockPos blockPos, Entity entity, float f) {
-        super.fallOn(level, blockState, blockPos, entity, f * 0.5F);
+        super.affectNeighborsAfterRemoval(state, level, pos, movedByPiston);
     }
 
     @Override
-    public void updateEntityAfterFallOn(BlockGetter blockGetter, Entity entity) {
+    public void fallOn(Level level, BlockState blockState, BlockPos blockPos, Entity entity, double fallDistance) {
+        super.fallOn(level, blockState, blockPos, entity, fallDistance * 0.5);
+    }
+
+    @Override
+    public void updateEntityMovementAfterFallOn(BlockGetter blockGetter, Entity entity) {
         if (entity.isSuppressingBounce()) {
-            super.updateEntityAfterFallOn(blockGetter, entity);
+            super.updateEntityMovementAfterFallOn(blockGetter, entity);
         }
         else {
             this.bounce(entity);
@@ -96,7 +99,7 @@ public class CushionBlock extends Block {
     private void bounce(Entity entity) {
         Vec3 vec3 = entity.getDeltaMovement();
         if (vec3.y < 0.0d) {
-            double multiplier = entity instanceof LivingEntity ? 1.0d: 0.8d;
+            double multiplier = entity instanceof LivingEntity ? 1.0d : 0.8d;
             entity.setDeltaMovement(vec3.x, -vec3.y * 0.8d * multiplier, vec3.z);
         }
     }

@@ -3,12 +3,9 @@
   "category": "misc",
   "group": "pink_dye",
   "ingredients": [
-    {
-      "item": "verdance:pink_flowering_shrub"
-    }
+    "verdance:pink_flowering_shrub"
   ],
   "result": {
-    "count": 1,
     "id": "minecraft:pink_dye"
   }
 }

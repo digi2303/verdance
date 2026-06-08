@@ -17,13 +17,13 @@ public class GoTowardsLightSource extends ImprovedOneShot<SilkMoth> {
     @Override
     public void requires(Map<MemoryModuleType<?>, MemoryStatus> requirements) {
         requirements.put(MemoryModuleType.WALK_TARGET, MemoryStatus.VALUE_ABSENT);
-        requirements.put(VerdanceMemoryModuleTypes.NEAREST_LIGHT_SOURCE.get(), MemoryStatus.VALUE_PRESENT);
+        requirements.put(VerdanceMemoryModuleTypes.NEAREST_LIGHT_SOURCE, MemoryStatus.VALUE_PRESENT);
     }
 
     @Override
     public void run(ServerLevel level, SilkMoth entity, long gameTime) {
         Brain<SilkMoth> brain = entity.getBrain();
-        Optional<BlockPos> lightSourcePos = brain.getMemory(VerdanceMemoryModuleTypes.NEAREST_LIGHT_SOURCE.get());
+        Optional<BlockPos> lightSourcePos = brain.getMemory(VerdanceMemoryModuleTypes.NEAREST_LIGHT_SOURCE);
 
         lightSourcePos.ifPresent(pos -> BehaviorUtils.setWalkAndLookTargetMemories(entity, pos, 1.0f, 2));
     }

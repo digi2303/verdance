@@ -3,11 +3,8 @@
   "category": "food",
   "cookingtime": 200,
   "experience": 0.25,
-  "ingredient": {
-    "item": "verdance:cantaloupe_slice"
-  },
+  "ingredient": "verdance:cantaloupe_slice",
   "result": {
-    "count": 1,
     "id": "verdance:grilled_cantaloupe_slice"
   }
 }

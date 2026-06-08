@@ -1,7 +1,16 @@
 {
   "values": [
-    "#minecraft:dirt",
-    "#minecraft:sand",
-    "#minecraft:terracotta"
+    {
+      "id": "#minecraft:dirt",
+      "required": false
+    },
+    {
+      "id": "#minecraft:sand",
+      "required": false
+    },
+    {
+      "id": "#minecraft:terracotta",
+      "required": false
+    }
   ]
 }

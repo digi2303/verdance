@@ -1,5 +1,8 @@
 {
   "values": [
-    "verdance:shrublands"
+    {
+      "id": "verdance:shrublands",
+      "required": false
+    }
   ]
 }

@@ -1,6 +1,5 @@
 package com.teamabode.verdance.common.item;
 
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -15,7 +14,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-@MethodsReturnNonnullByDefault
 public class CantaloupeSliceItem extends Item {
 
     public CantaloupeSliceItem(Properties properties) {
@@ -37,7 +35,7 @@ public class CantaloupeSliceItem extends Item {
                 user.setRemainingFireTicks(Math.max(0, fireTicks - 60));
             }
         }
-        return user.eat(world, stack);
+        return super.finishUsingItem(stack, world, user);
     }
 
     public static void addCoolingParticles(ServerLevel level, LivingEntity user) {

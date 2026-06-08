@@ -1,5 +1,8 @@
 {
   "values": [
-    "#minecraft:flowers"
+    {
+      "id": "#minecraft:flowers",
+      "required": false
+    }
   ]
 }

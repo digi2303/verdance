@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "minecraft:emerald",
+    "count": 5.0
+  },
+  "gives": {
+    "id": "verdance:mulberry"
+  },
+  "max_uses": 8.0,
+  "reputation_discount": 0.05,
+  "xp": 1.0
+}

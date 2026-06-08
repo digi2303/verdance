@@ -1,9 +1,7 @@
 package com.teamabode.verdance.common.entity.silkworm;
 
-import com.mojang.serialization.Dynamic;
 import com.teamabode.verdance.core.tag.VerdanceItemTags;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -24,6 +22,8 @@ import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import com.teamabode.verdance.core.registry.VerdanceSoundEvents;
 import org.jetbrains.annotations.Nullable;
 
@@ -55,14 +55,11 @@ public class Silkworm extends PathfinderMob {
         super.tick();
     }
 
-    @Override
-    protected Brain<?> makeBrain(Dynamic<?> dynamic) {
-        return SilkwormBrain.createBrain(this.brainProvider().makeBrain(dynamic));
-    }
+    private static final Brain.Provider<Silkworm> BRAIN_PROVIDER = Brain.provider(SilkwormBrain.MEMORY_MODULES, SilkwormBrain.SENSORS, body -> SilkwormBrain.getActivities());
 
     @Override
-    protected Brain.Provider<Silkworm> brainProvider() {
-        return Brain.provider(SilkwormBrain.MEMORY_MODULES, SilkwormBrain.SENSORS);
+    protected Brain<Silkworm> makeBrain(Brain.Packed packed) {
+        return BRAIN_PROVIDER.makeBrain(this, packed);
     }
 
     @Override
@@ -88,7 +85,7 @@ public class Silkworm extends PathfinderMob {
                     0.0,
                     0.0
             );
-            return InteractionResult.sidedSuccess(this.level().isClientSide());
+            return InteractionResult.SUCCESS;
         }
         return super.mobInteract(player, hand);
     }
@@ -100,26 +97,25 @@ public class Silkworm extends PathfinderMob {
     }
 
     @Override
-    protected void customServerAiStep() {
-        this.getBrain().tick((ServerLevel) this.level(), this);
+    protected void customServerAiStep(ServerLevel level) {
+        this.getBrain().tick(level, this);
         SilkwormBrain.updateActivity(this);
-        super.customServerAiStep();
+        super.customServerAiStep(level);
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
-        this.setClimbing(compound.getBoolean("Climbing"));
-        this.setAge(compound.getInt("Age"));
+    public void readAdditionalSaveData(ValueInput input) {
+        super.readAdditionalSaveData(input);
+        this.setClimbing(input.getBooleanOr("Climbing", false));
+        this.setAge(input.getIntOr("Age", 0));
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
-        compound.putBoolean("Climbing", this.onClimbable());
-        compound.putInt("Age", this.getAge());
+    public void addAdditionalSaveData(ValueOutput output) {
+        super.addAdditionalSaveData(output);
+        output.putBoolean("Climbing", this.onClimbable());
+        output.putInt("Age", this.getAge());
     }
-
 
     public boolean isClimbingWall() {
         return entityData.get(CLIMBING_WALL);
@@ -146,20 +142,20 @@ public class Silkworm extends PathfinderMob {
     }
 
     @Override
-    protected int calculateFallDamage(float fallDistance, float damageMultiplier) {
+    protected int calculateFallDamage(double fallDistance, float damageMultiplier) {
         return super.calculateFallDamage(fallDistance, damageMultiplier) - 10;
     }
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return VerdanceSoundEvents.ENTITY_SILKWORM_HURT.get();
+        return VerdanceSoundEvents.ENTITY_SILKWORM_HURT;
     }
 
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return VerdanceSoundEvents.ENTITY_SILKWORM_DEATH.get();
+        return VerdanceSoundEvents.ENTITY_SILKWORM_DEATH;
     }
 
     @Override
@@ -180,6 +176,7 @@ public class Silkworm extends PathfinderMob {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 5.0f)
                 .add(Attributes.MOVEMENT_SPEED, 0.1d)
-                .add(Attributes.FOLLOW_RANGE, 48.0);
+                .add(Attributes.FOLLOW_RANGE, 48.0)
+                .add(Attributes.TEMPT_RANGE, 10.0);
     }
 }

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "verdance",
+  "version": "${version}",
+  "name": "Verdance",
+  "description": "Adds mulberry trees, silk moths, and assorted natural decoration.",
+  "authors": [
+    "Team Abode"
+  ],
+  "contact": {
+    "sources": "https://github.com/Team-Abode/verdance"
+  },
+  "license": "All Rights Reserved",
+  "icon": "assets/verdance/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "yumi:init": [
+      "com.teamabode.verdance.impl.VerdanceMain"
+    ],
+    "yumi:client_init": [
+      "com.teamabode.verdance.impl.client.VerdanceClient"
+    ],
+    "fabric-datagen": [
+      "com.teamabode.verdance.datagen.VerdanceDataGenerator"
+    ]
+  },
+  "accessWidener": "verdance.classtweaker",
+  "mixins": [
+    "verdance.mixins.json",
+    "verdance.fabric.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "26.1.x",
+    "fabricloader": ">=0.18.0",
+    "fabric-api": "*",
+    "yumi_mc_core": ">=1.0.0+26.1",
+    "biolith": "*"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "assets": {
+    "wild": "verdance:entity/wolf/wolf_golden",
+    "tame": "verdance:entity/wolf/wolf_golden_tame",
+    "angry": "verdance:entity/wolf/wolf_golden_angry"
+  },
+  "baby_assets": {
+    "wild": "verdance:entity/wolf/wolf_golden",
+    "tame": "verdance:entity/wolf/wolf_golden_tame",
+    "angry": "verdance:entity/wolf/wolf_golden_angry"
+  },
+  "spawn_conditions": [
+    {
+      "condition": {
+        "type": "minecraft:biome",
+        "biomes": "#verdance:has_golden_wolf"
+      },
+      "priority": 1
+    }
+  ]
+}

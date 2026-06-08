@@ -2,22 +2,20 @@ package com.teamabode.verdance.core.registry;
 
 import com.teamabode.verdance.Verdance;
 import com.teamabode.verdance.common.block.entity.SilkCocoonBlockEntity;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.function.Supplier;
+import java.util.Set;
 
 public class VerdanceBlockEntityTypes {
-    public static final DeferredRegister<BlockEntityType<?>> REGISTRY = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, Verdance.MOD_ID);
+    public static BlockEntityType<SilkCocoonBlockEntity> SILK_COCOON;
 
-    public static final Supplier<BlockEntityType<SilkCocoonBlockEntity>> SILK_COCOON = register(
-            "silk_cocoon",
-            () -> BlockEntityType.Builder.of(SilkCocoonBlockEntity::new, VerdanceBlocks.SILK_COCOON.get()).build(null)
-    );
-
-    private static <E extends BlockEntity> Supplier<BlockEntityType<E>> register(String name, Supplier<BlockEntityType<E>> blockEntity) {
-        return REGISTRY.register(name, blockEntity);
+    public static void register() {
+        SILK_COCOON = Registry.register(
+                BuiltInRegistries.BLOCK_ENTITY_TYPE,
+                Verdance.id("silk_cocoon"),
+                new BlockEntityType<>(SilkCocoonBlockEntity::new, Set.of(VerdanceBlocks.SILK_COCOON))
+        );
     }
 }

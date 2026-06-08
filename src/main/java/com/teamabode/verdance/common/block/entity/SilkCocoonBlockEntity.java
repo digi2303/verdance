@@ -6,17 +6,17 @@ import com.teamabode.verdance.core.registry.VerdanceEntityTypes;
 import com.teamabode.verdance.core.registry.VerdanceLootTables;
 import com.teamabode.verdance.core.registry.VerdanceSoundEvents;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
@@ -29,13 +29,12 @@ public class SilkCocoonBlockEntity extends BlockEntity {
     public boolean wobbling = false;
 
     public SilkCocoonBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(VerdanceBlockEntityTypes.SILK_COCOON.get(), blockPos, blockState);
+        super(VerdanceBlockEntityTypes.SILK_COCOON, blockPos, blockState);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, SilkCocoonBlockEntity cocoon) {
         int ticks = cocoon.getTicks();
 
-        // Handles wobbling
         if (cocoon.wobbling) {
             cocoon.wobbleTicks++;
         }
@@ -45,7 +44,7 @@ public class SilkCocoonBlockEntity extends BlockEntity {
         }
 
         if (ticks >= 4800) {
-            SilkMoth silkMoth = new SilkMoth(VerdanceEntityTypes.SILK_MOTH.get(), level);
+            SilkMoth silkMoth = new SilkMoth(VerdanceEntityTypes.SILK_MOTH, level);
             silkMoth.setPos(pos.getCenter());
             silkMoth.setYHeadRot(state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot());
             silkMoth.setYRot(state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot());
@@ -53,23 +52,13 @@ public class SilkCocoonBlockEntity extends BlockEntity {
             silkMoth.setPersistenceRequired();
             level.addFreshEntity(silkMoth);
 
-            level.playSound(null, pos, VerdanceSoundEvents.ENTITY_SILK_MOTH_EMERGE.get(), SoundSource.NEUTRAL);
+            level.playSound(null, pos, VerdanceSoundEvents.ENTITY_SILK_MOTH_EMERGE, SoundSource.NEUTRAL);
             level.destroyBlock(pos, true);
         }
         else if (ticks >= 4400 && ticks % 100 == 0 || ticks >= 3600 && ticks % 200 == 0) {
             cocoon.wobble(level);
         }
         cocoon.setTicks(ticks + 1);
-    }
-
-    @Override
-    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
-        compound.putInt("ticks", this.getTicks());
-    }
-
-    @Override
-    protected void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
-        this.setTicks(compound.getInt("ticks"));
     }
 
     public void wobble(Level level) {
@@ -81,10 +70,10 @@ public class SilkCocoonBlockEntity extends BlockEntity {
         }
         BlockPos pos = this.getBlockPos();
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             this.dropLoot((ServerLevel) level, pos);
         }
-        level.playSound(null, pos, VerdanceSoundEvents.BLOCK_SILK_COCOON_WOBBLE.get(), SoundSource.BLOCKS);
+        level.playSound(null, pos, VerdanceSoundEvents.BLOCK_SILK_COCOON_WOBBLE, SoundSource.BLOCKS);
     }
 
     public void dropLoot(ServerLevel level, BlockPos origin) {
@@ -104,6 +93,18 @@ public class SilkCocoonBlockEntity extends BlockEntity {
 
             level.addFreshEntity(itemEntity);
         }
+    }
+
+    @Override
+    protected void saveAdditional(ValueOutput output) {
+        super.saveAdditional(output);
+        output.putInt("ticks", this.getTicks());
+    }
+
+    @Override
+    protected void loadAdditional(ValueInput input) {
+        super.loadAdditional(input);
+        this.setTicks(input.getIntOr("ticks", 0));
     }
 
     public void setTicks(int ticks) {

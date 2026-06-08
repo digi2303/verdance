@@ -3,16 +3,13 @@
   "category": "misc",
   "group": "boat",
   "key": {
-    "#": {
-      "item": "verdance:mulberry_planks"
-    }
+    "#": "verdance:mulberry_planks"
   },
   "pattern": [
     "# #",
     "###"
   ],
   "result": {
-    "count": 1,
     "id": "verdance:mulberry_boat"
   }
 }

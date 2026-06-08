@@ -12,7 +12,7 @@ import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.memory.MemoryStatus;
 
 public class SearchForCocoonTask extends ImprovedOneShot<Silkworm> {
-    private long lastExecution = 0L; // It should only try to attempt this task around every four seconds.
+    private long lastExecution = 0L;
 
     @Override
     public void requires(Map<MemoryModuleType<?>, MemoryStatus> requirements) {

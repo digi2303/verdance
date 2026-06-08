@@ -1,12 +1,10 @@
 package com.teamabode.verdance.common.entity.silkmoth;
 
-import com.mojang.serialization.Dynamic;
 import com.teamabode.verdance.core.tag.VerdanceBlockTags;
 import com.teamabode.verdance.core.registry.VerdanceMemoryModuleTypes;
 import com.teamabode.verdance.core.registry.VerdanceSoundEvents;
 import com.teamabode.verdance.core.tag.VerdanceItemTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -24,8 +22,8 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -45,6 +43,8 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -68,21 +68,18 @@ public class SilkMoth extends Animal implements FlyingAnimal {
         super(entityType, world);
 
         this.moveControl = new MoveControl(this);
-        this.setPathfindingMalus(PathType.DANGER_FIRE, -1.0F);
+        this.setPathfindingMalus(PathType.FIRE, -1.0F);
         this.setPathfindingMalus(PathType.WATER, -1.0F);
         this.setPathfindingMalus(PathType.WATER_BORDER, 16.0F);
         this.setPathfindingMalus(PathType.COCOA, -1.0F);
         this.setPathfindingMalus(PathType.FENCE, -1.0F);
     }
 
-    @Override
-    protected Brain<?> makeBrain(Dynamic<?> dynamic) {
-        return SilkMothAi.createBrain(this.brainProvider().makeBrain(dynamic));
-    }
+    private static final Brain.Provider<SilkMoth> BRAIN_PROVIDER = Brain.provider(SilkMothAi.MEMORY_MODULES, SilkMothAi.SENSORS, body -> SilkMothAi.getActivities());
 
     @Override
-    protected Brain.Provider<SilkMoth> brainProvider() {
-        return Brain.provider(SilkMothAi.MEMORY_MODULES, SilkMothAi.SENSORS);
+    protected Brain<SilkMoth> makeBrain(Brain.Packed packed) {
+        return BRAIN_PROVIDER.makeBrain(this, packed);
     }
 
     @Override
@@ -127,14 +124,14 @@ public class SilkMoth extends Animal implements FlyingAnimal {
     }
 
     @Override
-    protected void customServerAiStep() {
-        this.getBrain().tick((ServerLevel) this.level(), this);
+    protected void customServerAiStep(ServerLevel level) {
+        this.getBrain().tick(level, this);
         SilkMothAi.updateActivity(this);
-        super.customServerAiStep();
+        super.customServerAiStep(level);
     }
 
     @Override
-    protected int calculateFallDamage(float fallDistance, float damageMultiplier) {
+    protected int calculateFallDamage(double fallDistance, float damageMultiplier) {
         return this.isFlying() ? 0 : super.calculateFallDamage(fallDistance, 0.5f);
     }
 
@@ -143,7 +140,6 @@ public class SilkMoth extends Animal implements FlyingAnimal {
         GroundPathNavigation navigation = new GroundPathNavigation(this, world);
         navigation.setCanFloat(true);
         navigation.setCanOpenDoors(false);
-        navigation.setCanPassDoors(false);
         return navigation;
     }
 
@@ -151,7 +147,6 @@ public class SilkMoth extends Animal implements FlyingAnimal {
         FlyingPathNavigation navigation = new FlyingPathNavigation(this, world);
         navigation.setCanOpenDoors(false);
         navigation.setCanFloat(true);
-        navigation.setCanPassDoors(false);
         return navigation;
     }
 
@@ -162,15 +157,15 @@ public class SilkMoth extends Animal implements FlyingAnimal {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
-        compound.putBoolean("Flying", this.isFlying());
+    public void addAdditionalSaveData(ValueOutput output) {
+        super.addAdditionalSaveData(output);
+        output.putBoolean("Flying", this.isFlying());
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
-        this.setFlying(compound.getBoolean("Flying"));
+    public void readAdditionalSaveData(ValueInput input) {
+        super.readAdditionalSaveData(input);
+        this.setFlying(input.getBooleanOr("Flying", false));
     }
 
     @Override
@@ -197,24 +192,24 @@ public class SilkMoth extends Animal implements FlyingAnimal {
         boolean isFood = this.isFood(stack);
         InteractionResult interactionResult = super.mobInteract(player, interactionHand);
         if (interactionResult.consumesAction() && isFood) {
-            world.playSound(null, this, this.getEatingSound(stack), SoundSource.NEUTRAL, 1.0F, Mth.randomBetween(world.random, 0.8F, 1.2F));
+            world.playSound(null, this, this.getEatingSound(stack), SoundSource.NEUTRAL, 1.0F, Mth.randomBetween(world.getRandom(), 0.8F, 1.2F));
         }
         return interactionResult;
     }
 
     public void takeOff() {
         this.setFlying(true);
-        this.getBrain().setMemory(VerdanceMemoryModuleTypes.IS_FLYING.get(), Unit.INSTANCE);
+        this.getBrain().setMemory(VerdanceMemoryModuleTypes.IS_FLYING, Unit.INSTANCE);
 
         long landingTime = this.level().getGameTime() + TimeUtil.rangeOfSeconds(30, 60).sample(random);
-        this.getBrain().setMemory(VerdanceMemoryModuleTypes.LANDING_TIME.get(), landingTime);
+        this.getBrain().setMemory(VerdanceMemoryModuleTypes.LANDING_TIME, landingTime);
     }
 
     public void land() {
         this.setFlying(false);
-        this.getBrain().eraseMemory(VerdanceMemoryModuleTypes.IS_FLYING.get());
-        this.getBrain().eraseMemory(VerdanceMemoryModuleTypes.WANTS_TO_LAND.get());
-        this.getBrain().eraseMemory(VerdanceMemoryModuleTypes.LANDING_TIME.get());
+        this.getBrain().eraseMemory(VerdanceMemoryModuleTypes.IS_FLYING);
+        this.getBrain().eraseMemory(VerdanceMemoryModuleTypes.WANTS_TO_LAND);
+        this.getBrain().eraseMemory(VerdanceMemoryModuleTypes.LANDING_TIME);
     }
 
     public void setFlying(boolean flying) {
@@ -245,24 +240,23 @@ public class SilkMoth extends Animal implements FlyingAnimal {
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return VerdanceSoundEvents.ENTITY_SILK_MOTH_IDLE.get();
+        return VerdanceSoundEvents.ENTITY_SILK_MOTH_IDLE;
     }
 
-    @Override
     public SoundEvent getEatingSound(ItemStack itemStack) {
-        return VerdanceSoundEvents.ENTITY_SILK_MOTH_EAT.get();
+        return VerdanceSoundEvents.ENTITY_SILK_MOTH_EAT;
     }
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return VerdanceSoundEvents.ENTITY_SILK_MOTH_HURT.get();
+        return VerdanceSoundEvents.ENTITY_SILK_MOTH_HURT;
     }
 
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return VerdanceSoundEvents.ENTITY_SILK_MOTH_DEATH.get();
+        return VerdanceSoundEvents.ENTITY_SILK_MOTH_DEATH;
     }
 
     @Override
@@ -278,7 +272,7 @@ public class SilkMoth extends Animal implements FlyingAnimal {
         return null;
     }
 
-    public static boolean checkSilkMothSpawnRules(EntityType<? extends Animal> type, ServerLevelAccessor world, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+    public static boolean checkSilkMothSpawnRules(EntityType<? extends Animal> type, ServerLevelAccessor world, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
         return world.getBlockState(pos.below()).is(VerdanceBlockTags.SILK_MOTHS_SPAWNABLE_ON) && Monster.isDarkEnoughToSpawn(world, pos, random);
     }
 
@@ -288,6 +282,7 @@ public class SilkMoth extends Animal implements FlyingAnimal {
                 .add(Attributes.FLYING_SPEED, 0.5d)
                 .add(Attributes.MOVEMENT_SPEED, 0.2d)
                 .add(Attributes.FOLLOW_RANGE, 48.0)
-                .add(Attributes.STEP_HEIGHT, 1.25f);
+                .add(Attributes.STEP_HEIGHT, 1.25f)
+                .add(Attributes.TEMPT_RANGE, 10.0);
     }
 }

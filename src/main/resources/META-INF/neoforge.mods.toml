@@ -1,0 +1,49 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+license = "All Rights Reserved"
+issueTrackerURL = "https://github.com/Team-Abode/verdance/issues"
+
+[[mods]]
+	modId = "verdance"
+	version = "${version}"
+	displayName = "Verdance"
+	description = "Adds mulberry trees, silk moths, and assorted natural decoration."
+	authors = "Team Abode"
+	logoFile = "assets/verdance/icon.png"
+	logoBlur = false
+
+[[accessTransformers]]
+	file = "META-INF/accesstransformer.cfg"
+
+[[mixins]]
+	config = "verdance.mixins.json"
+
+[[mixins]]
+	config = "verdance.neo.mixins.json"
+
+[[dependencies.verdance]]
+	modId = "minecraft"
+	type = "required"
+	versionRange = "[26.1,26.2)"
+	ordering = "NONE"
+	side = "BOTH"
+
+[[dependencies.verdance]]
+	modId = "yumi_mc_core"
+	type = "required"
+	versionRange = "[${yumi_version},)"
+	ordering = "NONE"
+	side = "BOTH"
+
+[[dependencies.verdance]]
+	modId = "biolith"
+	type = "required"
+	versionRange = "[3.6.0-alpha.8,)"
+	ordering = "NONE"
+	side = "BOTH"
+
+[[modproperties.verdance."yumi:entrypoints"."yumi:init"]]
+	value = "com.teamabode.verdance.impl.VerdanceMain"
+
+[[modproperties.verdance."yumi:entrypoints"."yumi:client_init"]]
+	value = "com.teamabode.verdance.impl.client.VerdanceClient"

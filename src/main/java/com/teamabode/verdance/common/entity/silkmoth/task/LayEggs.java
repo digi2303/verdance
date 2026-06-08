@@ -30,7 +30,7 @@ public class LayEggs {
         boolean isLeaves = level.getBlockState(relativePos).is(BlockTags.LEAVES);
 
         if (isEmpty && isLeaves) {
-            BlockState eggState = VerdanceBlocks.SILKWORM_EGGS.get().defaultBlockState();
+            BlockState eggState = VerdanceBlocks.SILKWORM_EGGS.defaultBlockState();
 
             level.setBlock(eggPos, eggState, 3);
             level.playSound(null, eggPos, eggState.getSoundType().getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f);

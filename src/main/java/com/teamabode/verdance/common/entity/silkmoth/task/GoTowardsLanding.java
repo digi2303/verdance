@@ -18,8 +18,8 @@ public class GoTowardsLanding extends ImprovedOneShot<SilkMoth> {
     public void requires(Map<MemoryModuleType<?>, MemoryStatus> requirements) {
         requirements.put(MemoryModuleType.WALK_TARGET, MemoryStatus.VALUE_ABSENT);
         requirements.put(MemoryModuleType.LOOK_TARGET, MemoryStatus.REGISTERED);
-        requirements.put(VerdanceMemoryModuleTypes.IS_FLYING.get(), MemoryStatus.VALUE_PRESENT);
-        requirements.put(VerdanceMemoryModuleTypes.WANTS_TO_LAND.get(), MemoryStatus.VALUE_PRESENT);
+        requirements.put(VerdanceMemoryModuleTypes.IS_FLYING, MemoryStatus.VALUE_PRESENT);
+        requirements.put(VerdanceMemoryModuleTypes.WANTS_TO_LAND, MemoryStatus.VALUE_PRESENT);
         requirements.put(MemoryModuleType.IS_PREGNANT, MemoryStatus.VALUE_ABSENT);
         requirements.put(MemoryModuleType.IS_PANICKING, MemoryStatus.VALUE_ABSENT);
     }
@@ -33,6 +33,6 @@ public class GoTowardsLanding extends ImprovedOneShot<SilkMoth> {
             return;
         }
         Optional<BlockPos> strollTarget = SilkUtils.calculateStrollTarget(entity);
-        strollTarget.ifPresent(pos -> BehaviorUtils.setWalkAndLookTargetMemories(entity, strollTarget.get(), 1.0f, 0));
+        strollTarget.ifPresent(pos -> BehaviorUtils.setWalkAndLookTargetMemories(entity, pos, 1.0f, 0));
     }
 }

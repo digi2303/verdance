@@ -20,12 +20,12 @@ public class SugarCaneBlockMixin implements BonemealableBlock {
 
     @Override
     public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
-        if (!VerdanceConfig.INSTANCE.canBonemealSugarCane.get()) return false;
+        if (!VerdanceConfig.instance.canBonemealSugarCane) return false;
 
-        SugarCaneBlock $this = SugarCaneBlock.class.cast(this);
+        SugarCaneBlock self = SugarCaneBlock.class.cast(this);
 
         BlockPos abovePos = pos.above();
-        return level.getBlockState(abovePos).isAir() || getCaneHeight($this, level, pos) < 3;
+        return level.getBlockState(abovePos).isAir() || getCaneHeight(self, level, pos) < 3;
     }
 
     @Override
@@ -35,12 +35,12 @@ public class SugarCaneBlockMixin implements BonemealableBlock {
 
     @Override
     public void performBonemeal(ServerLevel level, RandomSource random, BlockPos blockPos, BlockState blockState) {
-        SugarCaneBlock $this = SugarCaneBlock.class.cast(this);
+        SugarCaneBlock self = SugarCaneBlock.class.cast(this);
 
         for (int i = 1; i < 3; i++) {
             BlockState aboveState = level.getBlockState(blockPos.above(i));
             if (aboveState.is(VerdanceBlockTags.REPLACEABLE_BY_SUGAR_CANE)) {
-                level.setBlock(blockPos.above(i), $this.defaultBlockState(), 2);
+                level.setBlock(blockPos.above(i), self.defaultBlockState(), 2);
                 continue;
             }
             break;

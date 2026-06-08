@@ -11,7 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
@@ -30,8 +30,8 @@ public class MulberryTrunkPlacer extends TrunkPlacer {
         super(baseHeight, heightRandA, heightRandB);
     }
 
-    public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, RandomSource random, int freeTreeHeight, BlockPos pos, TreeConfiguration config) {
-        MulberryTrunkPlacer.setDirtAt(level, blockSetter, random, pos.below(), config);
+    public List<FoliagePlacer.FoliageAttachment> placeTrunk(WorldGenLevel level, BiConsumer<BlockPos, BlockState> blockSetter, RandomSource random, int freeTreeHeight, BlockPos pos, TreeConfiguration config) {
+        MulberryTrunkPlacer.placeBelowTrunkBlock(level, blockSetter, random, pos.below(), config);
         MutableBlockPos mutableBlockPos = pos.mutable();
         Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(random);
         ArrayList<FoliagePlacer.FoliageAttachment> list = new ArrayList<>();
@@ -63,7 +63,7 @@ public class MulberryTrunkPlacer extends TrunkPlacer {
         return list;
     }
 
-    private FoliagePlacer.FoliageAttachment generateBranch(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, RandomSource random, BlockPos pos, TreeConfiguration config, Direction direction) {
+    private FoliagePlacer.FoliageAttachment generateBranch(WorldGenLevel level, BiConsumer<BlockPos, BlockState> blockSetter, RandomSource random, BlockPos pos, TreeConfiguration config, Direction direction) {
         Function<BlockState, BlockState> function = blockState -> (BlockState) blockState.trySetValue(RotatedPillarBlock.AXIS, direction.getAxis());
         int i = random.nextBoolean() ? 2 : 1;
         MutableBlockPos mutablePos = pos.mutable();
@@ -77,6 +77,6 @@ public class MulberryTrunkPlacer extends TrunkPlacer {
     }
 
     protected TrunkPlacerType<?> type() {
-        return VerdanceTrunkPlacerTypes.MULBERRY_TRUNK_PLACER.get();
+        return VerdanceTrunkPlacerTypes.MULBERRY_TRUNK_PLACER;
     }
 }

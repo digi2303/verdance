@@ -1,131 +1,152 @@
 plugins {
-    id 'java-library'
-    id 'maven-publish'
-    id 'net.neoforged.moddev' version '2.0.141'
-    id 'idea'
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'maven-publish'
 }
 
-tasks.named('wrapper', Wrapper).configure {
-    distributionType = Wrapper.DistributionType.BIN
+def mcSuffix = project.minecraft_version.tokenize('.').take(2).join('.')
+version = "${project.mod_version}+${mcSuffix}"
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
 }
 
-version = "$minecraft_version-$mod_version"
-group = mod_group_id
-
-sourceSets.main.resources {
-    srcDir('src/generated/resources')
-
-    exclude("**/*.bbmodel")
-    exclude("src/generated/**/.cache")
+fabricApi {
+	configureDataGeneration {
+		client = true
+		modId = "verdance"
+		outputDirectory = rootProject.file("src/generated/resources")
+	}
 }
 
 repositories {
-    maven {
-        name = 'TerraformersMC'
-        url = 'https://maven.terraformersmc.com/'
-    }
-    maven {
-        name = 'Modrinth'
-        url = "https://api.modrinth.com/maven"
-    }
+	maven { url = "https://maven.terraformersmc.com" }
+	maven {
+		name = "NeoForge"
+		url = uri("https://maven.neoforged.net/releases/")
+		content {
+			includeGroupAndSubgroups("net.neoforged")
+			includeGroupAndSubgroups("cpw.mods")
+			includeGroupAndSubgroups("dev.yumi")
+		}
+	}
+	maven { url = "https://api.modrinth.com/maven" }
 }
 
-base {
-    archivesName = mod_id
+sourceSets {
+	main {
+		java.srcDirs = [rootProject.file("src/main/java")]
+		resources.srcDirs = [rootProject.file("src/main/resources"), rootProject.file("src/generated/resources")]
+	}
+	fabric {
+		java.srcDirs = [rootProject.file("src/fabric/java")]
+		resources.srcDirs = [rootProject.file("src/fabric/resources")]
+		compileClasspath += main.compileClasspath
+		runtimeClasspath += main.runtimeClasspath
+	}
+	neoforge {
+		java.srcDirs = [rootProject.file("src/neoforge/java")]
+		resources.srcDirs = [rootProject.file("src/neoforge/resources")]
+		compileClasspath += main.compileClasspath
+		runtimeClasspath += main.runtimeClasspath
+	}
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+loom {
+	accessWidenerPath = rootProject.file("src/main/resources/verdance.classtweaker")
 
-neoForge {
-    version = project.neo_version
+	runs {
+		datagen {
+			client()
+			name "Data Generation"
+			vmArg "-Dfabric-api.datagen"
+			vmArg "-Dfabric-api.datagen.output-dir=${rootProject.file("src/generated/resources")}"
+			vmArg "-Dfabric-api.datagen.modid=verdance"
 
-    parchment {
-        mappingsVersion = project.parchment_mappings_version
-        minecraftVersion = project.parchment_minecraft_version
-    }
-    runs {
-        client {
-            client()
-            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-        }
-
-        server {
-            server()
-            programArgument '--nogui'
-            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-        }
-        gameTestServer {
-            type = "gameTestServer"
-            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-        }
-
-        data {
-            data()
-            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
-        }
-
-        configureEach {
-            systemProperty 'forge.logging.markers', 'REGISTRIES'
-            logLevel = org.slf4j.event.Level.DEBUG
-        }
-    }
-
-    mods {
-        "${mod_id}" {
-            sourceSet(sourceSets.main)
-        }
-    }
-}
-
-configurations {
-    runtimeClasspath.extendsFrom localRuntime
+			runDir "build/datagen"
+			source sourceSets.fabric
+		}
+	}
 }
 
 dependencies {
-    implementation("com.terraformersmc:biolith-neoforge:${biolith_version}")
-    compileOnly "maven.modrinth:farmers-delight:${farmersdelight_version}"
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+
+	api include("dev.yumi.mc.core:yumi-mc-foundation:${project.yumi_version}")
+	implementation("dev.yumi.mc.core:yumi-mc-foundation:${project.yumi_version}")
+
+	compileOnly localRuntime("net.fabricmc:fabric-loader:${project.loader_version}")
+
+	fabricCompileOnly localRuntime("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
+
+	neoforgeCompileOnly("net.neoforged:neoforge:${project.neoforge_version}:universal")
+	neoforgeCompileOnly("net.neoforged.fancymodloader:loader:${project.neoforge_loader_version}")
+
+	fabricCompileOnly localRuntime("com.terraformersmc:biolith-fabric:${project.biolith_version}")
+	neoforgeCompileOnly("com.terraformersmc:biolith-neoforge:${project.biolith_version}")
+
+	neoforgeImplementation sourceSets.main.output
+	fabricImplementation sourceSets.main.output
+
+	localRuntime sourceSets.fabric.output
 }
 
-var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
-    var replaceProperties = [
-            minecraft_version      : minecraft_version,
-            minecraft_version_range: minecraft_version_range,
-            neo_version            : neo_version,
-            loader_version_range   : loader_version_range,
-            mod_id                 : mod_id,
-            mod_name               : mod_name,
-            mod_license            : mod_license,
-            mod_version            : mod_version,
-    ]
-    inputs.properties replaceProperties
-    expand replaceProperties
-    from "src/main/templates"
-    into "build/generated/sources/modMetadata"
-}
+def resourceTargets = ["fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/jarjar/metadata.json"]
+def replaceProperties = [
+		"version": project.version, "yumi_version": project.yumi_version
+]
 
-sourceSets.main.resources.srcDir generateModMetadata
-neoForge.ideSyncTask generateModMetadata
+processResources {
+	inputs.properties replaceProperties
+	duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
-publishing {
-    publications {
-        register('mavenJava', MavenPublication) {
-            from components.java
-        }
-    }
-    repositories {
-        maven {
-            url "file://${project.projectDir}/repo"
-        }
-    }
+	filesMatching(resourceTargets) {
+		expand replaceProperties
+	}
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
+	it.options.encoding = "UTF-8"
+	it.options.release = 25
 }
 
-idea {
-    module {
-        downloadSources = true
-        downloadJavadoc = true
-    }
+tasks.withType(Jar).configureEach {
+	duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+java {
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+	from(rootProject.file("LICENSE")) {
+		rename { "${it}_${project.archives_base_name}" }
+	}
+
+	from(sourceSets.neoforge.output)
+	from(sourceSets.fabric.output) {
+		exclude "com/teamabode/verdance/datagen/**"
+	}
+}
+
+sourcesJar {
+	from(sourceSets.neoforge.java.sourceDirectories)
+	from(sourceSets.neoforge.resources.sourceDirectories)
+	from(sourceSets.fabric.java.sourceDirectories)
+	from(sourceSets.fabric.resources.sourceDirectories)
+}
+
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
+			from components.java
+		}
+	}
+	repositories {
+		mavenLocal()
+	}
 }

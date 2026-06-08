@@ -6,7 +6,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 
 public class VerdanceItemRegistryKeys {
-
     public static final ResourceKey<Item> CANTALOUPE_SEEDS = createKey("cantaloupe_seeds");
 
     private static ResourceKey<Item> createKey(String name) {

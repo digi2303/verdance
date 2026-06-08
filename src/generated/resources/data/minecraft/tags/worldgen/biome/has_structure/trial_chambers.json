@@ -1,6 +1,12 @@
 {
   "values": [
-    "verdance:mulberry_forest",
-    "verdance:shrublands"
+    {
+      "id": "verdance:mulberry_forest",
+      "required": false
+    },
+    {
+      "id": "verdance:shrublands",
+      "required": false
+    }
   ]
 }

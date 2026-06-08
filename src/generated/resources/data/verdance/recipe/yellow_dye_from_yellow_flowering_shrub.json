@@ -3,12 +3,9 @@
   "category": "misc",
   "group": "yellow_dye",
   "ingredients": [
-    {
-      "item": "verdance:yellow_flowering_shrub"
-    }
+    "verdance:yellow_flowering_shrub"
   ],
   "result": {
-    "count": 1,
     "id": "minecraft:yellow_dye"
   }
 }

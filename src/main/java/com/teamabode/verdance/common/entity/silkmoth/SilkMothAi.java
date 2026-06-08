@@ -13,7 +13,9 @@ import java.util.List;
 import java.util.function.Predicate;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.Brain;
+import net.minecraft.world.entity.ai.ActivityData;
+import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import net.minecraft.world.entity.ai.memory.MemoryStatus;
 import net.minecraft.world.entity.ai.behavior.AnimalMakeLove;
 import net.minecraft.world.entity.ai.behavior.AnimalPanic;
 import net.minecraft.world.entity.ai.behavior.CountDownCooldownTicks;
@@ -27,14 +29,11 @@ import net.minecraft.world.entity.ai.behavior.SetEntityLookTargetSometimes;
 import net.minecraft.world.entity.ai.behavior.SetWalkTargetFromLookTarget;
 import net.minecraft.world.entity.ai.behavior.Swim;
 import net.minecraft.world.entity.ai.behavior.declarative.BehaviorBuilder;
-import net.minecraft.world.entity.ai.memory.MemoryModuleType;
-import net.minecraft.world.entity.ai.memory.MemoryStatus;
 import net.minecraft.world.entity.ai.sensing.Sensor;
 import net.minecraft.world.entity.ai.sensing.SensorType;
 import net.minecraft.world.entity.schedule.Activity;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.ItemStack;
 
-@SuppressWarnings("deprecation")
 public class SilkMothAi {
 
     public static final List<MemoryModuleType<?>> MEMORY_MODULES = ImmutableList.of(
@@ -51,31 +50,26 @@ public class SilkMothAi {
             MemoryModuleType.BREED_TARGET,
             MemoryModuleType.NEAREST_LIVING_ENTITIES,
             MemoryModuleType.NEAREST_VISIBLE_LIVING_ENTITIES,
-            VerdanceMemoryModuleTypes.IS_FLYING.get(),
-            VerdanceMemoryModuleTypes.LANDING_TIME.get(),
-            VerdanceMemoryModuleTypes.WANTS_TO_LAND.get()
+            VerdanceMemoryModuleTypes.IS_FLYING,
+            VerdanceMemoryModuleTypes.LANDING_TIME,
+            VerdanceMemoryModuleTypes.WANTS_TO_LAND,
+            VerdanceMemoryModuleTypes.NEAREST_LIGHT_SOURCE
     );
 
     public static final List<SensorType<? extends Sensor<? super SilkMoth>>> SENSORS = ImmutableList.of(
-            VerdanceSensorTypes.SILK_MOTH_SPECIFIC_SENSOR.get(),
-            VerdanceSensorTypes.SILK_MOTH_TEMPTATIONS.get(),
+            VerdanceSensorTypes.SILK_MOTH_SPECIFIC_SENSOR,
+            VerdanceSensorTypes.SILK_MOTH_TEMPTATIONS,
             SensorType.NEAREST_LIVING_ENTITIES,
             SensorType.HURT_BY
     );
 
-    public static Brain<SilkMoth> createBrain(Brain<SilkMoth> brain) {
-        addCoreActivities(brain);
-        addIdleActivities(brain);
-        addLayEggsActivities(brain);
-
-        brain.setDefaultActivity(Activity.IDLE);
-        brain.setCoreActivities(ImmutableSet.of(Activity.CORE));
-        return brain;
+    public static List<ActivityData<SilkMoth>> getActivities() {
+        return List.of(coreActivity(), idleActivity(), layEggsActivity());
     }
 
-    private static void addCoreActivities(Brain<SilkMoth> brain) {
-        brain.addActivity(Activity.CORE, 0, ImmutableList.of(
-                new Swim(1.0f),
+    private static ActivityData<SilkMoth> coreActivity() {
+        return ActivityData.create(Activity.CORE, 0, ImmutableList.of(
+                new Swim<>(1.0f),
                 new TakeOff(),
                 new Land(),
                 new AnimalPanic<>(1.5f),
@@ -85,9 +79,9 @@ public class SilkMothAi {
         ));
     }
 
-    private static void addIdleActivities(Brain<SilkMoth> brain) {
-        brain.addActivity(Activity.IDLE, ImmutableList.of(
-                Pair.of(0, new AnimalMakeLove(VerdanceEntityTypes.SILK_MOTH.get())),
+    private static ActivityData<SilkMoth> idleActivity() {
+        return ActivityData.create(Activity.IDLE, ImmutableList.of(
+                Pair.of(0, new AnimalMakeLove(VerdanceEntityTypes.SILK_MOTH)),
                 Pair.of(1, new FollowTemptation(livingEntity -> 1.5f)),
                 Pair.of(2, SetEntityLookTargetSometimes.create(EntityType.PLAYER, 6.0f, UniformInt.of(30, 60))),
                 Pair.of(2, new GoTowardsLanding()),
@@ -95,8 +89,8 @@ public class SilkMothAi {
         ));
     }
 
-    private static void addLayEggsActivities(Brain<SilkMoth> brain) {
-        brain.addActivityWithConditions(VerdanceActivities.LAY_EGGS.get(), ImmutableList.of(
+    private static ActivityData<SilkMoth> layEggsActivity() {
+        return ActivityData.create(VerdanceActivities.LAY_EGGS, ImmutableList.of(
                 Pair.of(0, new SearchForLeaves()),
                 Pair.of(1, LayEggs.create()),
                 Pair.of(2, addMovementTasks())
@@ -105,14 +99,14 @@ public class SilkMothAi {
 
     public static void updateActivity(SilkMoth silkMoth) {
         silkMoth.getBrain().setActiveActivityToFirstValid(ImmutableList.of(
-                VerdanceActivities.LAY_EGGS.get(),
-                VerdanceActivities.SLEEP.get(),
+                VerdanceActivities.LAY_EGGS,
+                VerdanceActivities.SLEEP,
                 Activity.IDLE
         ));
     }
 
-    public static Ingredient getTemptations() {
-        return Ingredient.of(VerdanceItemTags.SILK_MOTH_FOOD);
+    public static Predicate<ItemStack> getTemptations() {
+        return stack -> stack.is(VerdanceItemTags.SILK_MOTH_FOOD);
     }
 
     private static RunOne<SilkMoth> addMovementTasks() {
@@ -122,7 +116,7 @@ public class SilkMothAi {
                 Pair.of(BehaviorBuilder.triggerIf(Predicate.not(SilkMoth::isFlying), RandomStroll.stroll(1.0f)), 2),
                 Pair.of(SetWalkTargetFromLookTarget.create(1.0f, 3), 2),
                 Pair.of(new GoTowardsLightSource(), 2),
-                Pair.of(new DoNothing(30,  60), 1)
+                Pair.of(new DoNothing(30, 60), 1)
         ));
     }
 }

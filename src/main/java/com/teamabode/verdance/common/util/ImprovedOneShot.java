@@ -2,6 +2,7 @@ package com.teamabode.verdance.common.util;
 
 import com.google.common.collect.Maps;
 import java.util.Map;
+import java.util.Set;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,6 +15,14 @@ public abstract class ImprovedOneShot<E extends LivingEntity> extends OneShot<E>
     private final Map<MemoryModuleType<?>, MemoryStatus> requiredMemories = Maps.newHashMap();
 
     public abstract void requires(Map<MemoryModuleType<?>, MemoryStatus> requirements);
+
+    @Override
+    public Set<MemoryModuleType<?>> getRequiredMemories() {
+        if (this.requiredMemories.isEmpty()) {
+            this.requires(this.requiredMemories);
+        }
+        return this.requiredMemories.keySet();
+    }
 
     public final boolean checkRequirements(Brain<?> brain) {
         this.requires(requiredMemories);

@@ -18,7 +18,7 @@ public class AerialStroll extends ImprovedOneShot<SilkMoth> {
     public void requires(Map<MemoryModuleType<?>, MemoryStatus> requirements) {
         requirements.put(MemoryModuleType.WALK_TARGET, MemoryStatus.VALUE_ABSENT);
         requirements.put(MemoryModuleType.LOOK_TARGET, MemoryStatus.REGISTERED);
-        requirements.put(VerdanceMemoryModuleTypes.IS_FLYING.get(), MemoryStatus.VALUE_PRESENT);
+        requirements.put(VerdanceMemoryModuleTypes.IS_FLYING, MemoryStatus.VALUE_PRESENT);
     }
 
     public void run(ServerLevel level, SilkMoth entity, long gameTime) {

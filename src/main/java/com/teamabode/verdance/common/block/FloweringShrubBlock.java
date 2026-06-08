@@ -2,15 +2,15 @@ package com.teamabode.verdance.common.block;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import java.util.Optional;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 public class FloweringShrubBlock extends ShrubBlock {
@@ -34,10 +34,16 @@ public class FloweringShrubBlock extends ShrubBlock {
     @Override
     public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
         RegistryAccess registryAccess = level.registryAccess();
-        var configuredFeatures = registryAccess.registry(Registries.CONFIGURED_FEATURE);
-        var featureToPlace = configuredFeatures.flatMap(registry -> registry.getHolder(this.feature));
+        var configuredFeatures = registryAccess.lookup(Registries.CONFIGURED_FEATURE);
+        var featureToPlace = configuredFeatures.flatMap(registry -> registry.get(this.feature));
 
-        featureToPlace.ifPresent(reference -> reference.value().place(level, level.getChunkSource().getGenerator(), random, pos));
+        featureToPlace.ifPresent(reference -> {
+            ChunkGenerator generator = level.getChunkSource().getGenerator();
+            for (int i = 0; i < 16; i++) {
+                BlockPos target = pos.offset(random.nextInt(7) - 3, random.nextInt(4) - 2, random.nextInt(7) - 3);
+                reference.value().place(level, generator, random, target);
+            }
+        });
     }
 
     @Override

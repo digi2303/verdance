@@ -1,0 +1,34 @@
+classTweaker  v1  official
+
+accessible	method	net/minecraft/world/level/block/state/properties/WoodType	register	(Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/world/level/block/state/properties/WoodType;
+accessible	method	net/minecraft/world/level/block/state/properties/BlockSetType	register	(Lnet/minecraft/world/level/block/state/properties/BlockSetType;)Lnet/minecraft/world/level/block/state/properties/BlockSetType;
+accessible	method	net/minecraft/world/entity/schedule/Activity	<init>	(Ljava/lang/String;)V
+accessible	method	net/minecraft/world/level/block/Blocks	logProperties	(Lnet/minecraft/world/level/material/MapColor;Lnet/minecraft/world/level/material/MapColor;Lnet/minecraft/world/level/block/SoundType;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+accessible	method	net/minecraft/world/level/block/Blocks	leavesProperties	(Lnet/minecraft/world/level/block/SoundType;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+accessible	method	net/minecraft/world/level/block/Blocks	buttonProperties	()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+accessible	method	net/minecraft/world/level/block/Blocks	flowerPotProperties	()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+accessible	method	net/minecraft/world/level/block/StairBlock	<init>	(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible	method	net/minecraft/world/level/block/DoorBlock	<init>	(Lnet/minecraft/world/level/block/state/properties/BlockSetType;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible	method	net/minecraft/world/level/block/TrapDoorBlock	<init>	(Lnet/minecraft/world/level/block/state/properties/BlockSetType;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible	method	net/minecraft/world/level/block/PressurePlateBlock	<init>	(Lnet/minecraft/world/level/block/state/properties/BlockSetType;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible	method	net/minecraft/world/level/block/ButtonBlock	<init>	(Lnet/minecraft/world/level/block/state/properties/BlockSetType;ILnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible	method	net/minecraft/world/level/block/SaplingBlock	<init>	(Lnet/minecraft/world/level/block/grower/TreeGrower;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible	method	net/minecraft/world/level/block/StemBlock	<init>	(Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/tags/TagKey;Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible	method	net/minecraft/world/level/block/AttachedStemBlock	<init>	(Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible	method	net/minecraft/world/entity/ai/sensing/SensorType	<init>	(Ljava/util/function/Supplier;)V
+accessible	method	net/minecraft/world/level/block/entity/BlockEntityType	<init>	(Lnet/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier;Ljava/util/Set;)V
+accessible	class	net/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier
+accessible	method	net/minecraft/world/level/levelgen/feature/trunkplacers/TrunkPlacerType	<init>	(Lcom/mojang/serialization/MapCodec;)V
+accessible	method	net/minecraft/world/level/levelgen/feature/treedecorators/TreeDecoratorType	<init>	(Lcom/mojang/serialization/MapCodec;)V
+accessible	method	net/minecraft/world/level/block/FireBlock	setFlammable	(Lnet/minecraft/world/level/block/Block;II)V
+accessible	method	net/minecraft/world/entity/SpawnPlacements	register	(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/entity/SpawnPlacementType;Lnet/minecraft/world/level/levelgen/Heightmap$Types;Lnet/minecraft/world/entity/SpawnPlacements$SpawnPredicate;)V
+accessible	field	net/minecraft/world/item/CreativeModeTabs	BUILDING_BLOCKS	Lnet/minecraft/resources/ResourceKey;
+accessible	field	net/minecraft/world/item/CreativeModeTabs	TOOLS_AND_UTILITIES	Lnet/minecraft/resources/ResourceKey;
+accessible	field	net/minecraft/world/item/CreativeModeTabs	FUNCTIONAL_BLOCKS	Lnet/minecraft/resources/ResourceKey;
+accessible	field	net/minecraft/world/item/CreativeModeTabs	FOOD_AND_DRINKS	Lnet/minecraft/resources/ResourceKey;
+accessible	field	net/minecraft/world/item/CreativeModeTabs	NATURAL_BLOCKS	Lnet/minecraft/resources/ResourceKey;
+accessible	field	net/minecraft/world/item/CreativeModeTabs	COLORED_BLOCKS	Lnet/minecraft/resources/ResourceKey;
+accessible	field	net/minecraft/world/item/CreativeModeTabs	REDSTONE_BLOCKS	Lnet/minecraft/resources/ResourceKey;
+accessible	field	net/minecraft/world/item/CreativeModeTabs	INGREDIENTS	Lnet/minecraft/resources/ResourceKey;
+accessible	field	net/minecraft/world/item/CreativeModeTabs	SPAWN_EGGS	Lnet/minecraft/resources/ResourceKey;
+accessible	class	net/minecraft/world/item/CreativeModeTab$TabVisibility
