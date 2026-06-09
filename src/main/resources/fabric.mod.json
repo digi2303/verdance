@@ -8,7 +8,8 @@
     "Team Abode"
   ],
   "contact": {
-    "sources": "https://github.com/Team-Abode/verdance"
+    "sources": "https://github.com/digi2303/verdance",
+    "issues": "https://github.com/digi2303/verdance/issues"
   },
   "license": "All Rights Reserved",
   "icon": "assets/verdance/icon.png",

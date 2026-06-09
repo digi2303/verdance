@@ -1,12 +1,13 @@
 modLoader = "javafml"
 loaderVersion = "[2,)"
 license = "All Rights Reserved"
-issueTrackerURL = "https://github.com/Team-Abode/verdance/issues"
+issueTrackerURL = "https://github.com/digi2303/verdance/issues"
 
 [[mods]]
 	modId = "verdance"
 	version = "${version}"
 	displayName = "Verdance"
+	displayURL = "https://github.com/digi2303/verdance"
 	description = "Adds mulberry trees, silk moths, and assorted natural decoration."
 	authors = "Team Abode"
 	logoFile = "assets/verdance/icon.png"
