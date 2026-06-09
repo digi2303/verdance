@@ -22,7 +22,9 @@ import com.teamabode.verdance.core.registry.VerdanceSoundEvents;
 import com.teamabode.verdance.core.registry.VerdanceTreeDecoratorTypes;
 import com.teamabode.verdance.core.registry.VerdanceTriggerTypes;
 import com.teamabode.verdance.core.registry.VerdanceTrunkPlacerTypes;
+import com.teamabode.verdance.core.integration.farmersdelight.FDCompat;
 import dev.yumi.mc.core.api.ModContainer;
+import dev.yumi.mc.core.api.YumiMods;
 import dev.yumi.mc.core.api.entrypoint.ModInitializer;
 
 public class VerdanceMain implements ModInitializer {
@@ -39,6 +41,9 @@ public class VerdanceMain implements ModInitializer {
         VerdanceBlocks.register();
         VerdanceBlockEntityTypes.register();
         VerdanceItems.register();
+        if (YumiMods.get().isModLoaded("farmersdelight")) {
+            FDCompat.register();
+        }
         VerdanceFeatures.register();
         VerdanceTrunkPlacerTypes.register();
         VerdanceTreeDecoratorTypes.register();
