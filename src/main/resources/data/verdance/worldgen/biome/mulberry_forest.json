@@ -80,20 +80,19 @@
   "spawners": {
     "ambient": [
       {
+        "type": "verdance:silk_moth",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 10
+      },
+      {
         "type": "minecraft:bat",
         "maxCount": 8,
         "minCount": 8,
         "weight": 10
       }
     ],
-    "axolotls": [
-      {
-        "type": "verdance:silk_moth",
-        "maxCount": 3,
-        "minCount": 1,
-        "weight": 10
-      }
-    ],
+    "axolotls": [],
     "creature": [
       {
         "type": "minecraft:rabbit",

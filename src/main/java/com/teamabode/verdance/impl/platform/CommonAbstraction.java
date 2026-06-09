@@ -64,6 +64,9 @@ public interface CommonAbstraction {
         onServerAboutToStart(VerdanceBiomeReplacements::bind);
     }
 
+    default void registerBiomeFeatures() {
+    }
+
     void onServerAboutToStart(Consumer<MinecraftServer> consumer);
 
     void injectChestLoot();

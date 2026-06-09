@@ -1,8 +1,14 @@
 package com.teamabode.verdance.impl.platform.fabric;
 
 import com.teamabode.verdance.Verdance;
+import com.teamabode.verdance.core.registry.VerdancePlacedFeatures;
+import com.teamabode.verdance.core.tag.VerdanceBiomeTags;
 import com.teamabode.verdance.impl.platform.CommonAbstraction;
 import net.fabricmc.api.EnvType;
+import net.fabricmc.fabric.api.biome.v1.BiomeModificationContext;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
@@ -12,6 +18,7 @@ import net.fabricmc.fabric.api.registry.CompostableRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.ItemLike;
@@ -22,6 +29,7 @@ import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -68,6 +76,26 @@ public record FabricCommonAbstraction() implements CommonAbstraction {
     @Override
     public void registerCompostable(ItemLike item, float chance) {
         CompostableRegistry.INSTANCE.add(item, chance);
+    }
+
+    @Override
+    public void registerBiomeFeatures() {
+        BiomeModifications.addFeature(
+                BiomeSelectors.tag(VerdanceBiomeTags.HAS_CANTALOUPE),
+                GenerationStep.Decoration.VEGETAL_DECORATION,
+                VerdancePlacedFeatures.PATCH_CANTALOUPE
+        );
+        BiomeModifications.create(Verdance.id("violet_flowers")).add(
+                ModificationPhase.REPLACEMENTS,
+                BiomeSelectors.tag(VerdanceBiomeTags.HAS_VIOLET),
+                (selection, modification) -> {
+                    BiomeModificationContext.GenerationSettingsContext generation = modification.getGenerationSettings();
+                    if (selection.hasPlacedFeature(VegetationPlacements.FLOWER_DEFAULT)) {
+                        generation.removeFeature(VegetationPlacements.FLOWER_DEFAULT);
+                    }
+                    generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VerdancePlacedFeatures.FLOWER_VIOLET);
+                }
+        );
     }
 
     @Override

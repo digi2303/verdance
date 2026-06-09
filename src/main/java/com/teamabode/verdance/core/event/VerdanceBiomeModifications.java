@@ -14,5 +14,6 @@ public class VerdanceBiomeModifications {
             injector.replaceOverworld(Biomes.SPARSE_JUNGLE, VerdanceBiomes.SHRUBLANDS, VerdanceConfig.instance.shrublandsProportion);
             injector.addOverworldSurfaceRule(VerdanceSurfaceRules.shrublands());
         });
+        CommonAbstraction.INSTANCE.registerBiomeFeatures();
     }
 }
