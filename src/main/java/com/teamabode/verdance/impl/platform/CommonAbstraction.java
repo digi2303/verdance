@@ -1,5 +1,7 @@
 package com.teamabode.verdance.impl.platform;
 
+import com.teamabode.verdance.core.level.VerdanceBiomeReplacements;
+import com.teamabode.verdance.core.level.VerdanceSurfaceRuleRegistry;
 import dev.yumi.mc.core.api.YumiMods;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
@@ -47,7 +49,20 @@ public interface CommonAbstraction {
 
     void registerCompostable(ItemLike item, float chance);
 
-    void registerBiomePlacements(Consumer<BiomeInjector> consumer);
+    default void registerBiomePlacements(Consumer<BiomeInjector> consumer) {
+        consumer.accept(new BiomeInjector() {
+            @Override
+            public void replaceOverworld(ResourceKey<Biome> target, ResourceKey<Biome> replacement, double proportion) {
+                VerdanceBiomeReplacements.register(target, replacement, proportion);
+            }
+
+            @Override
+            public void addOverworldSurfaceRule(SurfaceRules.RuleSource rule) {
+                VerdanceSurfaceRuleRegistry.add(rule);
+            }
+        });
+        onServerAboutToStart(VerdanceBiomeReplacements::bind);
+    }
 
     void onServerAboutToStart(Consumer<MinecraftServer> consumer);
 

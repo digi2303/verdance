@@ -1,9 +1,6 @@
 package com.teamabode.verdance.impl.platform.neo;
 
-import com.teamabode.verdance.Verdance;
 import com.teamabode.verdance.impl.platform.CommonAbstraction;
-import com.terraformersmc.biolith.api.biome.BiomePlacement;
-import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.EntityType;
@@ -13,11 +10,9 @@ import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
@@ -79,21 +74,6 @@ public record NeoCommonAbstraction(List<Consumer<IEventBus>> lateActions) implem
 
     @Override
     public void registerCompostable(ItemLike item, float chance) {
-    }
-
-    @Override
-    public void registerBiomePlacements(Consumer<BiomeInjector> consumer) {
-        consumer.accept(new BiomeInjector() {
-            @Override
-            public void replaceOverworld(ResourceKey<Biome> target, ResourceKey<Biome> replacement, double proportion) {
-                BiomePlacement.replaceOverworld(target, replacement, proportion);
-            }
-
-            @Override
-            public void addOverworldSurfaceRule(SurfaceRules.RuleSource rule) {
-                SurfaceGeneration.addOverworldSurfaceRules(Verdance.id("rules/overworld"), rule);
-            }
-        });
     }
 
     @Override

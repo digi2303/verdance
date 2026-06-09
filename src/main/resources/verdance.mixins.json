@@ -8,6 +8,8 @@
   "mixins": [
     "DecoratedPotPatternsMixin",
     "LightningEntityMixin",
+    "MultiNoiseBiomeSourceMixin",
+    "NoiseGeneratorSettingsMixin",
     "SporeBlossomBlockMixin",
     "SugarCaneBlockMixin",
     "accessor.StructurePoolAccessor"
