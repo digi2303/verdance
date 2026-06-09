@@ -52,17 +52,6 @@ public record NeoCommonAbstraction(List<Consumer<IEventBus>> lateActions) implem
     }
 
     @Override
-    public void addToCreativeTab(ResourceKey<CreativeModeTab> tab, ItemLike... items) {
-        addLateAction(bus -> bus.addListener(BuildCreativeModeTabContentsEvent.class, event -> {
-            if (event.getTabKey().equals(tab)) {
-                for (ItemLike item : items) {
-                    event.accept(item);
-                }
-            }
-        }));
-    }
-
-    @Override
     public void registerAttributes(Consumer<AttributeRegistry> consumer) {
         addLateAction(bus -> bus.addListener(EntityAttributeCreationEvent.class, event ->
                 consumer.accept((type, builder) -> event.put(type, builder.build()))));

@@ -39,8 +39,6 @@ public interface CommonAbstraction {
 
     void modifyCreativeTab(ResourceKey<CreativeModeTab> tab, Consumer<TabEntries> modifier);
 
-    void addToCreativeTab(ResourceKey<CreativeModeTab> tab, ItemLike... items);
-
     void registerAttributes(Consumer<AttributeRegistry> consumer);
 
     <T extends Mob> void registerSpawnPlacement(EntityType<T> type, SpawnPlacementType placementType, Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<T> predicate);

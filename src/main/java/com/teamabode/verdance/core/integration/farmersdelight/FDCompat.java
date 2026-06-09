@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -32,7 +33,16 @@ public class FDCompat {
                 new BlockEntityType<>(MulberryCabinetBlockEntity::new, Set.of(MULBERRY_CABINET))
         );
         ResourceKey<CreativeModeTab> tab = ResourceKey.create(Registries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath("farmersdelight", "farmersdelight"));
-        CommonAbstraction.INSTANCE.addToCreativeTab(tab, MULBERRY_CABINET, MULBERRY_CRATE);
+        CommonAbstraction.INSTANCE.modifyCreativeTab(tab, entries -> {
+            Item cabinetAnchor = BuiltInRegistries.ITEM.getValue(Identifier.fromNamespaceAndPath("farmersdelight", "cherry_cabinet"));
+            Item crateAnchor = BuiltInRegistries.ITEM.getValue(Identifier.fromNamespaceAndPath("farmersdelight", "onion_crate"));
+            if (cabinetAnchor != Items.AIR) {
+                entries.addAfter(cabinetAnchor, MULBERRY_CABINET);
+            }
+            if (crateAnchor != Items.AIR) {
+                entries.addAfter(crateAnchor, MULBERRY_CRATE);
+            }
+        });
     }
 
     private static Block registerBlock(String name, Function<ResourceKey<Block>, Block> factory) {
