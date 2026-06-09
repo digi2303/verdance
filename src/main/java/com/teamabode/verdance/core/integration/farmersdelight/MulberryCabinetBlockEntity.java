@@ -90,7 +90,7 @@ public class MulberryCabinetBlockEntity extends RandomizableContainerBlockEntity
 
     @Override
     protected Component getDefaultName() {
-        return Component.translatable("farmersdelight.container.cabinet");
+        return Component.translatable("container.verdance.mulberry_cabinet");
     }
 
     @Override

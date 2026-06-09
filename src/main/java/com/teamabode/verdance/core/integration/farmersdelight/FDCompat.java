@@ -5,11 +5,11 @@ import com.teamabode.verdance.impl.platform.CommonAbstraction;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -31,8 +31,8 @@ public class FDCompat {
                 Verdance.id("cabinet"),
                 new BlockEntityType<>(MulberryCabinetBlockEntity::new, Set.of(MULBERRY_CABINET))
         );
-        CommonAbstraction.INSTANCE.modifyCreativeTab(CreativeModeTabs.FUNCTIONAL_BLOCKS, entries ->
-                entries.addAfter(Items.BARREL, MULBERRY_CABINET, MULBERRY_CRATE));
+        ResourceKey<CreativeModeTab> tab = ResourceKey.create(Registries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath("farmersdelight", "farmersdelight"));
+        CommonAbstraction.INSTANCE.addToCreativeTab(tab, MULBERRY_CABINET, MULBERRY_CRATE);
     }
 
     private static Block registerBlock(String name, Function<ResourceKey<Block>, Block> factory) {

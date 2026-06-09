@@ -52,6 +52,15 @@ public record FabricCommonAbstraction() implements CommonAbstraction {
     }
 
     @Override
+    public void addToCreativeTab(ResourceKey<CreativeModeTab> tab, ItemLike... items) {
+        CreativeModeTabEvents.modifyOutputEvent(tab).register(output -> {
+            for (ItemLike item : items) {
+                output.accept(item);
+            }
+        });
+    }
+
+    @Override
     public void registerAttributes(Consumer<AttributeRegistry> consumer) {
         consumer.accept(FabricDefaultAttributeRegistry::register);
     }
