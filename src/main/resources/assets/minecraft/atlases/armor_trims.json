@@ -3,8 +3,8 @@
         {
             "type": "paletted_permutations",
             "textures": [
-                "verdance:trims/models/armor/heritage",
-                "verdance:trims/models/armor/heritage_leggings"
+                "verdance:trims/entity/humanoid/heritage",
+                "verdance:trims/entity/humanoid_leggings/heritage"
             ],
             "palette_key": "minecraft:trims/color_palettes/trim_palette",
             "permutations": {
@@ -18,10 +18,12 @@
                 "emerald": "minecraft:trims/color_palettes/emerald",
                 "lapis": "minecraft:trims/color_palettes/lapis",
                 "amethyst": "minecraft:trims/color_palettes/amethyst",
+                "resin": "minecraft:trims/color_palettes/resin",
                 "iron_darker": "minecraft:trims/color_palettes/iron_darker",
                 "gold_darker": "minecraft:trims/color_palettes/gold_darker",
                 "diamond_darker": "minecraft:trims/color_palettes/diamond_darker",
-                "netherite_darker": "minecraft:trims/color_palettes/netherite_darker"
+                "netherite_darker": "minecraft:trims/color_palettes/netherite_darker",
+                "copper_darker": "minecraft:trims/color_palettes/copper_darker"
             }
         }
     ]
