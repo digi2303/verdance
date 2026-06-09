@@ -3,6 +3,7 @@ package com.teamabode.verdance.datagen;
 import com.teamabode.verdance.core.registry.VerdanceJukeboxSongs;
 import com.teamabode.verdance.core.registry.VerdanceTrimPatterns;
 import com.teamabode.verdance.datagen.server.VerdanceAdvancementProvider;
+import com.teamabode.verdance.datagen.server.VerdanceDynamicRegistryProvider;
 import com.teamabode.verdance.datagen.server.VerdanceRecipeProvider;
 import com.teamabode.verdance.datagen.server.loot.VerdanceBlockLootTableProvider;
 import com.teamabode.verdance.datagen.server.loot.VerdanceLootTableProvider;
@@ -29,6 +30,7 @@ public class VerdanceDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(VerdanceLootTableProvider::new);
         pack.addProvider(VerdanceRecipeProvider::new);
         pack.addProvider(VerdanceAdvancementProvider::new);
+        pack.addProvider(VerdanceDynamicRegistryProvider::new);
     }
 
     @Override

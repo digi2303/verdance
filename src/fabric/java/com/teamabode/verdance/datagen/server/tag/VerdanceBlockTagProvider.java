@@ -1,11 +1,14 @@
 package com.teamabode.verdance.datagen.server.tag;
 
+import com.teamabode.verdance.Verdance;
 import com.teamabode.verdance.core.registry.VerdanceBlocks;
 import com.teamabode.verdance.core.tag.VerdanceBlockTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.tags.TagAppender;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -50,6 +53,12 @@ public class VerdanceBlockTagProvider extends FabricTagsProvider.BlockTagsProvid
         flowers();
         smallFlowers();
         crops();
+        cabinets();
+    }
+
+    private void cabinets() {
+        builder(TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath("farmersdelight", "cabinets/wooden")))
+                .addOptional(ResourceKey.create(Registries.BLOCK, Verdance.id("mulberry_cabinet")));
     }
 
     private void add(TagKey<Block> tag, Block... blocks) {
