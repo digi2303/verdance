@@ -16,6 +16,14 @@
     "verdance:blue_cushion",
     "verdance:purple_cushion",
     "verdance:magenta_cushion",
-    "verdance:pink_cushion"
+    "verdance:pink_cushion",
+    {
+      "id": "verdance:mulberry_cabinet",
+      "required": false
+    },
+    {
+      "id": "verdance:mulberry_crate",
+      "required": false
+    }
   ]
 }

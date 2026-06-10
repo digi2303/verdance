@@ -99,6 +99,9 @@ public class VerdanceBlockTagProvider extends FabricTagsProvider.BlockTagsProvid
                 VerdanceBlocks.BROWN_CUSHION, VerdanceBlocks.RED_CUSHION, VerdanceBlocks.ORANGE_CUSHION, VerdanceBlocks.YELLOW_CUSHION,
                 VerdanceBlocks.LIME_CUSHION, VerdanceBlocks.GREEN_CUSHION, VerdanceBlocks.CYAN_CUSHION, VerdanceBlocks.LIGHT_BLUE_CUSHION,
                 VerdanceBlocks.BLUE_CUSHION, VerdanceBlocks.PURPLE_CUSHION, VerdanceBlocks.MAGENTA_CUSHION, VerdanceBlocks.PINK_CUSHION);
+        builder(BlockTags.MINEABLE_WITH_AXE)
+                .addOptional(ResourceKey.create(Registries.BLOCK, Verdance.id("mulberry_cabinet")))
+                .addOptional(ResourceKey.create(Registries.BLOCK, Verdance.id("mulberry_crate")));
     }
 
     private void swordEfficient() {
