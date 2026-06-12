@@ -124,7 +124,9 @@
     "item.verdance.grilled_cantaloupe_slice": "Жареный ломтик канталупы",
     "item.verdance.mulberry": "Тутовник",
     "item.verdance.mulberry_boat": "Тутовая лодка",
+    "entity.verdance.mulberry_boat": "Тутовая лодка",
     "item.verdance.mulberry_chest_boat": "Тутовая лодка с сундуком",
+    "entity.verdance.mulberry_chest_boat": "Тутовая лодка с сундуком",
     "item.verdance.silk_moth_spawn_egg": "Яйцо призыва шелкопряда",
     "item.verdance.silkworm_spawn_egg": "Яйцо призыва гусеницы шелкопряда",
 
