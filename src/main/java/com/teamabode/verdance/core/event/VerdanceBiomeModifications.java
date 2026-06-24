@@ -12,7 +12,7 @@ public class VerdanceBiomeModifications {
         CommonAbstraction.INSTANCE.registerBiomePlacements(injector -> {
             injector.replaceOverworld(Biomes.CHERRY_GROVE, VerdanceBiomes.MULBERRY_FOREST, VerdanceConfig.instance.mulberryForestProportion);
             injector.replaceOverworld(Biomes.SPARSE_JUNGLE, VerdanceBiomes.SHRUBLANDS, VerdanceConfig.instance.shrublandsProportion);
-            injector.addOverworldSurfaceRule(VerdanceSurfaceRules.shrublands());
+            injector.addOverworldSurfaceRule(VerdanceSurfaceRules::shrublands);
         });
         CommonAbstraction.INSTANCE.registerBiomeFeatures();
     }

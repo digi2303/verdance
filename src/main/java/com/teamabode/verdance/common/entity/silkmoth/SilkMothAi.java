@@ -83,7 +83,11 @@ public class SilkMothAi {
         return ActivityData.create(Activity.IDLE, ImmutableList.of(
                 Pair.of(0, new AnimalMakeLove(VerdanceEntityTypes.SILK_MOTH)),
                 Pair.of(1, new FollowTemptation(livingEntity -> 1.5f)),
+//? if >=26.2 {
+                /*Pair.of(2, SetEntityLookTargetSometimes.create(net.minecraft.world.entity.EntityTypes.PLAYER, 6.0f, UniformInt.of(30, 60))),
+*///?} else {
                 Pair.of(2, SetEntityLookTargetSometimes.create(EntityType.PLAYER, 6.0f, UniformInt.of(30, 60))),
+//?}
                 Pair.of(2, new GoTowardsLanding()),
                 Pair.of(4, addMovementTasks())
         ));

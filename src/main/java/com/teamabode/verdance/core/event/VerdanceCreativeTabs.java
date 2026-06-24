@@ -34,7 +34,11 @@ public class VerdanceCreativeTabs {
         abstraction.modifyCreativeTab(CreativeModeTabs.FUNCTIONAL_BLOCKS, entries -> {
             entries.addAfter(Items.CHERRY_HANGING_SIGN, VerdanceItems.MULBERRY_SIGN, VerdanceItems.MULBERRY_HANGING_SIGN);
             entries.addAfter(
+//? if >=26.2 {
+                    /*Items.BED.pick(net.minecraft.world.item.DyeColor.PINK),
+*///?} else {
                     Items.PINK_BED,
+//?}
                     VerdanceBlocks.WHITE_CUSHION,
                     VerdanceBlocks.LIGHT_GRAY_CUSHION,
                     VerdanceBlocks.GRAY_CUSHION,
@@ -70,7 +74,11 @@ public class VerdanceCreativeTabs {
         });
         abstraction.modifyCreativeTab(CreativeModeTabs.COLORED_BLOCKS, entries -> {
             entries.addAfter(
+//? if >=26.2 {
+                    /*Items.DYED_TERRACOTTA.pick(net.minecraft.world.item.DyeColor.PINK),
+*///?} else {
                     Items.PINK_TERRACOTTA,
+//?}
                     VerdanceBlocks.WHITE_STUCCO, VerdanceBlocks.WHITE_STUCCO_STAIRS, VerdanceBlocks.WHITE_STUCCO_SLAB, VerdanceBlocks.WHITE_STUCCO_WALL,
                     VerdanceBlocks.LIGHT_GRAY_STUCCO, VerdanceBlocks.LIGHT_GRAY_STUCCO_STAIRS, VerdanceBlocks.LIGHT_GRAY_STUCCO_SLAB, VerdanceBlocks.LIGHT_GRAY_STUCCO_WALL,
                     VerdanceBlocks.GRAY_STUCCO, VerdanceBlocks.GRAY_STUCCO_STAIRS, VerdanceBlocks.GRAY_STUCCO_SLAB, VerdanceBlocks.GRAY_STUCCO_WALL,
@@ -89,7 +97,11 @@ public class VerdanceCreativeTabs {
                     VerdanceBlocks.PINK_STUCCO, VerdanceBlocks.PINK_STUCCO_STAIRS, VerdanceBlocks.PINK_STUCCO_SLAB, VerdanceBlocks.PINK_STUCCO_WALL
             );
             entries.addAfter(
+//? if >=26.2 {
+                    /*Items.BED.pick(net.minecraft.world.item.DyeColor.PINK),
+*///?} else {
                     Items.PINK_BED,
+//?}
                     VerdanceBlocks.WHITE_CUSHION,
                     VerdanceBlocks.LIGHT_GRAY_CUSHION,
                     VerdanceBlocks.GRAY_CUSHION,

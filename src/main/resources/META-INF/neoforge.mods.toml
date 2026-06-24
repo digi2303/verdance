@@ -25,7 +25,7 @@ issueTrackerURL = "https://github.com/digi2303/verdance/issues"
 [[dependencies.verdance]]
 	modId = "minecraft"
 	type = "required"
-	versionRange = "[26.1,26.2)"
+	versionRange = "[${mc_major},${mc_next})"
 	ordering = "NONE"
 	side = "BOTH"
 

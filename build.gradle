@@ -4,6 +4,7 @@ plugins {
 }
 
 def mcSuffix = project.minecraft_version.tokenize('.').take(2).join('.')
+def mcNext = "${mcSuffix.tokenize('.')[0]}.${(mcSuffix.tokenize('.')[1] as int) + 1}"
 version = "${project.mod_version}+${mcSuffix}"
 group = project.maven_group
 
@@ -51,6 +52,10 @@ sourceSets {
 	}
 }
 
+if (mcSuffix == "26.2") {
+	sourceSets.fabric.java.exclude("com/teamabode/verdance/datagen/**")
+}
+
 loom {
 	accessWidenerPath = rootProject.file("src/main/resources/verdance.classtweaker")
 
@@ -89,7 +94,8 @@ dependencies {
 
 def resourceTargets = ["fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/jarjar/metadata.json"]
 def replaceProperties = [
-		"version": project.version, "yumi_version": project.yumi_version
+		"version": project.version, "yumi_version": project.yumi_version,
+		"mc_major": mcSuffix, "mc_next": mcNext
 ]
 
 processResources {

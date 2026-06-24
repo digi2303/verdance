@@ -27,7 +27,11 @@ public class TurnIntoCocoonTask extends ImprovedOneShot<Silkworm> {
         for (Direction dir : Direction.Plane.HORIZONTAL) {
             BlockPos dirPos = entity.blockPosition().relative(dir);
             BlockState dirState = level.getBlockState(dirPos);
+//? if >=26.2 {
+            /*if (!dirState.is(BlockTags.LOGS)) continue;
+*///?} else {
             if (!dirState.is(BlockTags.LOGS_THAT_BURN)) continue;
+//?}
 
             SilkUtils.transformIntoCocoon(level, entity, entity.blockPosition(), dir);
         }

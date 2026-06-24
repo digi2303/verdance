@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import com.teamabode.verdance.core.registry.VerdanceTriggerTypes;
@@ -90,7 +91,7 @@ public class SilkWormEggsBlock extends Block {
             Silkworm silkworm = VerdanceEntityTypes.SILKWORM.create(level, EntitySpawnReason.BREEDING);
             if (silkworm == null) continue;
 
-            silkworm.setPos(pos.getCenter().offsetRandom(random, 0.25f));
+            silkworm.setPos(Vec3.atCenterOf(pos).offsetRandom(random, 0.25f));
             silkworm.setPersistenceRequired();
             level.addFreshEntity(silkworm);
         }

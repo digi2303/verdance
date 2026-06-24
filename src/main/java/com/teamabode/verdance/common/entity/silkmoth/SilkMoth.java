@@ -35,7 +35,9 @@ import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.Animal;
+//? if <26.2 {
 import net.minecraft.world.entity.animal.FlyingAnimal;
+//?}
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -49,7 +51,11 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("unchecked")
+//? if >=26.2 {
+/*public class SilkMoth extends Animal {
+*///?} else {
 public class SilkMoth extends Animal implements FlyingAnimal {
+//?}
     public static final EntityDataAccessor<Boolean> FLYING = SynchedEntityData.defineId(SilkMoth.class, EntityDataSerializers.BOOLEAN);
 
     public final AnimationState idleAnimationState = new AnimationState();
@@ -216,7 +222,9 @@ public class SilkMoth extends Animal implements FlyingAnimal {
         this.entityData.set(FLYING, flying);
     }
 
+    //? if <26.2 {
     @Override
+    //?}
     public boolean isFlying() {
         return this.entityData.get(FLYING);
     }

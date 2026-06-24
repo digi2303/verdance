@@ -86,6 +86,12 @@ public class CushionBlock extends Block {
         super.fallOn(level, blockState, blockPos, entity, fallDistance * 0.5);
     }
 
+//? if >=26.2 {
+    /*@Override
+    public float getBounceRestitution() {
+        return 0.8f;
+    }
+*///?} else {
     @Override
     public void updateEntityMovementAfterFallOn(BlockGetter blockGetter, Entity entity) {
         if (entity.isSuppressingBounce()) {
@@ -102,7 +108,7 @@ public class CushionBlock extends Block {
             double multiplier = entity instanceof LivingEntity ? 1.0d : 0.8d;
             entity.setDeltaMovement(vec3.x, -vec3.y * 0.8d * multiplier, vec3.z);
         }
-    }
+    }//?}
 
     @Override
     protected boolean isPathfindable(BlockState blockState, PathComputationType pathComputationType) {

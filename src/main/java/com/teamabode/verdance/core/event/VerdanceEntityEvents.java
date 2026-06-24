@@ -26,7 +26,12 @@ public class VerdanceEntityEvents {
                 SilkMoth::checkSilkMothSpawnRules
         );
 
+//? if >=26.2 {
+        /*abstraction.addBlockEntityBlocks(net.minecraft.world.level.block.entity.BlockEntityTypes.SIGN, VerdanceBlocks.MULBERRY_SIGN, VerdanceBlocks.MULBERRY_WALL_SIGN);
+        abstraction.addBlockEntityBlocks(net.minecraft.world.level.block.entity.BlockEntityTypes.HANGING_SIGN, VerdanceBlocks.MULBERRY_HANGING_SIGN, VerdanceBlocks.MULBERRY_WALL_HANGING_SIGN);
+*///?} else {
         abstraction.addBlockEntityBlocks(BlockEntityType.SIGN, VerdanceBlocks.MULBERRY_SIGN, VerdanceBlocks.MULBERRY_WALL_SIGN);
         abstraction.addBlockEntityBlocks(BlockEntityType.HANGING_SIGN, VerdanceBlocks.MULBERRY_HANGING_SIGN, VerdanceBlocks.MULBERRY_WALL_HANGING_SIGN);
+//?}
     }
 }

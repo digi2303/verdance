@@ -1,7 +1,11 @@
 package com.teamabode.verdance.common.item;
 
 import com.teamabode.verdance.core.registry.VerdanceTriggerTypes;
+//? if >=26.2 {
+/*import net.minecraft.advancements.triggers.CriteriaTriggers;
+*///?} else {
 import net.minecraft.advancements.CriteriaTriggers;
+//?}
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;

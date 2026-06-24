@@ -31,7 +31,16 @@ jobs:
         if: ${{ runner.os != 'Windows' }}
         run: chmod +x ./gradlew
       - name: build
-        run: ./gradlew chiseledBuild
+        # Stonecutter swaps source in-place per active node, so each version must be
+        # switched and built in its own Gradle invocation (one-shot chiseledBuild can't
+        # swap-then-compile reliably). Add new nodes to this list.
+        shell: bash
+        run: |
+          for node in yumi-26.1 yumi-26.2; do
+            ./gradlew "Set active project to $node" --quiet
+            ./gradlew ":$node:build"
+          done
+          ./gradlew "Set active project to yumi-26.1" --quiet
       - name: capture build artifacts
         if: ${{ runner.os == 'Linux' && matrix.java == '25' }} # Only upload artifacts built from one OS
         uses: actions/upload-artifact@v4

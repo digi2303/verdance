@@ -3,6 +3,8 @@ package com.teamabode.verdance.impl.platform;
 import com.teamabode.verdance.core.level.VerdanceBiomeReplacements;
 import com.teamabode.verdance.core.level.VerdanceSurfaceRuleRegistry;
 import dev.yumi.mc.core.api.YumiMods;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Util;
@@ -21,6 +23,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public interface CommonAbstraction {
     boolean IS_FABRIC = YumiMods.get().isModLoaded("fabricloader") && !YumiMods.get().isModLoaded("connector");
@@ -57,11 +60,14 @@ public interface CommonAbstraction {
             }
 
             @Override
-            public void addOverworldSurfaceRule(SurfaceRules.RuleSource rule) {
+            public void addOverworldSurfaceRule(Function<HolderGetter<Biome>, SurfaceRules.RuleSource> rule) {
                 VerdanceSurfaceRuleRegistry.add(rule);
             }
         });
-        onServerAboutToStart(VerdanceBiomeReplacements::bind);
+        onServerAboutToStart(server -> {
+            VerdanceBiomeReplacements.bind(server);
+            VerdanceSurfaceRuleRegistry.resolve(server.registryAccess().lookupOrThrow(Registries.BIOME));
+        });
     }
 
     default void registerBiomeFeatures() {
@@ -82,6 +88,6 @@ public interface CommonAbstraction {
     interface BiomeInjector {
         void replaceOverworld(ResourceKey<Biome> target, ResourceKey<Biome> replacement, double proportion);
 
-        void addOverworldSurfaceRule(SurfaceRules.RuleSource rule);
+        void addOverworldSurfaceRule(Function<HolderGetter<Biome>, SurfaceRules.RuleSource> rule);
     }
 }

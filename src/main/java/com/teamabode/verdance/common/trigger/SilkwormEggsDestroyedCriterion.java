@@ -4,11 +4,22 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.teamabode.verdance.core.registry.VerdanceTriggerTypes;
 import java.util.Optional;
+//? if >=26.2 {
+/*import net.minecraft.advancements.triggers.Criterion;
+*///?} else {
 import net.minecraft.advancements.Criterion;
+//?}
+//? if >=26.2 {
+/*import net.minecraft.advancements.predicates.ContextAwarePredicate;
+import net.minecraft.advancements.predicates.entity.EntityPredicate;
+import net.minecraft.advancements.predicates.ItemPredicate;
+import net.minecraft.advancements.triggers.SimpleCriterionTrigger;
+*///?} else {
 import net.minecraft.advancements.criterion.ContextAwarePredicate;
 import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.SimpleCriterionTrigger;
+//?}
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 

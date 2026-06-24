@@ -45,7 +45,7 @@ public class SilkCocoonBlockEntity extends BlockEntity {
 
         if (ticks >= 4800) {
             SilkMoth silkMoth = new SilkMoth(VerdanceEntityTypes.SILK_MOTH, level);
-            silkMoth.setPos(pos.getCenter());
+            silkMoth.setPos(net.minecraft.world.phys.Vec3.atCenterOf(pos));
             silkMoth.setYHeadRot(state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot());
             silkMoth.setYRot(state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot());
             silkMoth.takeOff();

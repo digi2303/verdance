@@ -44,7 +44,11 @@ public class SilkUtils {
     public static Optional<BlockPos> getTargetPos(ServerLevel level, BlockPos origin) {
         return BlockPos.findClosestMatch(origin, 10, 3, pos -> {
             BlockState state = level.getBlockState(pos);
+//? if >=26.2 {
+            /*if (!state.is(BlockTags.LOGS)) return false;
+*///?} else {
             if (!state.is(BlockTags.LOGS_THAT_BURN)) return false;
+//?}
 
             for (Direction dir : Direction.Plane.HORIZONTAL) {
                 BlockState dirState = level.getBlockState(pos.relative(dir));

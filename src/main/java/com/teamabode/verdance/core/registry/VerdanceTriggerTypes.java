@@ -2,8 +2,16 @@ package com.teamabode.verdance.core.registry;
 
 import com.teamabode.verdance.Verdance;
 import com.teamabode.verdance.common.trigger.SilkwormEggsDestroyedCriterion;
+//? if >=26.2 {
+/*import net.minecraft.advancements.triggers.CriterionTrigger;
+*///?} else {
 import net.minecraft.advancements.CriterionTrigger;
+//?}
+//? if >=26.2 {
+/*import net.minecraft.advancements.triggers.PlayerTrigger;
+*///?} else {
 import net.minecraft.advancements.criterion.PlayerTrigger;
+//?}
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 
